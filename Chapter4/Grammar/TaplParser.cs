@@ -101,14 +101,6 @@ public partial class TaplParser : Parser {
 			return GetRuleContext<TermContext>(0);
 		}
 		public ParContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterPar(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitPar(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitPar(this);
@@ -121,14 +113,6 @@ public partial class TaplParser : Parser {
 			return GetRuleContext<TermContext>(0);
 		}
 		public IsZeroContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterIsZero(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitIsZero(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitIsZero(this);
@@ -138,14 +122,6 @@ public partial class TaplParser : Parser {
 	public partial class ZeroContext : TermContext {
 		public ITerminalNode ZERO() { return GetToken(TaplParser.ZERO, 0); }
 		public ZeroContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterZero(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitZero(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitZero(this);
@@ -158,14 +134,6 @@ public partial class TaplParser : Parser {
 			return GetRuleContext<TermContext>(0);
 		}
 		public SuccContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterSucc(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitSucc(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitSucc(this);
@@ -178,14 +146,6 @@ public partial class TaplParser : Parser {
 			return GetRuleContext<TermContext>(0);
 		}
 		public PredContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterPred(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitPred(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitPred(this);
@@ -195,14 +155,6 @@ public partial class TaplParser : Parser {
 	public partial class TrueContext : TermContext {
 		public ITerminalNode TRUE() { return GetToken(TaplParser.TRUE, 0); }
 		public TrueContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterTrue(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitTrue(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTrue(this);
@@ -220,14 +172,6 @@ public partial class TaplParser : Parser {
 		public ITerminalNode THEN() { return GetToken(TaplParser.THEN, 0); }
 		public ITerminalNode ELSE() { return GetToken(TaplParser.ELSE, 0); }
 		public IfThenElseContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterIfThenElse(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitIfThenElse(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitIfThenElse(this);
@@ -237,14 +181,6 @@ public partial class TaplParser : Parser {
 	public partial class FalseContext : TermContext {
 		public ITerminalNode FALSE() { return GetToken(TaplParser.FALSE, 0); }
 		public FalseContext(TermContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterFalse(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitFalse(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFalse(this);
@@ -358,14 +294,6 @@ public partial class TaplParser : Parser {
 			return GetRuleContext<NvContext>(0);
 		}
 		public NumericvalueContext(VContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterNumericvalue(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitNumericvalue(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNumericvalue(this);
@@ -406,14 +334,6 @@ public partial class TaplParser : Parser {
 		{
 		}
 		public override int RuleIndex { get { return RULE_nv; } }
-		public override void EnterRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.EnterNv(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ITaplListener typedListener = listener as ITaplListener;
-			if (typedListener != null) typedListener.ExitNv(this);
-		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNv(this);
