@@ -1,4 +1,6 @@
-﻿namespace Chapter4.Terms
+﻿using Common;
+
+namespace Chapter4.Terms
 {
     public class Pred : ITerm
     {

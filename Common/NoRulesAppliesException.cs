@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter4
+namespace Common
 {
-    class NoRulesAppliesException : Exception
+    public class NoRulesAppliesException : Exception
     {
         public NoRulesAppliesException(string message) : base(message)
         {

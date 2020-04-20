@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Chapter4.Terms;
+using Common;
 using System;
 
 namespace Chapter4
