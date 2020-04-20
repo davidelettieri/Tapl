@@ -1,6 +1,7 @@
 grammar Tapl;
 
-term	: IF term THEN term ELSE term	#IfThenElse
+term	: '(' term ')'					#par
+		| IF term THEN term ELSE term	#IfThenElse
 		| SUCC term						#Succ
 		| PRED term						#Pred
 		| ISZERO term					#IsZero

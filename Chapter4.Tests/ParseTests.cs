@@ -107,5 +107,22 @@ namespace Chapter4.Tests
             Assert.IsType<Zero>(_if?.Then);
             Assert.IsType<False>(_if?.Else);
         }
+
+        [Fact(DisplayName = "Parse with ()")]
+        public void ParseWithParenthesis()
+        {
+            // Arrange 
+            var s = "if (iszero succ 0) then (succ 0) else (pred false)";
+
+            // Act
+            var term = Parse(s);
+
+            // Assert
+            Assert.IsType<If>(term);
+            var _if = term as If;
+            Assert.IsType<IsZero>(_if?.Condition);
+            Assert.IsType<Succ>(_if?.Then);
+            Assert.IsType<Pred>(_if?.Else);
+        }
     }
 }

@@ -36,8 +36,8 @@ public partial class TaplParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		ZERO=1, SUCC=2, PRED=3, ISZERO=4, TRUE=5, FALSE=6, IF=7, THEN=8, ELSE=9, 
-		WS=10;
+		T__0=1, T__1=2, ZERO=3, SUCC=4, PRED=5, ISZERO=6, TRUE=7, FALSE=8, IF=9, 
+		THEN=10, ELSE=11, WS=12;
 	public const int
 		RULE_term = 0, RULE_v = 1, RULE_nv = 2;
 	public static readonly string[] ruleNames = {
@@ -45,12 +45,12 @@ public partial class TaplParser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'0'", "'succ'", "'pred'", "'iszero'", "'true'", "'false'", "'if'", 
-		"'then'", "'else'", "' '"
+		null, "'('", "')'", "'0'", "'succ'", "'pred'", "'iszero'", "'true'", "'false'", 
+		"'if'", "'then'", "'else'", "' '"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "ZERO", "SUCC", "PRED", "ISZERO", "TRUE", "FALSE", "IF", "THEN", 
-		"ELSE", "WS"
+		null, null, null, "ZERO", "SUCC", "PRED", "ISZERO", "TRUE", "FALSE", "IF", 
+		"THEN", "ELSE", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -94,6 +94,25 @@ public partial class TaplParser : Parser {
 		public TermContext() { }
 		public virtual void CopyFrom(TermContext context) {
 			base.CopyFrom(context);
+		}
+	}
+	public partial class ParContext : TermContext {
+		public TermContext term() {
+			return GetRuleContext<TermContext>(0);
+		}
+		public ParContext(TermContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			ITaplListener typedListener = listener as ITaplListener;
+			if (typedListener != null) typedListener.EnterPar(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			ITaplListener typedListener = listener as ITaplListener;
+			if (typedListener != null) typedListener.ExitPar(this);
+		}
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITaplVisitor<TResult> typedVisitor = visitor as ITaplVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPar(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class IsZeroContext : TermContext {
@@ -238,64 +257,73 @@ public partial class TaplParser : Parser {
 		TermContext _localctx = new TermContext(Context, State);
 		EnterRule(_localctx, 0, RULE_term);
 		try {
-			State = 22;
+			State = 26;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case IF:
-				_localctx = new IfThenElseContext(_localctx);
+			case T__0:
+				_localctx = new ParContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 6; Match(IF);
+				State = 6; Match(T__0);
 				State = 7; term();
-				State = 8; Match(THEN);
-				State = 9; term();
-				State = 10; Match(ELSE);
+				State = 8; Match(T__1);
+				}
+				break;
+			case IF:
+				_localctx = new IfThenElseContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 10; Match(IF);
 				State = 11; term();
+				State = 12; Match(THEN);
+				State = 13; term();
+				State = 14; Match(ELSE);
+				State = 15; term();
 				}
 				break;
 			case SUCC:
 				_localctx = new SuccContext(_localctx);
-				EnterOuterAlt(_localctx, 2);
+				EnterOuterAlt(_localctx, 3);
 				{
-				State = 13; Match(SUCC);
-				State = 14; term();
+				State = 17; Match(SUCC);
+				State = 18; term();
 				}
 				break;
 			case PRED:
 				_localctx = new PredContext(_localctx);
-				EnterOuterAlt(_localctx, 3);
+				EnterOuterAlt(_localctx, 4);
 				{
-				State = 15; Match(PRED);
-				State = 16; term();
+				State = 19; Match(PRED);
+				State = 20; term();
 				}
 				break;
 			case ISZERO:
 				_localctx = new IsZeroContext(_localctx);
-				EnterOuterAlt(_localctx, 4);
+				EnterOuterAlt(_localctx, 5);
 				{
-				State = 17; Match(ISZERO);
-				State = 18; term();
+				State = 21; Match(ISZERO);
+				State = 22; term();
 				}
 				break;
 			case TRUE:
 				_localctx = new TrueContext(_localctx);
-				EnterOuterAlt(_localctx, 5);
+				EnterOuterAlt(_localctx, 6);
 				{
-				State = 19; Match(TRUE);
+				State = 23; Match(TRUE);
 				}
 				break;
 			case FALSE:
 				_localctx = new FalseContext(_localctx);
-				EnterOuterAlt(_localctx, 6);
+				EnterOuterAlt(_localctx, 7);
 				{
-				State = 20; Match(FALSE);
+				State = 24; Match(FALSE);
 				}
 				break;
 			case ZERO:
 				_localctx = new ZeroContext(_localctx);
-				EnterOuterAlt(_localctx, 7);
+				EnterOuterAlt(_localctx, 8);
 				{
-				State = 21; Match(ZERO);
+				State = 25; Match(ZERO);
 				}
 				break;
 			default:
@@ -353,7 +381,7 @@ public partial class TaplParser : Parser {
 			_localctx = new NumericvalueContext(_localctx);
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 24; nv();
+			State = 28; nv();
 			}
 		}
 		catch (RecognitionException re) {
@@ -398,20 +426,20 @@ public partial class TaplParser : Parser {
 		NvContext _localctx = new NvContext(Context, State);
 		EnterRule(_localctx, 4, RULE_nv);
 		try {
-			State = 29;
+			State = 33;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case SUCC:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 26; Match(SUCC);
-				State = 27; nv();
+				State = 30; Match(SUCC);
+				State = 31; nv();
 				}
 				break;
 			case ZERO:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 28; Match(ZERO);
+				State = 32; Match(ZERO);
 				}
 				break;
 			default:
@@ -431,35 +459,38 @@ public partial class TaplParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\f', '\"', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '\xE', '&', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x3', '\x2', '\x3', '\x2', '\x3', 
 		'\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', 
 		'\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', 
-		'\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x5', '\x2', '\x19', 
-		'\n', '\x2', '\x3', '\x3', '\x3', '\x3', '\x3', '\x4', '\x3', '\x4', '\x3', 
-		'\x4', '\x5', '\x4', ' ', '\n', '\x4', '\x3', '\x4', '\x2', '\x2', '\x5', 
-		'\x2', '\x4', '\x6', '\x2', '\x2', '\x2', '%', '\x2', '\x18', '\x3', '\x2', 
-		'\x2', '\x2', '\x4', '\x1A', '\x3', '\x2', '\x2', '\x2', '\x6', '\x1F', 
-		'\x3', '\x2', '\x2', '\x2', '\b', '\t', '\a', '\t', '\x2', '\x2', '\t', 
-		'\n', '\x5', '\x2', '\x2', '\x2', '\n', '\v', '\a', '\n', '\x2', '\x2', 
-		'\v', '\f', '\x5', '\x2', '\x2', '\x2', '\f', '\r', '\a', '\v', '\x2', 
-		'\x2', '\r', '\xE', '\x5', '\x2', '\x2', '\x2', '\xE', '\x19', '\x3', 
-		'\x2', '\x2', '\x2', '\xF', '\x10', '\a', '\x4', '\x2', '\x2', '\x10', 
-		'\x19', '\x5', '\x2', '\x2', '\x2', '\x11', '\x12', '\a', '\x5', '\x2', 
-		'\x2', '\x12', '\x19', '\x5', '\x2', '\x2', '\x2', '\x13', '\x14', '\a', 
-		'\x6', '\x2', '\x2', '\x14', '\x19', '\x5', '\x2', '\x2', '\x2', '\x15', 
-		'\x19', '\a', '\a', '\x2', '\x2', '\x16', '\x19', '\a', '\b', '\x2', '\x2', 
-		'\x17', '\x19', '\a', '\x3', '\x2', '\x2', '\x18', '\b', '\x3', '\x2', 
-		'\x2', '\x2', '\x18', '\xF', '\x3', '\x2', '\x2', '\x2', '\x18', '\x11', 
-		'\x3', '\x2', '\x2', '\x2', '\x18', '\x13', '\x3', '\x2', '\x2', '\x2', 
-		'\x18', '\x15', '\x3', '\x2', '\x2', '\x2', '\x18', '\x16', '\x3', '\x2', 
-		'\x2', '\x2', '\x18', '\x17', '\x3', '\x2', '\x2', '\x2', '\x19', '\x3', 
-		'\x3', '\x2', '\x2', '\x2', '\x1A', '\x1B', '\x5', '\x6', '\x4', '\x2', 
-		'\x1B', '\x5', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x1D', '\a', '\x4', 
-		'\x2', '\x2', '\x1D', ' ', '\x5', '\x6', '\x4', '\x2', '\x1E', ' ', '\a', 
-		'\x3', '\x2', '\x2', '\x1F', '\x1C', '\x3', '\x2', '\x2', '\x2', '\x1F', 
-		'\x1E', '\x3', '\x2', '\x2', '\x2', ' ', '\a', '\x3', '\x2', '\x2', '\x2', 
-		'\x4', '\x18', '\x1F',
+		'\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', 
+		'\x2', '\x3', '\x2', '\x3', '\x2', '\x5', '\x2', '\x1D', '\n', '\x2', 
+		'\x3', '\x3', '\x3', '\x3', '\x3', '\x4', '\x3', '\x4', '\x3', '\x4', 
+		'\x5', '\x4', '$', '\n', '\x4', '\x3', '\x4', '\x2', '\x2', '\x5', '\x2', 
+		'\x4', '\x6', '\x2', '\x2', '\x2', '*', '\x2', '\x1C', '\x3', '\x2', '\x2', 
+		'\x2', '\x4', '\x1E', '\x3', '\x2', '\x2', '\x2', '\x6', '#', '\x3', '\x2', 
+		'\x2', '\x2', '\b', '\t', '\a', '\x3', '\x2', '\x2', '\t', '\n', '\x5', 
+		'\x2', '\x2', '\x2', '\n', '\v', '\a', '\x4', '\x2', '\x2', '\v', '\x1D', 
+		'\x3', '\x2', '\x2', '\x2', '\f', '\r', '\a', '\v', '\x2', '\x2', '\r', 
+		'\xE', '\x5', '\x2', '\x2', '\x2', '\xE', '\xF', '\a', '\f', '\x2', '\x2', 
+		'\xF', '\x10', '\x5', '\x2', '\x2', '\x2', '\x10', '\x11', '\a', '\r', 
+		'\x2', '\x2', '\x11', '\x12', '\x5', '\x2', '\x2', '\x2', '\x12', '\x1D', 
+		'\x3', '\x2', '\x2', '\x2', '\x13', '\x14', '\a', '\x6', '\x2', '\x2', 
+		'\x14', '\x1D', '\x5', '\x2', '\x2', '\x2', '\x15', '\x16', '\a', '\a', 
+		'\x2', '\x2', '\x16', '\x1D', '\x5', '\x2', '\x2', '\x2', '\x17', '\x18', 
+		'\a', '\b', '\x2', '\x2', '\x18', '\x1D', '\x5', '\x2', '\x2', '\x2', 
+		'\x19', '\x1D', '\a', '\t', '\x2', '\x2', '\x1A', '\x1D', '\a', '\n', 
+		'\x2', '\x2', '\x1B', '\x1D', '\a', '\x5', '\x2', '\x2', '\x1C', '\b', 
+		'\x3', '\x2', '\x2', '\x2', '\x1C', '\f', '\x3', '\x2', '\x2', '\x2', 
+		'\x1C', '\x13', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x15', '\x3', '\x2', 
+		'\x2', '\x2', '\x1C', '\x17', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x19', 
+		'\x3', '\x2', '\x2', '\x2', '\x1C', '\x1A', '\x3', '\x2', '\x2', '\x2', 
+		'\x1C', '\x1B', '\x3', '\x2', '\x2', '\x2', '\x1D', '\x3', '\x3', '\x2', 
+		'\x2', '\x2', '\x1E', '\x1F', '\x5', '\x6', '\x4', '\x2', '\x1F', '\x5', 
+		'\x3', '\x2', '\x2', '\x2', ' ', '!', '\a', '\x6', '\x2', '\x2', '!', 
+		'$', '\x5', '\x6', '\x4', '\x2', '\"', '$', '\a', '\x5', '\x2', '\x2', 
+		'#', ' ', '\x3', '\x2', '\x2', '\x2', '#', '\"', '\x3', '\x2', '\x2', 
+		'\x2', '$', '\a', '\x3', '\x2', '\x2', '\x2', '\x4', '\x1C', '#',
 	};
 
 	public static readonly ATN _ATN =

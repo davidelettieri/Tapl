@@ -35,6 +35,20 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class TaplBaseListener : ITaplListener {
 	/// <summary>
+	/// Enter a parse tree produced by the <c>par</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPar([NotNull] TaplParser.ParContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>par</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPar([NotNull] TaplParser.ParContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>IfThenElse</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// <para>The default implementation does nothing.</para>

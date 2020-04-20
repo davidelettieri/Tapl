@@ -32,6 +32,13 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface ITaplVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
+	/// Visit a parse tree produced by the <c>par</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPar([NotNull] TaplParser.ParContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>IfThenElse</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>

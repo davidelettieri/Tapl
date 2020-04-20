@@ -26,6 +26,11 @@ namespace Chapter4
             return new IsZero(Visit(of));
         }
 
+        public override ITerm VisitPar([NotNull] TaplParser.ParContext context)
+        {
+            return Visit(context.term());
+        }
+
         public override ITerm VisitPred([NotNull] TaplParser.PredContext context)
         {
             var of = context.term();
