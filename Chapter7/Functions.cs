@@ -1,4 +1,5 @@
-﻿using Chapter7.Terms;
+﻿using Antlr4.Runtime;
+using Chapter7.Terms;
 using Common;
 using System;
 using System.Linq;
@@ -114,5 +115,22 @@ namespace Chapter7
         //        App app =>
         //    }
         //}
+
+        public static ITerm Parse(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+                throw new ArgumentException($"{nameof(s)} cannot be null or empty");
+
+
+            var inputStream = new AntlrInputStream(s);
+            var lexer = new TaplLexer(inputStream);
+            var commonTokenStream = new CommonTokenStream(lexer);
+            var parser = new TaplParser(commonTokenStream);
+            var context = parser.term();
+
+            var visitor = new TermVisitor();
+
+            return visitor.Visit(context);
+        }
     }
 }
