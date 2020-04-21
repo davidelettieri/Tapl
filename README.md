@@ -5,5 +5,5 @@ The OCaml implementation can be found at the book website https://www.cis.upenn.
 
 I'm not sure how I will handle code repetition, since chapters build one upon another, so I will probably change the structure of the solution as needed. 
 
-So far I'm ignoring the info about the position in the source file/string where the node is been generated. In the original implementation the term type is a discriminated union type with each cases representing a different term such as lambda abstraction or application.
+So far I'm ignoring the info about the position in the source file/string where the node is been generated. In the original implementation the term type is a discriminated union type with each cases representing a different term such as lambda abstraction or application. I'm using polymorphism with an empty interface ITerm.
 

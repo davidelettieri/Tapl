@@ -188,7 +188,7 @@ public partial class TaplParser : Parser {
 				State = 8; Match(LAMBDA);
 				State = 9; Match(VAR);
 				State = 10; Match(DOT);
-				State = 11; term(2);
+				State = 11; term(1);
 				}
 				break;
 			default:
@@ -208,8 +208,8 @@ public partial class TaplParser : Parser {
 					_localctx = new AppContext(new TermContext(_parentctx, _parentState));
 					PushNewRecursionContext(_localctx, _startState, RULE_term);
 					State = 14;
-					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
-					State = 15; term(2);
+					if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
+					State = 15; term(3);
 					}
 					} 
 				}
@@ -238,7 +238,7 @@ public partial class TaplParser : Parser {
 	}
 	private bool term_sempred(TermContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return Precpred(Context, 1);
+		case 0: return Precpred(Context, 2);
 		}
 		return true;
 	}
@@ -256,11 +256,11 @@ public partial class TaplParser : Parser {
 		'\a', '\b', '\a', '\x4', '\x2', '\x2', '\b', '\xF', '\x3', '\x2', '\x2', 
 		'\x2', '\t', '\xF', '\a', '\x5', '\x2', '\x2', '\n', '\v', '\a', '\x6', 
 		'\x2', '\x2', '\v', '\f', '\a', '\x5', '\x2', '\x2', '\f', '\r', '\a', 
-		'\a', '\x2', '\x2', '\r', '\xF', '\x5', '\x2', '\x2', '\x4', '\xE', '\x4', 
+		'\a', '\x2', '\x2', '\r', '\xF', '\x5', '\x2', '\x2', '\x3', '\xE', '\x4', 
 		'\x3', '\x2', '\x2', '\x2', '\xE', '\t', '\x3', '\x2', '\x2', '\x2', '\xE', 
 		'\n', '\x3', '\x2', '\x2', '\x2', '\xF', '\x14', '\x3', '\x2', '\x2', 
-		'\x2', '\x10', '\x11', '\f', '\x3', '\x2', '\x2', '\x11', '\x13', '\x5', 
-		'\x2', '\x2', '\x4', '\x12', '\x10', '\x3', '\x2', '\x2', '\x2', '\x13', 
+		'\x2', '\x10', '\x11', '\f', '\x4', '\x2', '\x2', '\x11', '\x13', '\x5', 
+		'\x2', '\x2', '\x5', '\x12', '\x10', '\x3', '\x2', '\x2', '\x2', '\x13', 
 		'\x16', '\x3', '\x2', '\x2', '\x2', '\x14', '\x12', '\x3', '\x2', '\x2', 
 		'\x2', '\x14', '\x15', '\x3', '\x2', '\x2', '\x2', '\x15', '\x3', '\x3', 
 		'\x2', '\x2', '\x2', '\x16', '\x14', '\x3', '\x2', '\x2', '\x2', '\x4', 

@@ -2,8 +2,8 @@ grammar Tapl;
 
 term	: '(' term ')'						#par
 		| VAR								#var
-		| <assoc=right> LAMBDA VAR DOT term	#abs
-		| term term							#app;
+		| term term							#app
+		| LAMBDA VAR DOT term				#abs;
 
 VAR		: [a-z];
 LAMBDA	: '\\';
