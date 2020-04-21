@@ -53,8 +53,6 @@ namespace Chapter7.Tests
             Assert.IsType<Var>(app?.Left);
             Assert.IsType<Var>(app?.Right);
         }
-        //lambda x.x;
-        //;
 
         [Fact(DisplayName = "Parse \\x.x")]
         public void ParseLambdaId()
@@ -94,5 +92,82 @@ namespace Chapter7.Tests
             Assert.Equal("x", absl.BoundedVariable);
             Assert.IsType<App>(absr.Body);
         }
+
+        [Fact(DisplayName = "Application is left associative")]
+        public void ApplicationLeftAssociative()
+        {
+            // Arrange 
+            var s = "stu";
+
+            // Act
+            var t = Parse(s);
+
+            // Assert
+            Assert.IsType<App>(t);
+            var app = t as App;
+            Assert.IsType<App>(app?.Left);
+            Assert.IsType<Var>(app?.Right);
+        }
+
+        [Fact(DisplayName = "Body of lambda abs extend as far as to the right as possible")]
+        public void BodyOfLambdaRight()
+        {
+            // Arrange 
+            var s = "\\x.\\y.xyx";
+
+            // Act
+            var t = Parse(s);
+
+            // Assert
+            Assert.IsType<Abs>(t);
+            var abs = t as Abs;
+            Assert.IsType<Abs>(abs?.Body);
+            var absi = abs?.Body as Abs;
+            Assert.IsType<App>(absi.Body);
+        }
+
+        [Fact(DisplayName = "Compute correctly de brujin indices")]
+        public void ComputeCorrectlyDeBrujinIndices()
+        {
+            // Arrange 
+            var s = "\\x.\\y.yx";
+
+            // Act
+            var t = Parse(s);
+
+            // Assert
+            Assert.IsType<Abs>(t);
+            var abs = t as Abs;
+            Assert.IsType<Abs>(abs?.Body);
+            var absi = abs?.Body as Abs;
+            Assert.IsType<App>(absi?.Body);
+            var app = absi?.Body as App;
+            var left = app?.Left as Var;
+            var right = app?.Right as Var;
+            Assert.Equal(0, left?.Index);
+            Assert.Equal(1, right?.Index);
+        }
+
+        //[Fact(DisplayName = "Compute correctly de brujin indices 2")]
+        //public void ComputeCorrectlyDeBrujinIndices2()
+        //{
+        //    // Arrange 
+        //    var s = "\\x.(\\x.xx)x";
+
+        //    // Act
+        //    var t = Parse(s);
+
+        //    // Assert
+        //    Assert.IsType<Abs>(t);
+        //    var abs = t as Abs;
+        //    Assert.IsType<Abs>(abs?.Body);
+        //    var absi = abs?.Body as Abs;
+        //    Assert.IsType<App>(absi?.Body);
+        //    var app = absi?.Body as App;
+        //    var left = app?.Left as Var;
+        //    var right = app?.Right as Var;
+        //    Assert.Equal(0, left?.Index);
+        //    Assert.Equal(1, right?.Index);
+        //}
     }
 }

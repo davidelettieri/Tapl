@@ -1,14 +1,23 @@
 ﻿using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 using Chapter7.Terms;
 using Common;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace Chapter7
 {
     public class TermVisitor : TaplBaseVisitor<ITerm>
     {
+        private List<string> _boundVariables = new List<string>();
         public override ITerm VisitAbs([NotNull] TaplParser.AbsContext context)
         {
-            return new Abs(Visit(context.term()), context.VAR().GetText());
+            var boundVar = context.VAR().GetText();
+            _boundVariables.Add(boundVar);
+            var result = new Abs(Visit(context.term()), boundVar);
+            _boundVariables.Remove(boundVar);
+            return result;
         }
 
         public override ITerm VisitApp([NotNull] TaplParser.AppContext context)
@@ -23,7 +32,9 @@ namespace Chapter7
 
         public override ITerm VisitVar([NotNull] TaplParser.VarContext context)
         {
-            return new Var(0, 0);
+            var variable = context.VAR().GetText();
+            var index = _boundVariables.Count - 1 - _boundVariables.IndexOf(variable);
+            return new Var(index, 0);
         }
     }
 }
