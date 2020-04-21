@@ -12,18 +12,15 @@ namespace Chapter7.Terms
     {
         public ITerm Body { get; }
         public string BoundedVariable { get; }
-        public int ContextLength { get; }
 
         /// <summary>
         /// Lambda abstraction term λx.y
         /// </summary>
         /// <param name="body">The body of the lambda abstraction</param>
         /// <param name="bv">The bounded variable</param>
-        /// <param name="ctxl">Context length</param>
-        public Abs(ITerm body, string bv, int ctxl)
+        public Abs(ITerm body, string bv)
         {
             Body = body;
-            ContextLength = ctxl;
             BoundedVariable = bv;
         }
     }

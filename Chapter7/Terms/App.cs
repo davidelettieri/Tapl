@@ -12,18 +12,15 @@ namespace Chapter7.Terms
     {
         public ITerm Left { get; }
         public ITerm Right { get; }
-        public int ContextLength { get; }
         /// <summary>
         /// Application term (xy)
         /// </summary>
         /// <param name="left">The first term in the application</param>
         /// <param name="right">The second term in the application</param>
-        /// <param name="ctxl">Context length</param>
-        public App(ITerm left, ITerm right, int ctxl)
+        public App(ITerm left, ITerm right)
         {
             Left = left;
             Right = right;
-            ContextLength = ctxl;
         }
     }
 }
