@@ -7,12 +7,43 @@ namespace Chapter7
 {
     public static class Functions
     {
+        #region Core
+
+        public static bool IsVal(ITerm t) => t is Abs;
+
+        private static ITerm eval1(Context ctx, ITerm t)
+        {
+            return t switch
+            {
+                App app when app.Left is Abs abs && IsVal(app.Right) => TermSubstitutionTop(app.Right, abs.Body),
+                App app when IsVal(app.Left) => new App(app.Left, eval1(ctx, app.Right)),
+                App app => new App(eval1(ctx, app.Left), app.Right),
+                _ => throw new NoRulesAppliesException()
+            };
+        }
+
+        public static ITerm Eval(Context ctx, ITerm t)
+        {
+            try
+            {
+                var t1 = eval1(ctx, t);
+
+                return Eval(ctx, t1);
+            }
+            catch (NoRulesAppliesException)
+            {
+                return t;
+            }
+        }
+
+        #endregion
+
         public static string PrintTerm(Context ctx, ITerm t)
         {
             switch (t)
             {
                 case Abs abs:
-                    var (ctxp, xp) = PickFreshName(ctx, abs.BoundedVariable);
+                    var (ctxp, xp) = ctx.PickFreshName(abs.BoundedVariable);
                     return $"(lambda {xp}.{PrintTerm(ctxp, abs.Body)}";
                 case App app:
                     return $"({PrintTerm(ctx, app.Left)}{PrintTerm(ctx, app.Right)}";
@@ -23,16 +54,10 @@ namespace Chapter7
                         return "[bad index]";
                 default:
                     throw new InvalidOperationException();
-            };
+            }
         }
 
-        public static (Context, string) PickFreshName(Context ctx, string v)
-        {
-            if (ctx.IsFresh(v))
-                return (ctx.Add(v, new Binding()), v);
-
-            return PickFreshName(ctx, v + "'");
-        }
+      
 
         public static ITerm Substitution(int variable, ITerm s, ITerm t)
         {
@@ -45,7 +70,9 @@ namespace Chapter7
             };
         }
 
-        private static ITerm TermSubstitutionTop(ITerm s, ITerm t) => Shift(-1, Substitution(0, Shift(1, s), t));
+        public static ITerm TermSubstitutionTop(ITerm s, ITerm t) => Shift(-1, Substitution(0, Shift(1, s), t));
+
+
 
         public static ITerm Shift(int d, ITerm t)
         {
@@ -66,53 +93,18 @@ namespace Chapter7
                         return new Var(var.Index + d, var.ContextLength + d);
                     default:
                         throw new InvalidOperationException();
-                };
+                }
             }
         }
 
-        public static bool IsVal(ITerm t) => t is Abs;
 
 
-        private static ITerm _eval(Context ctx, ITerm t)
-        {
-            return t switch
-            {
-                App app when app.Left is Abs abs && IsVal(app.Right) => TermSubstitutionTop(app.Right, abs.Body),
-                App app when IsVal(app.Left) => new App(app.Left, _eval(ctx, app.Right)),
-                App app => new App(_eval(ctx, app.Left), app.Right),
-                _ => throw new NoRulesAppliesException()
-            };
-        }
+     
 
-        public static ITerm Eval(Context ctx, ITerm t)
-        {
-            try
-            {
-                var t1 = _eval(ctx, t);
-
-                return Eval(ctx, t1);
-            }
-            catch (NoRulesAppliesException)
-            {
-                return t;
-            }
-        }
-
-        //private static ITerm _eval(ITerm t)
-        //{
-        //    t switch
-        //    {
-        //        App app when !IsVal(app.Left) => new App(_eval(app.Left), app.Right, app.ContextLength),
-        //        App app when IsVal(app.Left) && !IsVal(app.Right) => new App(app.Left, _eval(app.Right), app.ContextLength),
-        //        App app =>
-        //    }
-        //}
-
-        public static ITerm Parse(string s)
+        public static Func<Context, ITerm> Parse(string s)
         {
             if (string.IsNullOrWhiteSpace(s))
                 throw new ArgumentException($"{nameof(s)} cannot be null or empty");
-
 
             var inputStream = new AntlrInputStream(s);
             var lexer = new TaplLexer(inputStream);

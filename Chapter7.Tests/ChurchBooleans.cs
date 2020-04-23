@@ -1,7 +1,4 @@
 ﻿using Chapter7.Terms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using static Chapter7.Functions;
 
@@ -18,15 +15,17 @@ namespace Chapter7.Tests
         {
             // Act
             var t = Parse(TrueString);
-
+            var v = t(new Context());
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
             Assert.IsType<Abs>(abs?.Body);
             Assert.Equal("t", abs?.BoundedVariable);
             var absi = abs.Body as Abs;
             Assert.Equal("f", absi?.BoundedVariable);
             Assert.IsType<Var>(absi?.Body);
+            var b = absi?.Body as Var;
+            Assert.Equal(1, b.Index);
         }
 
         [Fact(DisplayName = "Parse False lambda")]
@@ -34,15 +33,37 @@ namespace Chapter7.Tests
         {
             // Act
             var t = Parse(FalseString);
-
+            var v = t(new Context());
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
             Assert.IsType<Abs>(abs?.Body);
             Assert.Equal("t", abs?.BoundedVariable);
             var absi = abs.Body as Abs;
             Assert.Equal("f", absi?.BoundedVariable);
             Assert.IsType<Var>(absi?.Body);
+            var b = absi?.Body as Var;
+            Assert.Equal(0, b.Index);
+        }
+
+        [Fact(DisplayName = "Parse If Lambda")]
+        public void ParseIfLambda()
+        {
+            // Act
+            var t = Parse(IfString);
+            var v = t(new Context());
+
+            // Assert
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
+            Assert.IsType<Abs>(abs?.Body);
+            Assert.Equal("l", abs?.BoundedVariable);
+            var absi = abs.Body as Abs;
+            Assert.Equal("m", absi?.BoundedVariable);
+            Assert.IsType<Abs>(absi?.Body);
+            var absii = absi.Body as Abs;
+            Assert.Equal("n", absii?.BoundedVariable);
+            Assert.IsType<App>(absii?.Body);
         }
     }
 }

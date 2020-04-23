@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 
 namespace Chapter7
 {
@@ -21,16 +19,34 @@ namespace Chapter7
         }
 
         public Context Add(string v, Binding b) => new Context(_value.Add((v, b)));
-
         public int Length => _value.Count;
-        public bool IsFresh(string v) => !_value.Select(p => p.Item1).Contains(v);
+        public bool IsFresh(string x) => !_value.Select(p => p.Item1).Contains(x);
+        public bool IsNameBound(string x) => !IsFresh(x);
+        public (Context, string) PickFreshName(string v)
+        {
+            if (IsFresh(v))
+                return (Add(v, new Binding()), v);
 
+            return PickFreshName(v + "'");
+        }
         public string IndexToName(int idx)
         {
             if (idx > _value.Count)
                 throw new InvalidOperationException();
 
             return _value[idx].Item1;
+        }
+        public int NameToIndex(string v)
+        {
+            var count = 0;
+            foreach (var item in _value)
+            {
+                if (item.Item1 == v)
+                    return count;
+                count++;
+            }
+
+            throw new Exception($"Identifier {v} is unbound");
         }
     }
 }

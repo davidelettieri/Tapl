@@ -14,9 +14,10 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<Var>(t);
+            Assert.IsType<Var>(v);
         }
 
         [Fact(DisplayName = "Parse xy")]
@@ -27,10 +28,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<App>(t);
-            var app = t as App;
+            Assert.IsType<App>(v);
+            var app = v as App;
             Assert.IsType<Var>(app?.Left);
             Assert.IsType<Var>(app?.Right);
         }
@@ -43,10 +45,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
             Assert.Equal("x", abs.BoundedVariable);
             Assert.IsType<App>(abs?.Body);
             var app = abs?.Body as App;
@@ -62,10 +65,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
             Assert.Equal("x", abs.BoundedVariable);
             Assert.IsType<Var>(abs?.Body);
         }
@@ -78,10 +82,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<App>(t);
-            var app = t as App;
+            Assert.IsType<App>(v);
+            var app = v as App;
             var left = app?.Left;
             var right = app?.Right;
             Assert.IsType<Abs>(left);
@@ -101,10 +106,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<App>(t);
-            var app = t as App;
+            Assert.IsType<App>(v);
+            var app = v as App;
             Assert.IsType<App>(app?.Left);
             Assert.IsType<Var>(app?.Right);
         }
@@ -117,10 +123,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
             Assert.IsType<Abs>(abs?.Body);
             var absi = abs?.Body as Abs;
             Assert.IsType<App>(absi.Body);
@@ -134,10 +141,11 @@ namespace Chapter7.Tests
 
             // Act
             var t = Parse(s);
+            var v = t(new Context());
 
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
             Assert.IsType<Abs>(abs?.Body);
             var absi = abs?.Body as Abs;
             Assert.IsType<App>(absi?.Body);

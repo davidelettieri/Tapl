@@ -16,7 +16,7 @@ namespace Chapter7.Tests
             var ctx = new Context();
 
             // Act
-            var (ctx1, f) = PickFreshName(ctx, v);
+            var (ctx1, f) = ctx.PickFreshName(v);
 
             // Assert
             Assert.Equal(v, f);
@@ -32,7 +32,7 @@ namespace Chapter7.Tests
             ctx = ctx.Add("x", new Binding());
 
             // Act
-            var (ctx1, f) = PickFreshName(ctx, v);
+            var (ctx1, f) = ctx.PickFreshName(v);
 
             // Assert
             Assert.Equal(v, f);
@@ -48,7 +48,7 @@ namespace Chapter7.Tests
             ctx = ctx.Add("x", new Binding());
 
             // Act
-            var (ctx1, f) = PickFreshName(ctx, v);
+            var (ctx1, f) = ctx.PickFreshName(v);
 
             // Assert
             Assert.Equal("x'", f);
