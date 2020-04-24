@@ -42,7 +42,7 @@ namespace Chapter7
             foreach (var item in _value)
             {
                 if (item.Item1 == v)
-                    return count;
+                    return _value.Count - count - 1;
                 count++;
             }
 

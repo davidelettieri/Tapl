@@ -57,8 +57,6 @@ namespace Chapter7
             }
         }
 
-      
-
         public static ITerm Substitution(int variable, ITerm s, ITerm t)
         {
             return t switch
@@ -71,8 +69,6 @@ namespace Chapter7
         }
 
         public static ITerm TermSubstitutionTop(ITerm s, ITerm t) => Shift(-1, Substitution(0, Shift(1, s), t));
-
-
 
         public static ITerm Shift(int d, ITerm t)
         {
@@ -96,10 +92,6 @@ namespace Chapter7
                 }
             }
         }
-
-
-
-     
 
         public static Func<Context, ITerm> Parse(string s)
         {

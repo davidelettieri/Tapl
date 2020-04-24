@@ -9,7 +9,7 @@ namespace Chapter7.Tests
     {
         private static readonly Context EmptyContext = new Context();
 
-        [Fact(DisplayName = "Eval variable")]
+        [Fact(DisplayName = "Eval variable with empty context")]
         public void EvalVariable()
         {
             // Arrange
@@ -22,7 +22,7 @@ namespace Chapter7.Tests
             Assert.IsType<Var>(t);
         }
 
-        [Fact(DisplayName = "Eval lambda abstraction")]
+        [Fact(DisplayName = "Eval lambda abstraction with empty context")]
         public void EvalLambdaAbstraction()
         {
             // Arrange
