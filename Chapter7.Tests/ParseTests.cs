@@ -1,6 +1,5 @@
 using Chapter7.Terms;
 using System;
-using System.Security.Cryptography;
 using Xunit;
 using static Chapter7.Functions;
 namespace Chapter7.Tests
@@ -12,10 +11,11 @@ namespace Chapter7.Tests
         {
             // Arrange 
             var s = "x";
+            var ctx = new Context().Add("x", new Binding());
 
             // Act
             var t = Parse(s);
-            var v = t(new Context());
+            var v = t(ctx);
 
             // Assert
             Assert.IsType<Var>(v);
@@ -26,10 +26,11 @@ namespace Chapter7.Tests
         {
             // Arrange 
             var s = "xy";
+            var ctx = new Context().Add("x", new Binding()).Add("y", new Binding());
 
             // Act
             var t = Parse(s);
-            var v = t(new Context());
+            var v = t(ctx);
 
             // Assert
             Assert.IsType<App>(v);
@@ -104,10 +105,11 @@ namespace Chapter7.Tests
         {
             // Arrange 
             var s = "stu";
+            var ctx = new Context().Add("s", new Binding()).Add("t", new Binding()).Add("u", new Binding());
 
             // Act
             var t = Parse(s);
-            var v = t(new Context());
+            var v = t(ctx);
 
             // Assert
             Assert.IsType<App>(v);
@@ -184,26 +186,20 @@ namespace Chapter7.Tests
             Assert.Equal(0, right.Index);
         }
 
-        [Fact(DisplayName = "Compute correctly de brujin indices 2")]
+        [Fact(DisplayName = "Parse \\w.yw and compute with context (x,z,a,b)")]
         public void ComputeCorrectlyDeBrujinIndices2()
         {
-            // Arrange 
-            var s = "\\x.(\\x.xx)x";
-
+            // Arrange
+            var s = "\\w.yw";
+            var ctx = new Context().Add("x", new Binding())
+                                   .Add("z", new Binding())
+                                   .Add("a", new Binding())
+                                   .Add("b", new Binding());
             // Act
-            var t = Parse(s);
+            var parsed = Parse(s);
 
             // Assert
-            Assert.IsType<Abs>(t);
-            var abs = t as Abs;
-            Assert.IsType<Abs>(abs?.Body);
-            var absi = abs?.Body as Abs;
-            Assert.IsType<App>(absi?.Body);
-            var app = absi?.Body as App;
-            var left = app?.Left as Var;
-            var right = app?.Right as Var;
-            Assert.Equal(0, left?.Index);
-            Assert.Equal(1, right?.Index);
+            Assert.Throws<Exception>(() => parsed(ctx));
         }
     }
 }

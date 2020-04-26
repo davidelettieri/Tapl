@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter4", "Chapter4\Chapter4.csproj", "{604FFFF2-5BC2-4BA0-8088-5E9B8CE0E368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter4", "Chapter4\Chapter4.csproj", "{604FFFF2-5BC2-4BA0-8088-5E9B8CE0E368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter4.Tests", "Chapter4.Tests\Chapter4.Tests.csproj", "{1445690A-EB83-4047-A91C-1A563BAACFA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter4.Tests", "Chapter4.Tests\Chapter4.Tests.csproj", "{1445690A-EB83-4047-A91C-1A563BAACFA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter7", "Chapter7\Chapter7.csproj", "{F79619A7-0020-4928-8AB7-4202C4C47370}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter7", "Chapter7\Chapter7.csproj", "{F79619A7-0020-4928-8AB7-4202C4C47370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{67E9A6D4-25DB-4C75-B9C8-7A2D6CE6A297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{67E9A6D4-25DB-4C75-B9C8-7A2D6CE6A297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter7.Tests", "Chapter7.Tests\Chapter7.Tests.csproj", "{8DDDCBD8-38C1-40F1-88E7-187C615AEADB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter7.Tests", "Chapter7.Tests\Chapter7.Tests.csproj", "{8DDDCBD8-38C1-40F1-88E7-187C615AEADB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

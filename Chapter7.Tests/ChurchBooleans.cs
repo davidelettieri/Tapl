@@ -65,5 +65,18 @@ namespace Chapter7.Tests
             Assert.Equal("n", absii?.BoundedVariable);
             Assert.IsType<App>(absii?.Body);
         }
+
+        [Fact(DisplayName = "Evaluate If Lambda")]
+        public void EvaluateIfLambda()
+        {
+            // Act
+            var t = Parse($"({IfString}) ({TrueString}) (\\x.x) (\\y.yy)");
+            var emptyCtx = new Context();
+            var v = Eval(emptyCtx, t(emptyCtx));
+
+            // Assert
+            Assert.IsType<Abs>(v);
+            var abs = v as Abs;
+        }
     }
 }
