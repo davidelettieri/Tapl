@@ -1,0 +1,4 @@
+﻿app		: term term+
+term	: VAR | LAMBDA VAR DOT term | 
+unary	: BIND VAR 
+primary	: VAR | DOT | OP EXPR CP

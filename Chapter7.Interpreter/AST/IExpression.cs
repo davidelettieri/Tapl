@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter7
+namespace Chapter7.Interpreter.AST
 {
-    class Program
+    public interface IExpression
     {
     }
 }

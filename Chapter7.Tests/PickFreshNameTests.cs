@@ -29,7 +29,7 @@ namespace Chapter7.Tests
             // Arrange
             var v = "y";
             var ctx = new Context();
-            ctx = ctx.Add("x", new Binding());
+            ctx = ctx.AddBinding("x", new Binding());
 
             // Act
             var (ctx1, f) = ctx.PickFreshName(v);
@@ -45,7 +45,7 @@ namespace Chapter7.Tests
             // Arrange
             var v = "x";
             var ctx = new Context();
-            ctx = ctx.Add("x", new Binding());
+            ctx = ctx.AddBinding("x", new Binding());
 
             // Act
             var (ctx1, f) = ctx.PickFreshName(v);

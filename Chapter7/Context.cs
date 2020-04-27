@@ -6,43 +6,51 @@ namespace Chapter7
 {
     public class Context
     {
-        private readonly ImmutableList<(string, Binding)> _value;
+        private readonly ImmutableStack<(string, Binding)> _value;
 
         public Context()
         {
-            _value = ImmutableList<(string, Binding)>.Empty;
+            _value = ImmutableStack<(string, Binding)>.Empty;
         }
 
-        public Context(ImmutableList<(string, Binding)> value)
+        public Context(ImmutableStack<(string, Binding)> value)
         {
             _value = value;
         }
 
-        public Context Add(string v, Binding b) => new Context(_value.Add((v, b)));
-        public int Length => _value.Count;
-        public bool IsFresh(string x) => !_value.Select(p => p.Item1).Contains(x);
-        public bool IsNameBound(string x) => !IsFresh(x);
+        public int Length => _value.Count();
+        public Context AddBinding(string v, Binding b) => new Context(_value.Push((v, b)));
+        public Context AddName(string v) => AddBinding(v, new Binding());
+        public bool IsNameBound(string x) => _value.Any(p => p.Item1 == x);
         public (Context, string) PickFreshName(string v)
         {
-            if (IsFresh(v))
-                return (Add(v, new Binding()), v);
+            if (IsNameBound(v))
+                return PickFreshName(v + "'");
 
-            return PickFreshName(v + "'");
+            return (AddName(v), v);
         }
+
         public string IndexToName(int idx)
         {
-            if (idx > _value.Count)
-                throw new InvalidOperationException();
+            var count = 0;
 
-            return _value[idx].Item1;
+            foreach (var item in _value)
+            {
+                if (count == idx)
+                    return item.Item1;
+                count++;
+            }
+
+            throw new Exception();
         }
+
         public int NameToIndex(string v)
         {
             var count = 0;
             foreach (var item in _value)
             {
                 if (item.Item1 == v)
-                    return _value.Count - count - 1;
+                    return count;
                 count++;
             }
 

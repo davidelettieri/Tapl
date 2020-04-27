@@ -2,6 +2,7 @@
 using Chapter7.Terms;
 using Common;
 using System;
+using System.Collections.Immutable;
 using System.Linq;
 namespace Chapter7
 {
@@ -44,9 +45,9 @@ namespace Chapter7
             {
                 case Abs abs:
                     var (ctxp, xp) = ctx.PickFreshName(abs.BoundedVariable);
-                    return $"(lambda {xp}.{PrintTerm(ctxp, abs.Body)}";
+                    return $"(lambda {xp}.{PrintTerm(ctxp, abs.Body)})";
                 case App app:
-                    return $"({PrintTerm(ctx, app.Left)}{PrintTerm(ctx, app.Right)}";
+                    return $"({PrintTerm(ctx, app.Left)}{PrintTerm(ctx, app.Right)})";
                 case Var var:
                     if (ctx.Length == var.ContextLength)
                         return ctx.IndexToName(var.Index);
@@ -93,7 +94,7 @@ namespace Chapter7
             }
         }
 
-        public static Func<Context, ITerm> Parse(string s)
+        public static Func<Context, (ImmutableStack<ICommand>, Context)> Parse(string s)
         {
             if (string.IsNullOrWhiteSpace(s))
                 throw new ArgumentException($"{nameof(s)} cannot be null or empty");
@@ -102,11 +103,35 @@ namespace Chapter7
             var lexer = new TaplLexer(inputStream);
             var commonTokenStream = new CommonTokenStream(lexer);
             var parser = new TaplParser(commonTokenStream);
-            var context = parser.term();
+            var context = parser.toplevel();
 
-            var visitor = new TermVisitor();
+            var visitor = new TopLevelVisitor();
 
             return visitor.Visit(context);
+        }
+
+        public static Context ProcessCommand(Context ctx, ICommand c)
+        {
+            switch (c)
+            {
+                case Eval e:
+                    var t = Eval(ctx, e.Term);
+                    Console.WriteLine(PrintTerm(ctx, t));
+                    return ctx;
+                case Bind b:
+                    Console.WriteLine($"Bind {b.Name}");
+                    return ctx.AddBinding(b.Name, new Binding());
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+
+        public static Context Process(string source)
+        {
+            var fcommands = Parse(source);
+            var commands = fcommands(new Context());
+
+            return commands.Item1.Aggregate(new Context(), ProcessCommand);
         }
     }
 }

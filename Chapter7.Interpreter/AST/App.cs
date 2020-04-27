@@ -1,24 +1,18 @@
-﻿using Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Chapter7.Terms
+﻿namespace Chapter7.Interpreter.AST
 {
     /// <summary>
     /// Application term (xy)
     /// </summary>
-    public class App : ITerm
+    public class App : IExpression
     {
-        public ITerm Left { get; }
-        public ITerm Right { get; }
-
+        public IExpression Left { get; }
+        public IExpression Right { get; }
         /// <summary>
         /// Application term (xy)
         /// </summary>
         /// <param name="left">The first term in the application</param>
         /// <param name="right">The second term in the application</param>
-        public App(ITerm left, ITerm right)
+        public App(IExpression left, IExpression right)
         {
             Left = left;
             Right = right;
