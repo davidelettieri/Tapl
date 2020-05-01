@@ -3,7 +3,7 @@ using System;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Chapter7
+namespace Chapter10.Core
 {
     public class Context
     {

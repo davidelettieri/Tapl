@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using static Chapter7.Functions;
+﻿using Xunit;
 
 namespace Chapter7.Tests
 {
@@ -29,7 +25,7 @@ namespace Chapter7.Tests
             // Arrange
             var v = "y";
             var ctx = new Context();
-            ctx = ctx.AddBinding("x", new Binding());
+            ctx = ctx.AddName("x");
 
             // Act
             var (ctx1, f) = ctx.PickFreshName(v);
@@ -45,7 +41,7 @@ namespace Chapter7.Tests
             // Arrange
             var v = "x";
             var ctx = new Context();
-            ctx = ctx.AddBinding("x", new Binding());
+            ctx = ctx.AddName("x");
 
             // Act
             var (ctx1, f) = ctx.PickFreshName(v);

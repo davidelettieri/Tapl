@@ -32,7 +32,7 @@ namespace Chapter7
             if (context.bind() != null)
             {
                 var boundName = context.bind().VAR().GetText();
-                return ctx => (new Bind(boundName), ctx.AddBinding(boundName, new Binding()));
+                return ctx => (new Bind(boundName), ctx.AddName(boundName));
             }
 
             var termFunc = _termVisitor.Visit(context.term());
@@ -47,7 +47,7 @@ namespace Chapter7
         {
             var boundVar = context.VAR().GetText();
             var body = Visit(context.term());
-            ITerm result(Context c) => new Abs(body(c.AddBinding(boundVar, new Binding())), boundVar);
+            ITerm result(Context c) => new Abs(body(c.AddName(boundVar)), boundVar);
             return result;
         }
 

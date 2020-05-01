@@ -131,7 +131,7 @@ namespace Chapter7
                     return ctx;
                 case Bind b:
                     Console.WriteLine($"Bind {b.Name}");
-                    return ctx.AddBinding(b.Name, new Binding());
+                    return ctx.AddBinding(b.Name, new NameBinding());
                 default:
                     throw new InvalidOperationException();
             }
