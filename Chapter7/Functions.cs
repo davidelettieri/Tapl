@@ -16,7 +16,7 @@ namespace Chapter7
         {
             return t switch
             {
-                App app when app.Left is Abs abs && IsVal(app.Right) => TermSubstitutionTop(app.Right, abs.Body),
+                App app when app.Left is Abs abs && IsVal(app.Right) => TermSubsTop(app.Right, abs.Body),
                 App app when IsVal(app.Left) => new App(app.Left, eval1(ctx, app.Right)),
                 App app => new App(eval1(ctx, app.Left), app.Right),
                 _ => throw new NoRulesAppliesException()
@@ -39,6 +39,53 @@ namespace Chapter7
 
         #endregion
 
+        public static ITerm TmMap(Func<int, Var, ITerm> onVar, int c, ITerm t)
+        {
+            ITerm walk(int c, ITerm t)
+            {
+                return t switch
+                {
+                    Var var => onVar(c, var),
+                    Abs abs => new Abs(walk(c + 1, abs.Body), abs.BoundedVariable),
+                    App app => new App(walk(c, app.Left), walk(c, app.Right)),
+                    _ => throw new InvalidOperationException()
+                };
+            }
+
+            return walk(c, t);
+        }
+
+        public static ITerm TermShiftAbove(int d, int c, ITerm t)
+        {
+            ITerm onVar(int c, Var v)
+            {
+                if (v.Index >= c) return new Var(v.Index + d, v.ContextLength + d);
+
+                return new Var(v.Index, v.ContextLength + d);
+            }
+
+            return TmMap(onVar, c, t);
+        }
+
+        public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
+
+        /// <summary>
+        /// Substitution: [j -> s]
+        /// </summary>
+        /// <param name="j">Variable to be sustituted</param>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static ITerm TermSubst(int j, ITerm s, ITerm t)
+        {
+            ITerm onVar(int c, Var v) => v.Index == j + c ? TermShift(c, s) : v;
+
+            return TmMap(onVar, 0, t);
+        }
+
+        public static ITerm TermSubsTop(ITerm s, ITerm t)
+            => TermShift(-1, TermSubst(0, TermShift(1, s), t));
+
         public static string PrintTerm(Context ctx, ITerm t)
         {
             switch (t)
@@ -55,42 +102,6 @@ namespace Chapter7
                         return "[bad index]";
                 default:
                     throw new InvalidOperationException();
-            }
-        }
-
-        public static ITerm Substitution(int variable, ITerm s, ITerm t)
-        {
-            return t switch
-            {
-                Var var => var.Index == variable ? s : var,
-                Abs abs => new Abs(Substitution(variable + 1, s, abs.Body), abs.BoundedVariable),
-                App app => new App(Substitution(variable, s, app.Left), Substitution(variable, s, app.Right)),
-                _ => throw new InvalidOperationException()
-            };
-        }
-
-        public static ITerm TermSubstitutionTop(ITerm s, ITerm t) => Shift(-1, Substitution(0, Shift(1, s), t));
-
-        public static ITerm Shift(int d, ITerm t)
-        {
-            return Walk(t, 0);
-
-            ITerm Walk(ITerm t, int cutoff)
-            {
-                switch (t)
-                {
-                    case Abs abs:
-                        return new Abs(Walk(abs.Body, cutoff + 1), abs.BoundedVariable);
-                    case App app:
-                        return new App(Walk(app.Left, cutoff), Walk(app.Right, cutoff));
-                    case Var var:
-                        if (var.Index < cutoff)
-                            return new Var(var.Index, var.ContextLength + d);
-
-                        return new Var(var.Index + d, var.ContextLength + d);
-                    default:
-                        throw new InvalidOperationException();
-                }
             }
         }
 

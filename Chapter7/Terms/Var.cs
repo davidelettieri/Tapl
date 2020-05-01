@@ -18,6 +18,10 @@ namespace Chapter7.Terms
         public Var(int index, int ctxl)
         {
             Index = index;
+
+            if (ctxl < index)
+                throw new InvalidOperationException();
+
             ContextLength = ctxl;
         }
     }

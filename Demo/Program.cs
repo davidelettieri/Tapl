@@ -16,11 +16,10 @@ namespace Demo
             }
             else
             {
-                var ctx = new Context();
                 while (true)
                 {
                     var commandSource = Console.ReadLine();
-                    ctx = Process(commandSource + "\\n");
+                    Process(commandSource);
                 }
             }
         }
