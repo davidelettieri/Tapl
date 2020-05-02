@@ -5,11 +5,15 @@ using System.Text;
 
 namespace Chapter10.Syntax
 {
-    public class TypeArrow<T, S> : IType where T : IType where S : IType
+    public class TypeArrow : IType
     {
+        public IType From { get; }
+        public IType To { get; }
+
+        public TypeArrow(IType from, IType to)
+        {
+            From = from;
+            To = to;
+        }
     }
-
-    public class TypeBool : IType { }
-
-
 }

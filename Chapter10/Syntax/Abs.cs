@@ -12,16 +12,18 @@ namespace Chapter10.Syntax
     {
         public ITerm Body { get; }
         public string BoundedVariable { get; }
+        public IType Type { get; }
 
         /// <summary>
         /// Lambda abstraction term λx.y
         /// </summary>
         /// <param name="body">The body of the lambda abstraction</param>
         /// <param name="bv">The bounded variable</param>
-        public Abs(ITerm body, string bv)
+        public Abs(ITerm body, string bv, IType type)
         {
             Body = body;
             BoundedVariable = bv;
+            Type = type;
         }
     }
 }

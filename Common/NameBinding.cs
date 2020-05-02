@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter7
+namespace Common
 {
     public class NameBinding : IBinding
     {

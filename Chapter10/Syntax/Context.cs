@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
-namespace Chapter10.Core
+namespace Chapter10.Syntax
 {
     public class Context
     {
@@ -12,6 +13,11 @@ namespace Chapter10.Core
         public Context()
         {
             _value = ImmutableStack<(string, IBinding)>.Empty;
+        }
+
+        internal IType GetTypeFromContext(Context ctx, int index)
+        {
+            throw new NotImplementedException();
         }
 
         public Context(ImmutableStack<(string, IBinding)> value)
@@ -30,20 +36,7 @@ namespace Chapter10.Core
 
             return (AddName(v), v);
         }
-
-        public string IndexToName(int idx)
-        {
-            var count = 0;
-
-            foreach (var item in _value)
-            {
-                if (count == idx)
-                    return item.Item1;
-                count++;
-            }
-
-            throw new Exception();
-        }
+        public string IndexToName(int i) => _value.ElementAt(i).Item1;
 
         public int NameToIndex(string v)
         {
@@ -56,6 +49,17 @@ namespace Chapter10.Core
             }
 
             throw new Exception($"Identifier {v} is unbound");
+        }
+
+        private IBinding GetBinding(int i) => _value.ElementAt(i).Item2;
+
+        public IType GetTypeFromContext(int i)
+        {
+            return GetBinding(i) switch
+            {
+                VarBind v => v.Type,
+                _ => throw new WrongKindOfBindException()
+            };
         }
     }
 }
