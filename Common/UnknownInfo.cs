@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Common
 {
-    public interface ITerm
+
+    public class UnknownInfo : IInfo
     {
-        IInfo Info => new UnknownInfo();
     }
 }

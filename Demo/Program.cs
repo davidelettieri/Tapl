@@ -1,7 +1,7 @@
 ﻿using Chapter7;
 using System;
 using System.IO;
-using static Chapter7.Functions;
+using static Chapter10.Functions;
 namespace Demo
 {
     class Program

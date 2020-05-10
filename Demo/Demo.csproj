@@ -6,11 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Chapter10.txt" />
     <None Remove="Chapter7.txt" />
     <None Remove="Chapter7_1.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Chapter10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Chapter7.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -20,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Chapter10\Chapter10.csproj" />
     <ProjectReference Include="..\Chapter7\Chapter7.csproj" />
   </ItemGroup>
 

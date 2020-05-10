@@ -7,6 +7,7 @@ namespace Chapter10.Syntax
 {
     public class Var : ITerm
     {
+        public IInfo Info { get; }
         public int Index { get; }
         public int ContextLength { get; }
 
@@ -15,13 +16,13 @@ namespace Chapter10.Syntax
         /// </summary>
         /// <param name="index">De bruijn index</param>
         /// <param name="ctxl">Context length</param>
-        public Var(int index, int ctxl)
+        public Var(IInfo info, int index, int ctxl)
         {
-            Index = index;
-
             if (ctxl < index)
                 throw new InvalidOperationException();
 
+            Info = info;
+            Index = index;
             ContextLength = ctxl;
         }
     }

@@ -1,5 +1,7 @@
 ﻿using Chapter10.Syntax;
 using Common;
+using static Chapter10.Core.Shifting;
+using static Chapter10.Core.Substitution;
 
 namespace Chapter10.Core
 {
@@ -22,11 +24,11 @@ namespace Chapter10.Core
             {
                 App app when app.Left is Abs abs && IsVal(ctx, app.Right)
                     => TermSubsTop(app.Right, abs.Body),
-                App app when IsVal(ctx, app.Left) => new App(app.Left, Eval1(ctx, app.Right)),
-                App app => new App(Eval1(ctx, app.Left), app.Right),
+                App app when IsVal(ctx, app.Left) => new App(app.Info, app.Left, Eval1(ctx, app.Right)),
+                App app => new App(app.Info, Eval1(ctx, app.Left), app.Right),
                 If ift when ift.Condition is True => ift.Then,
                 If ift when ift.Condition is False => ift.Else,
-                If ift => new If(Eval1(ctx, ift.Condition), ift.Then, ift.Else),
+                If ift => new If(ift.Info, Eval1(ctx, ift.Condition), ift.Then, ift.Else),
                 _ => throw new NoRulesAppliesException()
             };
         }

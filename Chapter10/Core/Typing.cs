@@ -1,8 +1,6 @@
 ﻿using Chapter10.Syntax;
 using Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Chapter10.Core
 {
@@ -13,15 +11,15 @@ namespace Chapter10.Core
             switch (t)
             {
                 case Var var:
-                    return ctx.GetTypeFromContext(ctx, var.Index);
+                    return ctx.GetTypeFromContext(var.Index);
                 case Abs abs:
                     var ctx1 = ctx.AddBinding(abs.BoundedVariable, new VarBind(abs.Type));
-                    var typeBody = TypeOf(ctx, abs.Body);
+                    var typeBody = TypeOf(ctx1, abs.Body);
                     return new TypeArrow(abs.Type, typeBody);
                 case App app:
                     var leftType = TypeOf(ctx, app.Left);
                     var rightType = TypeOf(ctx, app.Right);
-                    if (t is TypeArrow ta)
+                    if (leftType is TypeArrow ta)
                     {
                         if (rightType.Equals(ta.From))
                             return ta.To;

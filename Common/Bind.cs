@@ -1,6 +1,6 @@
 ﻿using Common;
 
-namespace Chapter7
+namespace Common
 {
     public class Bind : ICommand
     {

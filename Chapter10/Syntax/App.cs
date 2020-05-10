@@ -10,6 +10,7 @@ namespace Chapter10.Syntax
     /// </summary>
     public class App : ITerm
     {
+        public IInfo Info { get; }
         public ITerm Left { get; }
         public ITerm Right { get; }
 
@@ -18,8 +19,9 @@ namespace Chapter10.Syntax
         /// </summary>
         /// <param name="left">The first term in the application</param>
         /// <param name="right">The second term in the application</param>
-        public App(ITerm left, ITerm right)
+        public App(IInfo info, ITerm left, ITerm right)
         {
+            Info = info;
             Left = left;
             Right = right;
         }
