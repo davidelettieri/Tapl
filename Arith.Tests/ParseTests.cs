@@ -1,9 +1,9 @@
-using Chapter4.Terms;
+using Arith.Terms;
 using System;
 using Xunit;
-using static Chapter4.Functions;
+using static Arith.Functions;
 
-namespace Chapter4.Tests
+namespace Arith.Tests
 {
     public class ParseTests
     {

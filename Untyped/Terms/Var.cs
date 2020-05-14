@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter7.Terms
+namespace Untyped.Terms
 {
     public class Var : ITerm
     {

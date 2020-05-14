@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Chapter7.Tests
+namespace Untyped.Tests
 {
     public class PickFreshNameTests
     {

@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using Xunit;
 using static Chapter7.Functions;
 
-namespace Chapter7.Tests
+namespace Untyped.Tests
 {
     public class EvalTests
     {

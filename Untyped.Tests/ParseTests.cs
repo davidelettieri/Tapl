@@ -2,7 +2,7 @@ using Chapter7.Terms;
 using System;
 using Xunit;
 using static Chapter7.Functions;
-namespace Chapter7.Tests
+namespace Untyped.Tests
 {
     public class ParseTests
     {

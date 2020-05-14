@@ -1,1 +1,5 @@
-﻿(\l.\m.\n.lmn) (\t.\f.t) (\x.x) (\y.yy);
+﻿BIND x;
+x;
+\x. x;
+(\x. x) (\x. x x);
+(\l.\m.\n.lmn) (\t.\f.t) (\x.x) (\y.yy);

@@ -1,10 +1,10 @@
 ﻿using Antlr4.Runtime.Misc;
-using Chapter7.Terms;
+using Untyped.Terms;
 using Common;
 using System;
 using System.Collections.Immutable;
 
-namespace Chapter7
+namespace Untyped
 {
     public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
     {

@@ -1,8 +1,8 @@
-﻿using Chapter4.Terms;
-using static Chapter4.Functions;
+﻿using Arith.Terms;
+using static Arith.Functions;
 using Xunit;
 
-namespace Chapter4.Tests
+namespace Arith.Tests
 {
     public class EvalTests
     {

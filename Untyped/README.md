@@ -2,6 +2,8 @@
 
 Implementation from Pierce https://www.cis.upenn.edu/~bcpierce/tapl/checkers/untyped.tar.gz
 
+REF. Chapter 7
+
 The book is missing quite a look with respect to the actual implementation. 
 
 In the OCAML implementation the parser in producing what in C# could be defined as ```Func<Context, (ImmutableStack<ICommand>, Context)>```.
@@ -12,7 +14,7 @@ The `ICommand` has two different implementation
 
 The naming context is required to handle terms with free variables and the bind command is used to add names to the context. 
 
-What's strange is how the parser is defined and used, as end result we want to evaluate some terms (at least that's what I want) but we end up with commands and context and we don't use some of the context we build. This comments are obscure but let's follow through the test file in the untyped implementation to understand what is done. Please note that I changed the bind syntax and the lambda syntax in
+What's strange is how the parser is defined and used, as end result we want to evaluate some terms (at least that's what I want) but we end up with commands and a context and we don't use some of the context we build. This comments are obscure but let's follow through the test file in the untyped implementation to understand what is done. Please note that I changed the bind syntax and the lambda syntax in
 - BIND x -> binds the name 'x'
 - \x.[body] -> is a lambda abstraction
 

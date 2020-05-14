@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Chapter7\Chapter7.csproj" />
-  </ItemGroup>
-
 </Project>

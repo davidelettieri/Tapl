@@ -1,10 +1,11 @@
 ﻿using Antlr4.Runtime;
-using Chapter7.Terms;
 using Common;
 using System;
 using System.Collections.Immutable;
 using System.Linq;
-namespace Chapter7
+using Untyped.Terms;
+
+namespace Untyped
 {
     public static class Functions
     {
