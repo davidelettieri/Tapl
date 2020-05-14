@@ -1,6 +1,6 @@
-﻿using Chapter7.Terms;
+﻿using Untyped.Terms;
 using Xunit;
-using static Chapter7.Functions;
+using static Untyped.Functions;
 
 namespace Untyped.Tests
 {

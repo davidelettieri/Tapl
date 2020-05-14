@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter10.Syntax
+namespace SimpleBool.Syntax
 {
     public class VarBind : IBinding
     {

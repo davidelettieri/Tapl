@@ -1,9 +1,9 @@
-﻿using Chapter10.Syntax;
+﻿using SimpleBool.Syntax;
 using Common;
-using static Chapter10.Core.Shifting;
-using static Chapter10.Core.Substitution;
+using static SimpleBool.Core.Shifting;
+using static SimpleBool.Core.Substitution;
 
-namespace Chapter10.Core
+namespace SimpleBool.Core
 {
     public static class Evaluation
     {

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Security;
 using System.Text;
 using static System.Console;
-using static Chapter10.Core.Typing;
+using static SimpleBool.Core.Typing;
 
-namespace Chapter10.Syntax
+namespace SimpleBool.Syntax
 {
     public static class Printing
     {

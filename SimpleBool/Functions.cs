@@ -1,15 +1,13 @@
-﻿using Chapter10.Syntax;
+﻿using SimpleBool.Syntax;
 using Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static Chapter10.Syntax.Printing;
-using static Chapter10.Core.Evaluation;
+using static SimpleBool.Syntax.Printing;
+using static SimpleBool.Core.Evaluation;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
 using System.Linq;
 
-namespace Chapter10
+namespace SimpleBool
 {
     public static class Functions
     {

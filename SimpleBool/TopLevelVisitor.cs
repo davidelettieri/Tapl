@@ -1,11 +1,11 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
-using Chapter10.Syntax;
+using SimpleBool.Syntax;
 using Common;
 using System;
 using System.Collections.Immutable;
 
-namespace Chapter10
+namespace SimpleBool
 {
     public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
     {

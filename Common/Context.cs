@@ -1,28 +1,27 @@
-﻿using Common;
-using System;
+﻿using System;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Untyped
+namespace Common
 {
     public class Context
     {
-        private readonly ImmutableStack<(string, IBinding)> _value;
+        public ImmutableStack<(string, IBinding)> Value { get; }
 
         public Context()
         {
-            _value = ImmutableStack<(string, IBinding)>.Empty;
+            Value = ImmutableStack<(string, IBinding)>.Empty;
         }
 
         public Context(ImmutableStack<(string, IBinding)> value)
         {
-            _value = value;
+            Value = value;
         }
+        public int Length => Value.Count();
 
-        public int Length => _value.Count();
-        public Context AddBinding(string v, IBinding b) => new Context(_value.Push((v, b)));
+        public Context AddBinding(string v, IBinding b) => new Context(Value.Push((v, b)));
         public Context AddName(string v) => AddBinding(v, new NameBinding());
-        public bool IsNameBound(string x) => _value.Any(p => p.Item1 == x);
+        public bool IsNameBound(string x) => Value.Any(p => p.Item1 == x);
         public (Context, string) PickFreshName(string v)
         {
             if (IsNameBound(v))
@@ -30,25 +29,11 @@ namespace Untyped
 
             return (AddName(v), v);
         }
-
-        public string IndexToName(int idx)
-        {
-            var count = 0;
-
-            foreach (var item in _value)
-            {
-                if (count == idx)
-                    return item.Item1;
-                count++;
-            }
-
-            throw new Exception();
-        }
-
+        public string IndexToName(int i) => Value.ElementAt(i).Item1;
         public int NameToIndex(string v)
         {
             var count = 0;
-            foreach (var item in _value)
+            foreach (var item in Value)
             {
                 if (item.Item1 == v)
                     return count;

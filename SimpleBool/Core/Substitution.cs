@@ -1,8 +1,8 @@
-﻿using Chapter10.Syntax;
+﻿using SimpleBool.Syntax;
 using Common;
-using static Chapter10.Core.Shifting;
+using static SimpleBool.Core.Shifting;
 
-namespace Chapter10.Core
+namespace SimpleBool.Core
 {
     public static class Substitution
     {

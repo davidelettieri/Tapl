@@ -1,51 +1,14 @@
 ﻿using Common;
-using System;
-using System.Collections.Immutable;
 using System.Linq;
 
-namespace Chapter10.Syntax
+namespace SimpleBool.Syntax
 {
-    public class Context
+    public static class ContextExtensions
     {
-        private readonly ImmutableStack<(string, IBinding)> _value;
-
-        public Context()
+        private static IBinding GetBinding(Context ctx, int i) => ctx.Value.ElementAt(i).Item2;
+        public static IType GetTypeFromContext(this Context ctx, int i)
         {
-            _value = ImmutableStack<(string, IBinding)>.Empty;
-        }
-
-        public Context(ImmutableStack<(string, IBinding)> value)
-        {
-            _value = value;
-        }
-        public int Length => _value.Count();
-        public Context AddBinding(string v, IBinding b) => new Context(_value.Push((v, b)));
-        public Context AddName(string v) => AddBinding(v, new NameBinding());
-        public bool IsNameBound(string x) => _value.Any(p => p.Item1 == x);
-        public (Context, string) PickFreshName(string v)
-        {
-            if (IsNameBound(v))
-                return PickFreshName(v + "'");
-
-            return (AddName(v), v);
-        }
-        public string IndexToName(int i) => _value.ElementAt(i).Item1;
-        public int NameToIndex(string v)
-        {
-            var count = 0;
-            foreach (var item in _value)
-            {
-                if (item.Item1 == v)
-                    return count;
-                count++;
-            }
-
-            throw new Exception($"Identifier {v} is unbound");
-        }
-        private IBinding GetBinding(int i) => _value.ElementAt(i).Item2;
-        public IType GetTypeFromContext(int i)
-        {
-            return GetBinding(i) switch
+            return GetBinding(ctx, i) switch
             {
                 VarBind v => v.Type,
                 _ => throw new WrongKindOfBindException()

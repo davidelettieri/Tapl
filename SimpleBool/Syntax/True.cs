@@ -1,6 +1,6 @@
 ﻿using Common;
 
-namespace Chapter10.Syntax
+namespace SimpleBool.Syntax
 {
     public class True : ITerm
     {
