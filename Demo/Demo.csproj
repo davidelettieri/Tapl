@@ -6,11 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="letexercise.txt" />
     <None Remove="simplebool.txt" />
     <None Remove="untyped.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="letexercise.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="simplebool.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -20,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LetExercise\LetExercise.csproj" />
     <ProjectReference Include="..\SimpleBool\SimpleBool.csproj" />
     <ProjectReference Include="..\Untyped\Untyped.csproj" />
   </ItemGroup>

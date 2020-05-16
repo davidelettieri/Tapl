@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Common;
+using Xunit;
 
 namespace Untyped.Tests
 {

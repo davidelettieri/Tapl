@@ -1,0 +1,1 @@
+﻿let x = (\t : Bool.t) in (x true);

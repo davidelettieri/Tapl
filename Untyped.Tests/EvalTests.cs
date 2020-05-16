@@ -1,7 +1,7 @@
 ﻿using Untyped.Terms;
-using System.Collections.Immutable;
 using Xunit;
 using static Untyped.Functions;
+using Common;
 
 namespace Untyped.Tests
 {
