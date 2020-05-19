@@ -1,8 +1,5 @@
 ﻿using Common;
-using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Text;
 
 namespace FullSimple.Syntax.Terms
 {
@@ -10,14 +7,12 @@ namespace FullSimple.Syntax.Terms
     {
         public IInfo Info { get; }
         public ITerm Term { get; }
-        public string S { get; }
-        public List<(string, ITerm)> Cases { get; }
+        public IEnumerable<(string label, string variable, ITerm term)> Cases { get; }
 
-        public Case(IInfo info, ITerm term, string s, List<(string, ITerm)> cases)
+        public Case(IInfo info, ITerm term, IEnumerable<(string, string, ITerm)> cases)
         {
             Info = info;
             Term = term;
-            S = s;
             Cases = cases;
         }
     }

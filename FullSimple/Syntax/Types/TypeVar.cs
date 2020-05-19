@@ -4,13 +4,13 @@ namespace FullSimple.Syntax.Types
 {
     public class TypeVar : IType
     {
-        public int Int1 { get; }
-        public int Int2 { get; }
+        public int X { get; }
+        public int N { get; }
 
-        public TypeVar(int int1, int int2)
+        public TypeVar(int x, int n)
         {
-            Int1 = int1;
-            Int2 = int2;
+            X = x;
+            N = n;
         }
     }
 }

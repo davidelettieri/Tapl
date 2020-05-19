@@ -11,13 +11,13 @@ namespace FullSimple.Syntax.Terms
     {
         public IInfo Info { get; }
         public ITerm Term { get; }
-        public string S { get; }
+        public string Label { get; }
 
         public Proj(IInfo info, ITerm term, string s)
         {
             Info = info;
             Term = term;
-            S = s;
+            Label = s;
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using Common;
-using System.Collections.Immutable;
+using System.Collections.Generic;
 
 namespace FullSimple.Syntax.Types
 {
     public class TypeRecord : IType
     {
-        private ImmutableList<(string, IType)> Variants { get; }
+        public IEnumerable<(string, IType)> Variants { get; }
 
-        public TypeRecord(ImmutableList<(string, IType)> variants)
+        public TypeRecord(IEnumerable<(string, IType)> variants)
         {
             Variants = variants;
         }

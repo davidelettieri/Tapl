@@ -1,13 +1,13 @@
 ﻿using Common;
-using System.Collections.Immutable;
+using System.Collections.Generic;
 
 namespace FullSimple.Syntax.Types
 {
     public class TypeVariant : IType
     {
-        private ImmutableList<(string, IType)> Variants { get; }
+        public IEnumerable<(string, IType)> Variants { get; }
 
-        public TypeVariant(ImmutableList<(string, IType)> variants)
+        public TypeVariant(IEnumerable<(string, IType)> variants)
         {
             Variants = variants;
         }
