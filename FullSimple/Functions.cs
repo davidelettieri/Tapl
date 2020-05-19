@@ -1,5 +1,4 @@
-﻿using FullSimple.Syntax;
-using Common;
+﻿using Common;
 using System;
 using static FullSimple.Syntax.Printing;
 using static FullSimple.Core.Evaluation;
@@ -26,7 +25,6 @@ namespace FullSimple
 
             return visitor.Visit(context);
         }
-
 
         public static Context ProcessCommand(Context ctx, ICommand c)
         {

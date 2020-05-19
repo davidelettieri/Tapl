@@ -13,8 +13,11 @@ term	: '(' term ')'						#par
 type	: type '->' type					#arrow
 		| 'Bool'							#bool;
 
+UCID : [A-Z][a-zA-Z]*;
+LCID : [a-z]+;
 
 /** Keywords **/
+
 TYPE	: 'type';
 INERT	: 'inert';
 IF		: 'if';
@@ -42,42 +45,42 @@ ISZERO	: 'iszero';
 NAT		: 'Nat';
 
 /** Symbols **/
-USCORE = "_";
-APOSTROPHE = "'";
-DQUOTE = "\"";
-BANG = "!";
-HASH = "#";
-TRIANGLE = "$";
-STAR = "*";
-VBAR = "|";
-DOT = ".";
-SEMI = ";";
-COMMA = ",";
-SLASH = "/";
-COLON = ":";
-COLONCOLON = "::";
-EQ = "=";
-EQEQ = "==";
-LSQUARE = "[";
-LT = "<";
-LCURLY = "{";
-LPAREN = "(";
-LEFTARROW = "<-";
-LCURLYBAR = "{|";
-LSQUAREBAR = "[|";
-RCURLY = "}";
-RPAREN = ")";
-RSQUARE = "]";
-GT = ">";
-BARRCURLY = "|}";
-BARGT = "|>";
-BARRSQUARE = "|]";
+USCORE : "_";
+APOSTROPHE : "'";
+DQUOTE : "\"";
+BANG : "!";
+HASH : "#";
+TRIANGLE : "$";
+STAR : "*";
+VBAR : "|";
+DOT : ".";
+SEMI : ";";
+COMMA : ",";
+SLASH : "/";
+COLON : ":";
+COLONCOLON : "::";
+EQ : "=";
+EQEQ : "==";
+LSQUARE : "[";
+LT : "<";
+LCURLY : "{";
+LPAREN : "(";
+LEFTARROW : "<-";
+LCURLYBAR : "{|";
+LSQUAREBAR : "[|";
+RCURLY : "}";
+RPAREN : ")";
+RSQUARE : "]";
+GT : ">";
+BARRCURLY : "|}";
+BARGT : "|>";
+BARRSQUARE : "|]";
 
 /** Special compound symbols **/
-COLONEQ = ":=";
-ARROW  = "->";
-DARROW = "=>";
-DDARROW = "==>";
+COLONEQ : ":=";
+ARROW  : "->";
+DARROW : "=>";
+DDARROW : "==>";
 
 BIND	: 'BIND';
 VAR		: [a-z];
