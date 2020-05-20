@@ -1,1 +1,1 @@
-antlr -Dlanguage=CSharp Tapl.g4 -visitor -no-listener
+antlr -Dlanguage=CSharp FullSimple.g4 -visitor -no-listener

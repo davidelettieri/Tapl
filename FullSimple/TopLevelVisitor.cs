@@ -9,7 +9,7 @@ using FullSimple.Syntax.Types;
 
 namespace FullSimple
 {
-    public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
+    public class TopLevelVisitor : FullSimpleBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
     {
         private readonly TermVisitor _termVisitor = new TermVisitor();
 
