@@ -42,7 +42,7 @@ namespace FullSimple.Core
                 {
                     Inert i => new Inert(i.Info, onType(c, i.Type)),
                     Var var => onVar(c, var),
-                    Abs abs => new Abs(abs.Info, Walk(c + 1, abs.Body), abs.BoundedVariable, onType(c, abs.Type)),
+                    Abs abs => new Abs(abs.Info, Walk(c + 1, abs.Body), abs.V, onType(c, abs.Type)),
                     App app => new App(app.Info, Walk(c, app.Left), Walk(c, app.Right)),
                     Let let => new Let(let.Info, let.Variable, Walk(c, let.LetTerm), Walk(c + 1, let.InTerm)),
                     Fix fix => new Fix(fix.Info, Walk(c, fix.Term)),

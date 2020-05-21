@@ -92,11 +92,61 @@ public interface IFullSimpleVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitArrowtype([NotNull] FullSimpleParser.ArrowtypeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.term"/>.
+	/// Visit a parse tree produced by the <c>term_appterm</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm([NotNull] FullSimpleParser.TermContext context);
+	Result VisitTerm_appterm([NotNull] FullSimpleParser.Term_apptermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_ift</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_ift([NotNull] FullSimpleParser.Term_iftContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_caseOf</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_caseOf([NotNull] FullSimpleParser.Term_caseOfContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_llcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_llcid([NotNull] FullSimpleParser.Term_llcidContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_luc</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_luc([NotNull] FullSimpleParser.Term_lucContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_ll</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_ll([NotNull] FullSimpleParser.Term_llContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_lu</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_lu([NotNull] FullSimpleParser.Term_luContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_letrec</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTerm_letrec([NotNull] FullSimpleParser.Term_letrecContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>

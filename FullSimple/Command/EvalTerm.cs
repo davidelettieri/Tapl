@@ -15,21 +15,15 @@ namespace FullSimple.Command
         }
     }
 
-    public class TypeBinder : ICommand
-    {
-        public string Value { get; }
-        public TypeBinder(string value)
-        {
-            Value = value;
-        }
-    }
-
     public class Binder : ICommand
     {
-        public string Value { get; }
-        public Binder(string value)
+        public string Id { get; }
+        public IBinding Binding { get; }
+
+        public Binder(string id, IBinding binding)
         {
-            Value = value;
+            Id = id;
+            Binding = binding;
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Text;
 
 namespace FullSimple.Syntax.Bindings
 {
-
     public class TermAbbBind : IBinding
     {
         public ITerm Term { get; }

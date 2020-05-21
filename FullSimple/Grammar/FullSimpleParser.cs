@@ -715,9 +715,47 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class TermContext : ParserRuleContext {
+		public TermContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_term; } }
+	 
+		public TermContext() { }
+		public virtual void CopyFrom(TermContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Term_lucContext : TermContext {
+		public ITerminalNode LAMBDA() { return GetToken(FullSimpleParser.LAMBDA, 0); }
+		public ITerminalNode USCORE() { return GetToken(FullSimpleParser.USCORE, 0); }
+		public ITerminalNode COLON() { return GetToken(FullSimpleParser.COLON, 0); }
+		public TypeContext type() {
+			return GetRuleContext<TypeContext>(0);
+		}
+		public ITerminalNode DOT() { return GetToken(FullSimpleParser.DOT, 0); }
+		public TermContext term() {
+			return GetRuleContext<TermContext>(0);
+		}
+		public Term_lucContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_luc(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_apptermContext : TermContext {
 		public ApptermContext appterm() {
 			return GetRuleContext<ApptermContext>(0);
 		}
+		public Term_apptermContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_appterm(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_iftContext : TermContext {
 		public ITerminalNode IF() { return GetToken(FullSimpleParser.IF, 0); }
 		public TermContext[] term() {
 			return GetRuleContexts<TermContext>();
@@ -727,11 +765,88 @@ public partial class FullSimpleParser : Parser {
 		}
 		public ITerminalNode THEN() { return GetToken(FullSimpleParser.THEN, 0); }
 		public ITerminalNode ELSE() { return GetToken(FullSimpleParser.ELSE, 0); }
+		public Term_iftContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_ift(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_llContext : TermContext {
+		public ITerminalNode LET() { return GetToken(FullSimpleParser.LET, 0); }
+		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
+		public ITerminalNode EQ() { return GetToken(FullSimpleParser.EQ, 0); }
+		public TermContext[] term() {
+			return GetRuleContexts<TermContext>();
+		}
+		public TermContext term(int i) {
+			return GetRuleContext<TermContext>(i);
+		}
+		public ITerminalNode IN() { return GetToken(FullSimpleParser.IN, 0); }
+		public Term_llContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_ll(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_luContext : TermContext {
+		public ITerminalNode LET() { return GetToken(FullSimpleParser.LET, 0); }
+		public ITerminalNode USCORE() { return GetToken(FullSimpleParser.USCORE, 0); }
+		public ITerminalNode EQ() { return GetToken(FullSimpleParser.EQ, 0); }
+		public TermContext[] term() {
+			return GetRuleContexts<TermContext>();
+		}
+		public TermContext term(int i) {
+			return GetRuleContext<TermContext>(i);
+		}
+		public ITerminalNode IN() { return GetToken(FullSimpleParser.IN, 0); }
+		public Term_luContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_lu(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_caseOfContext : TermContext {
 		public ITerminalNode CASE() { return GetToken(FullSimpleParser.CASE, 0); }
+		public TermContext term() {
+			return GetRuleContext<TermContext>(0);
+		}
 		public ITerminalNode OF() { return GetToken(FullSimpleParser.OF, 0); }
 		public CasesContext cases() {
 			return GetRuleContext<CasesContext>(0);
 		}
+		public Term_caseOfContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_caseOf(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_letrecContext : TermContext {
+		public ITerminalNode LETREC() { return GetToken(FullSimpleParser.LETREC, 0); }
+		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
+		public ITerminalNode COLON() { return GetToken(FullSimpleParser.COLON, 0); }
+		public TypeContext type() {
+			return GetRuleContext<TypeContext>(0);
+		}
+		public ITerminalNode EQ() { return GetToken(FullSimpleParser.EQ, 0); }
+		public TermContext[] term() {
+			return GetRuleContexts<TermContext>();
+		}
+		public TermContext term(int i) {
+			return GetRuleContext<TermContext>(i);
+		}
+		public ITerminalNode IN() { return GetToken(FullSimpleParser.IN, 0); }
+		public Term_letrecContext(TermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTerm_letrec(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Term_llcidContext : TermContext {
 		public ITerminalNode LAMBDA() { return GetToken(FullSimpleParser.LAMBDA, 0); }
 		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
 		public ITerminalNode COLON() { return GetToken(FullSimpleParser.COLON, 0); }
@@ -739,19 +854,13 @@ public partial class FullSimpleParser : Parser {
 			return GetRuleContext<TypeContext>(0);
 		}
 		public ITerminalNode DOT() { return GetToken(FullSimpleParser.DOT, 0); }
-		public ITerminalNode USCORE() { return GetToken(FullSimpleParser.USCORE, 0); }
-		public ITerminalNode LET() { return GetToken(FullSimpleParser.LET, 0); }
-		public ITerminalNode EQ() { return GetToken(FullSimpleParser.EQ, 0); }
-		public ITerminalNode IN() { return GetToken(FullSimpleParser.IN, 0); }
-		public ITerminalNode LETREC() { return GetToken(FullSimpleParser.LETREC, 0); }
-		public TermContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
+		public TermContext term() {
+			return GetRuleContext<TermContext>(0);
 		}
-		public override int RuleIndex { get { return RULE_term; } }
+		public Term_llcidContext(TermContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTerm(this);
+			if (typedVisitor != null) return typedVisitor.VisitTerm_llcid(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -765,12 +874,14 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,7,Context) ) {
 			case 1:
+				_localctx = new Term_apptermContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 109; appterm(0);
 				}
 				break;
 			case 2:
+				_localctx = new Term_iftContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 110; Match(IF);
@@ -782,6 +893,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 3:
+				_localctx = new Term_caseOfContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 117; Match(CASE);
@@ -791,6 +903,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 4:
+				_localctx = new Term_llcidContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 122; Match(LAMBDA);
@@ -802,6 +915,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 5:
+				_localctx = new Term_lucContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 129; Match(LAMBDA);
@@ -813,6 +927,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 6:
+				_localctx = new Term_llContext(_localctx);
 				EnterOuterAlt(_localctx, 6);
 				{
 				State = 136; Match(LET);
@@ -824,6 +939,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 7:
+				_localctx = new Term_luContext(_localctx);
 				EnterOuterAlt(_localctx, 7);
 				{
 				State = 143; Match(LET);
@@ -835,6 +951,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 8:
+				_localctx = new Term_letrecContext(_localctx);
 				EnterOuterAlt(_localctx, 8);
 				{
 				State = 150; Match(LETREC);

@@ -1,7 +1,9 @@
 grammar FullSimple;
 
-toplevel: command ';' toplevel | EOF		;
-command	: term | UCID tybinder | LCID binder;
+toplevel: command SEMI toplevel | EOF		;
+command	: term						
+		| UCID tybinder				
+		| LCID binder				;
 binder: COLON type | EQ term				;
 type: arrowtype;
 atype: LPAREN type RPAREN 
@@ -20,14 +22,14 @@ nefieldtypes: fieldtype
 fieldtype : LCID COLON type
           | type;
 arrowtype: atype ARROW arrowtype | atype;
-term	:  appterm
-		| IF term THEN term ELSE term
-		| CASE term OF cases
-		| LAMBDA LCID COLON type DOT term
-		| LAMBDA USCORE COLON type DOT term
-		| LET LCID EQ term IN term
-		| LET USCORE EQ term IN term
-		| LETREC LCID COLON type EQ term IN term;
+term	:  appterm									#term_appterm
+		| IF term THEN term ELSE term				#term_ift
+		| CASE term OF cases						#term_caseOf
+		| LAMBDA LCID COLON type DOT term			#term_llcid
+		| LAMBDA USCORE COLON type DOT term			#term_luc
+		| LET LCID EQ term IN term					#term_ll
+		| LET USCORE EQ term IN term				#term_lu
+		| LETREC LCID COLON type EQ term IN term	#term_letrec;
 appterm : pathterm
 		| appterm pathterm
 		| FIX pathterm

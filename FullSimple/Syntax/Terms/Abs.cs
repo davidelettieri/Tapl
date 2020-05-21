@@ -12,20 +12,20 @@ namespace FullSimple.Syntax.Terms
     {
         public IInfo Info { get; }
         public ITerm Body { get; }
-        public string BoundedVariable { get; }
+        public string V { get; }
         public IType Type { get; }
 
         /// <summary>
         /// Lambda abstraction term λx.y
         /// </summary>
         /// <param name="body">The body of the lambda abstraction</param>
-        /// <param name="bv">The bounded variable</param>
-        public Abs(IInfo info, ITerm body, string bv, IType type)
+        /// <param name="v">The bounded variable</param>
+        public Abs(IInfo info, string v, IType type, ITerm body)
         {
             Info = info;
-            Body = body;
-            BoundedVariable = bv;
+            V = v;
             Type = type;
+            Body = body;
         }
     }
 }

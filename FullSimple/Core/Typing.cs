@@ -16,7 +16,7 @@ namespace FullSimple.Core
                 case Var var:
                     return ctx.GetTypeFromContext(var.Index);
                 case Abs abs:
-                    var ctx1 = ctx.AddBinding(abs.BoundedVariable, new VarBind(abs.Type));
+                    var ctx1 = ctx.AddBinding(abs.V, new VarBind(abs.Type));
                     var typeBody = TypeOf(ctx1, abs.Body);
                     return new TypeArrow(abs.Type, typeBody);
                 case App app:

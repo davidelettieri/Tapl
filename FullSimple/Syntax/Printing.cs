@@ -22,7 +22,7 @@ namespace FullSimple.Syntax
             switch (t)
             {
                 case Abs abs:
-                    var (c, x) = ctx.PickFreshName(abs.BoundedVariable);
+                    var (c, x) = ctx.PickFreshName(abs.V);
                     Write("lambda {0} :", x);
                     PrintType(abs.Type);
                     Write(".(");
