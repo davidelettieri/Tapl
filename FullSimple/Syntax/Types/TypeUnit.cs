@@ -2,5 +2,9 @@
 
 namespace FullSimple.Syntax.Types
 {
-    public class TypeUnit : IType { }
+    public class TypeUnit : IType
+    {
+        private TypeUnit() { }
+        public static readonly TypeUnit Instance = new TypeUnit();
+    }
 }

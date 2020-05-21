@@ -37,32 +37,32 @@ appterm : pathterm									#appterm_path
 		| SUCC pathterm								#appterm_succ
 		| PRED pathterm								#appterm_pred
 		| ISZERO pathterm							#appterm_iszero;
-ascribeterm: aterm AS type
-		   | aterm;
-pathterm : pathterm DOT LCID
-		 | pathterm DOT INTV
-		 | ascribeterm;
-termseq: term 
-	   | term SEMI termseq;
-aterm : LPAREN termseq RPAREN
-      | INERT LSQUARE type RSQUARE
-      | TRUE
-      | FALSE
-      | LT LCID EQ term GT AS type
-      | LCID
-      | STRINGV
-      | UNIT
-      | LCURLY fields RCURLY
-      | FLOATV
-      | INTV;
+ascribeterm: aterm AS type							#ascribeterm_aaa
+		   | aterm									#ascribeterm_a;		
+pathterm : pathterm DOT LCID						#pathterm_lcid
+		 | pathterm DOT INTV						#pathterm_intv
+		 | ascribeterm								#pathterm_asterm;
+termseq: term										#termseq_term
+	   | term SEMI termseq							#termseq_termseq;
+aterm : LPAREN termseq RPAREN						#aterm_paren
+      | INERT LSQUARE type RSQUARE					#aterm_inert
+      | TRUE										#aterm_true
+      | FALSE										#aterm_false
+      | LT LCID EQ term GT AS type					#aterm_lt
+      | LCID										#aterm_lcid
+      | STRINGV										#aterm_stringv
+      | UNIT										#aterm_unit
+      | LCURLY fields RCURLY						#aterm_fields
+      | FLOATV										#aterm_floatv
+      | INTV										#aterm_intv;
 cases : case
       | case VBAR cases;
 case : LT LCID EQ LCID GT DDARROW appterm;
-fields : nefields;
-nefields : field
-         | field COMMA nefields;
-field : LCID EQ term
-      | term;
+fields : nefields?;
+nefields : field									#nefields_field
+         | field COMMA nefields						#nefields_field_comma_nefields;
+field : LCID EQ term								#field_lcid
+      | term										#field_term;
 
 
 UCID : [A-Z][a-zA-Z]*;
