@@ -148,11 +148,54 @@ public interface IFullSimpleVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTerm_letrec([NotNull] FullSimpleParser.Term_letrecContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.appterm"/>.
+	/// Visit a parse tree produced by the <c>appterm_times</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm([NotNull] FullSimpleParser.ApptermContext context);
+	Result VisitAppterm_times([NotNull] FullSimpleParser.Appterm_timesContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_iszero</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAppterm_iszero([NotNull] FullSimpleParser.Appterm_iszeroContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_path</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAppterm_path([NotNull] FullSimpleParser.Appterm_pathContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_app_path</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAppterm_app_path([NotNull] FullSimpleParser.Appterm_app_pathContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_succ</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAppterm_succ([NotNull] FullSimpleParser.Appterm_succContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_pred</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAppterm_pred([NotNull] FullSimpleParser.Appterm_predContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_fix</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAppterm_fix([NotNull] FullSimpleParser.Appterm_fixContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.ascribeterm"/>.
 	/// </summary>

@@ -1,28 +1,12 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using FullSimple.Syntax;
+﻿using Antlr4.Runtime.Misc;
 using Common;
 using System;
-using System.Collections.Immutable;
 using FullSimple.Syntax.Terms;
-using FullSimple.Syntax.Types;
 using static FullSimple.Helper;
-using FullSimple.Command;
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 
 namespace FullSimple.Visitors
 {
-    public class AppTermVisitor : FullSimpleBaseVisitor<Func<Context, ITerm>>
-    {
-
-    }
-
-    public class CasesVisitor : FullSimpleBaseVisitor<Func<Context, IEnumerable<(string, string, ITerm)>>>
-    {
-
-    }
-
     public class TermVisitor : FullSimpleBaseVisitor<Func<Context, ITerm>>
     {
         private static readonly AppTermVisitor _appTermVisitor = new AppTermVisitor();
@@ -90,23 +74,77 @@ namespace FullSimple.Visitors
 
         public override Func<Context, ITerm> VisitTerm_lu([NotNull] FullSimpleParser.Term_luContext context)
         {
+            var info = GetFileInfo(context);
+            var terms = context.term();
+            var term0 = Visit(terms[0]);
+            var term1 = Visit(terms[1]);
 
+            return ctx => new Let(info, "_", term0(ctx), term1(ctx.AddName("_")));
         }
 
         public override Func<Context, ITerm> VisitTerm_letrec([NotNull] FullSimpleParser.Term_letrecContext context)
         {
-            return base.VisitTerm_letrec(context);
+            var info = GetFileInfo(context);
+            var v = context.LCID().GetText();
+            var type = _typeVisitor.Visit(context.type());
+            var terms = context.term();
+            var eqTerm = Visit(terms[0]);
+            var inTerm = Visit(terms[1]);
+
+            return ctx =>
+            {
+                var ctx1 = ctx.AddName(v);
+                var abs = new Abs(info, v, type(ctx), eqTerm(ctx1));
+                var fix = new Fix(info, abs);
+                return new Let(info, v, fix, inTerm(ctx));
+            };
         }
 
-
-
-        public override Func<Context, ITerm> VisitAbs([NotNull] FullSimpleParser.AbsContext context)
+        public override Func<Context, ITerm> VisitAppterm_times([NotNull] FullSimpleParser.Appterm_timesContext context)
         {
-            var boundVar = context.VAR().GetText();
-            var body = Visit(context.term());
             var info = GetFileInfo(context);
-            ITerm result(Context c) => new Abs(info, body(c.AddName(boundVar)), boundVar, _typeVisitor.Visit(context.type()));
-            return result;
+            var pathTerms = context.pathterm();
+            var p0 = Visit(pathTerms[0]);
+            var p1 = Visit(pathTerms[1]);
+
+            return ctx => new TimesFloat(info, p0(ctx), p1(ctx));
+        }
+
+        public override Func<Context, ITerm> VisitAppterm_iszero([NotNull] FullSimpleParser.Appterm_iszeroContext context)
+        {
+            var info = GetFileInfo(context);
+            var pathTerm = Visit(context.pathterm());
+
+            return ctx => new IsZero(info, pathTerm(ctx));
+        }
+
+        public override Func<Context, ITerm> VisitAppterm_path([NotNull] FullSimpleParser.Appterm_pathContext context)
+        {
+            return Visit(context.pathterm());
+        }
+
+        public override Func<Context, ITerm> VisitAppterm_app_path([NotNull] FullSimpleParser.Appterm_app_pathContext context)
+        {
+            var info = GetFileInfo(context);
+            var a = Visit(context.appterm());
+            var p = Visit(context.pathterm());
+
+            return ctx => new App(info, a(ctx), p(ctx));
+        }
+
+        public override Func<Context, ITerm> VisitAppterm_succ([NotNull] FullSimpleParser.Appterm_succContext context)
+        {
+            return base.VisitAppterm_succ(context);
+        }
+
+        public override Func<Context, ITerm> VisitAppterm_pred([NotNull] FullSimpleParser.Appterm_predContext context)
+        {
+            return base.VisitAppterm_pred(context);
+        }
+
+        public override Func<Context, ITerm> VisitAppterm_fix([NotNull] FullSimpleParser.Appterm_fixContext context)
+        {
+            return base.VisitAppterm_fix(context);
         }
     }
 }

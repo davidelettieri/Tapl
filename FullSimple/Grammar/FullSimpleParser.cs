@@ -978,28 +978,102 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class ApptermContext : ParserRuleContext {
+		public ApptermContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_appterm; } }
+	 
+		public ApptermContext() { }
+		public virtual void CopyFrom(ApptermContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Appterm_timesContext : ApptermContext {
+		public ITerminalNode TIMESFLOAT() { return GetToken(FullSimpleParser.TIMESFLOAT, 0); }
 		public PathtermContext[] pathterm() {
 			return GetRuleContexts<PathtermContext>();
 		}
 		public PathtermContext pathterm(int i) {
 			return GetRuleContext<PathtermContext>(i);
 		}
-		public ITerminalNode FIX() { return GetToken(FullSimpleParser.FIX, 0); }
-		public ITerminalNode TIMESFLOAT() { return GetToken(FullSimpleParser.TIMESFLOAT, 0); }
-		public ITerminalNode SUCC() { return GetToken(FullSimpleParser.SUCC, 0); }
-		public ITerminalNode PRED() { return GetToken(FullSimpleParser.PRED, 0); }
+		public Appterm_timesContext(ApptermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_times(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Appterm_iszeroContext : ApptermContext {
 		public ITerminalNode ISZERO() { return GetToken(FullSimpleParser.ISZERO, 0); }
+		public PathtermContext pathterm() {
+			return GetRuleContext<PathtermContext>(0);
+		}
+		public Appterm_iszeroContext(ApptermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_iszero(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Appterm_pathContext : ApptermContext {
+		public PathtermContext pathterm() {
+			return GetRuleContext<PathtermContext>(0);
+		}
+		public Appterm_pathContext(ApptermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_path(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Appterm_app_pathContext : ApptermContext {
 		public ApptermContext appterm() {
 			return GetRuleContext<ApptermContext>(0);
 		}
-		public ApptermContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
+		public PathtermContext pathterm() {
+			return GetRuleContext<PathtermContext>(0);
 		}
-		public override int RuleIndex { get { return RULE_appterm; } }
+		public Appterm_app_pathContext(ApptermContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAppterm(this);
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_app_path(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Appterm_succContext : ApptermContext {
+		public ITerminalNode SUCC() { return GetToken(FullSimpleParser.SUCC, 0); }
+		public PathtermContext pathterm() {
+			return GetRuleContext<PathtermContext>(0);
+		}
+		public Appterm_succContext(ApptermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_succ(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Appterm_predContext : ApptermContext {
+		public ITerminalNode PRED() { return GetToken(FullSimpleParser.PRED, 0); }
+		public PathtermContext pathterm() {
+			return GetRuleContext<PathtermContext>(0);
+		}
+		public Appterm_predContext(ApptermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_pred(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Appterm_fixContext : ApptermContext {
+		public ITerminalNode FIX() { return GetToken(FullSimpleParser.FIX, 0); }
+		public PathtermContext pathterm() {
+			return GetRuleContext<PathtermContext>(0);
+		}
+		public Appterm_fixContext(ApptermContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAppterm_fix(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -1035,17 +1109,27 @@ public partial class FullSimpleParser : Parser {
 			case FLOATV:
 			case INTV:
 				{
+				_localctx = new Appterm_pathContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
+
 				State = 162; pathterm(0);
 				}
 				break;
 			case FIX:
 				{
+				_localctx = new Appterm_fixContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 				State = 163; Match(FIX);
 				State = 164; pathterm(0);
 				}
 				break;
 			case TIMESFLOAT:
 				{
+				_localctx = new Appterm_timesContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 				State = 165; Match(TIMESFLOAT);
 				State = 166; pathterm(0);
 				State = 167; pathterm(0);
@@ -1053,18 +1137,27 @@ public partial class FullSimpleParser : Parser {
 				break;
 			case SUCC:
 				{
+				_localctx = new Appterm_succContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 				State = 169; Match(SUCC);
 				State = 170; pathterm(0);
 				}
 				break;
 			case PRED:
 				{
+				_localctx = new Appterm_predContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 				State = 171; Match(PRED);
 				State = 172; pathterm(0);
 				}
 				break;
 			case ISZERO:
 				{
+				_localctx = new Appterm_iszeroContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 				State = 173; Match(ISZERO);
 				State = 174; pathterm(0);
 				}
@@ -1083,7 +1176,7 @@ public partial class FullSimpleParser : Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new ApptermContext(_parentctx, _parentState);
+					_localctx = new Appterm_app_pathContext(new ApptermContext(_parentctx, _parentState));
 					PushNewRecursionContext(_localctx, _startState, RULE_appterm);
 					State = 177;
 					if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");

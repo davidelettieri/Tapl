@@ -30,13 +30,13 @@ term	:  appterm									#term_appterm
 		| LET LCID EQ term IN term					#term_ll
 		| LET USCORE EQ term IN term				#term_lu
 		| LETREC LCID COLON type EQ term IN term	#term_letrec;
-appterm : pathterm
-		| appterm pathterm
-		| FIX pathterm
-		| TIMESFLOAT pathterm pathterm
-		| SUCC pathterm
-		| PRED pathterm
-		| ISZERO pathterm;
+appterm : pathterm									#appterm_path
+		| appterm pathterm							#appterm_app_path
+		| FIX pathterm								#appterm_fix
+		| TIMESFLOAT pathterm pathterm				#appterm_times
+		| SUCC pathterm								#appterm_succ
+		| PRED pathterm								#appterm_pred
+		| ISZERO pathterm							#appterm_iszero;
 ascribeterm: aterm AS type
 		   | aterm;
 pathterm : pathterm DOT LCID
