@@ -5,6 +5,7 @@ using static FullSimple.Core.Evaluation;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
 using System.Linq;
+using FullSimple.Visitors;
 
 namespace FullSimple
 {
@@ -16,9 +17,9 @@ namespace FullSimple
                 throw new ArgumentException($"{nameof(s)} cannot be null or empty");
 
             var inputStream = new AntlrInputStream(s);
-            var lexer = new TaplLexer(inputStream);
+            var lexer = new FullSimpleLexer(inputStream);
             var commonTokenStream = new CommonTokenStream(lexer);
-            var parser = new TaplParser(commonTokenStream);
+            var parser = new FullSimpleParser(commonTokenStream);
             var context = parser.toplevel();
 
             var visitor = new TopLevelVisitor();

@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Common
 {
-
     public class UnknownInfo : IInfo
     {
     }

@@ -113,6 +113,18 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class ToplevelContext : ParserRuleContext {
+		public ToplevelContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_toplevel; } }
+	 
+		public ToplevelContext() { }
+		public virtual void CopyFrom(ToplevelContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Toplevel_commandContext : ToplevelContext {
 		public CommandContext command() {
 			return GetRuleContext<CommandContext>(0);
 		}
@@ -120,15 +132,19 @@ public partial class FullSimpleParser : Parser {
 		public ToplevelContext toplevel() {
 			return GetRuleContext<ToplevelContext>(0);
 		}
-		public ITerminalNode Eof() { return GetToken(FullSimpleParser.Eof, 0); }
-		public ToplevelContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_toplevel; } }
+		public Toplevel_commandContext(ToplevelContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitToplevel(this);
+			if (typedVisitor != null) return typedVisitor.VisitToplevel_command(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Toplevel_eofContext : ToplevelContext {
+		public ITerminalNode Eof() { return GetToken(FullSimpleParser.Eof, 0); }
+		public Toplevel_eofContext(ToplevelContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitToplevel_eof(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -163,6 +179,7 @@ public partial class FullSimpleParser : Parser {
 			case LPAREN:
 			case FLOATV:
 			case INTV:
+				_localctx = new Toplevel_commandContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 42; command();
@@ -171,6 +188,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case Eof:
+				_localctx = new Toplevel_eofContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 46; Match(Eof);
@@ -192,25 +210,49 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class CommandContext : ParserRuleContext {
-		public TermContext term() {
-			return GetRuleContext<TermContext>(0);
-		}
-		public ITerminalNode UCID() { return GetToken(FullSimpleParser.UCID, 0); }
-		public TybinderContext tybinder() {
-			return GetRuleContext<TybinderContext>(0);
-		}
-		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
-		public BinderContext binder() {
-			return GetRuleContext<BinderContext>(0);
-		}
 		public CommandContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_command; } }
+	 
+		public CommandContext() { }
+		public virtual void CopyFrom(CommandContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Command_binderContext : CommandContext {
+		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
+		public BinderContext binder() {
+			return GetRuleContext<BinderContext>(0);
+		}
+		public Command_binderContext(CommandContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCommand(this);
+			if (typedVisitor != null) return typedVisitor.VisitCommand_binder(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Command_termContext : CommandContext {
+		public TermContext term() {
+			return GetRuleContext<TermContext>(0);
+		}
+		public Command_termContext(CommandContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCommand_term(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Command_tybinderContext : CommandContext {
+		public ITerminalNode UCID() { return GetToken(FullSimpleParser.UCID, 0); }
+		public TybinderContext tybinder() {
+			return GetRuleContext<TybinderContext>(0);
+		}
+		public Command_tybinderContext(CommandContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCommand_tybinder(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -224,12 +266,14 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,1,Context) ) {
 			case 1:
+				_localctx = new Command_termContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 49; term();
 				}
 				break;
 			case 2:
+				_localctx = new Command_tybinderContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 50; Match(UCID);
@@ -237,6 +281,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 3:
+				_localctx = new Command_binderContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 52; Match(LCID);

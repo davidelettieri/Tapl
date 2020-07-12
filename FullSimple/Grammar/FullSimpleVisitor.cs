@@ -32,17 +32,40 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IFullSimpleVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.toplevel"/>.
+	/// Visit a parse tree produced by the <c>toplevel_command</c>
+	/// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitToplevel([NotNull] FullSimpleParser.ToplevelContext context);
+	Result VisitToplevel_command([NotNull] FullSimpleParser.Toplevel_commandContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.command"/>.
+	/// Visit a parse tree produced by the <c>toplevel_eof</c>
+	/// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCommand([NotNull] FullSimpleParser.CommandContext context);
+	Result VisitToplevel_eof([NotNull] FullSimpleParser.Toplevel_eofContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCommand_term([NotNull] FullSimpleParser.Command_termContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_tybinder</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCommand_tybinder([NotNull] FullSimpleParser.Command_tybinderContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_binder</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.binder"/>.
 	/// </summary>

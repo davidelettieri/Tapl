@@ -34,7 +34,8 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IFullSimpleVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.toplevel"/>.
+	/// Visit a parse tree produced by the <c>toplevel_command</c>
+	/// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -42,9 +43,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitToplevel([NotNull] FullSimpleParser.ToplevelContext context) { return VisitChildren(context); }
+	public virtual Result VisitToplevel_command([NotNull] FullSimpleParser.Toplevel_commandContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.command"/>.
+	/// Visit a parse tree produced by the <c>toplevel_eof</c>
+	/// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -52,7 +54,40 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCommand([NotNull] FullSimpleParser.CommandContext context) { return VisitChildren(context); }
+	public virtual Result VisitToplevel_eof([NotNull] FullSimpleParser.Toplevel_eofContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCommand_term([NotNull] FullSimpleParser.Command_termContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_tybinder</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCommand_tybinder([NotNull] FullSimpleParser.Command_tybinderContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_binder</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.binder"/>.
 	/// <para>

@@ -1,54 +1,63 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using FullSimple.Syntax;
+﻿using Antlr4.Runtime.Misc;
 using Common;
 using System;
 using System.Collections.Immutable;
-using FullSimple.Syntax.Terms;
-using FullSimple.Syntax.Types;
 using static FullSimple.Helper;
-using FullSimple.Command;
 
 namespace FullSimple.Visitors
 {
+    public class BinderVisitor : FullSimpleBaseVisitor<Func<Context, IBinding>>
+    {
+
+    }
+
+    public class CommandVisitor : FullSimpleBaseVisitor<Func<Context, (ICommand, Context)>>
+    {
+        private static readonly BinderVisitor _binderVisitor = new BinderVisitor();
+
+        public override Func<Context, (ICommand, Context)> VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context)
+        {
+            return base.VisitCommand_binder(context);
+        }
+
+        public override Func<Context, (ICommand, Context)> VisitCommand_term([NotNull] FullSimpleParser.Command_termContext context)
+        {
+            return base.VisitCommand_term(context);
+        }
+
+        public override Func<Context, (ICommand, Context)> VisitCommand_tybinder([NotNull] FullSimpleParser.Command_tybinderContext context)
+        {
+            var info = GetFileInfo(context);
+            var bind = _binderVisitor.Visit(context.tybinder());
+            var name = context.UCID().GetText()
+
+            return ctx => (new Bind(info, name, bind(ctx)),
+        }
+    }
     public class TopLevelVisitor : FullSimpleBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
     {
         private static readonly TermVisitor _termVisitor = new TermVisitor();
         private static readonly TypeVisitor _typeVisitor = new TypeVisitor();
+        private static readonly CommandVisitor _commandVisitor = new CommandVisitor();
 
-        public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel([NotNull] FullSimpleParser.ToplevelContext context)
+        public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel_command([NotNull] FullSimpleParser.Toplevel_commandContext context)
         {
-            Func<Context, (ImmutableStack<ICommand>, Context)> fnext =
-                context.toplevel() != null ? Visit(context.toplevel()) : c => (ImmutableStack.Create<ICommand>(), c);
+            var command = _commandVisitor.Visit(context.command());
+            var commands = Visit(context.toplevel());
 
-            if (context.command() is null)
-                return fnext;
-
-            Func<Context, (ICommand, Context)> fcommand = GetCommand(context.command());
             return ctx =>
             {
-                var (command, ctx1) = fcommand(ctx);
-                var (list, ctx2) = fnext(ctx1);
-                return (list.Push(command), ctx2);
+                var (cmd, ctx1) = command(ctx);
+                var (cmds, ctx2) = commands(ctx1);
+                return (cmds.Push(cmd), ctx2);
             };
         }
 
-        private Func<Context, (ICommand, Context)> GetCommand(FullSimpleParser.CommandContext context)
+        public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel_eof([NotNull] FullSimpleParser.Toplevel_eofContext context)
         {
-            if (context.term() != null)
-            {
-                var termFunc = _termVisitor.Visit(context.term());
-                return ctx => (new Eval(termFunc(ctx)), ctx);
-            }
-
-            if (context.UCID() != null && context.tybinder() != null)
-            {
-                var id = context.UCID().GetText();
-                var type = _typeVisitor.Visit(context.binder().type());
-
-                return ctx => (new Binder(id, new TypeBind type))
-            }
+            return ctx => (ImmutableStack<ICommand>.Empty, ctx);
         }
+
     }
 
     public class TypeVisitor : FullSimpleBaseVisitor<Func<Context, IType>>

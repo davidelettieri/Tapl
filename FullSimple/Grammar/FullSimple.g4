@@ -1,9 +1,10 @@
 grammar FullSimple;
 
-toplevel: command SEMI toplevel | EOF		;
-command	: term						
-		| UCID tybinder				
-		| LCID binder				;
+toplevel: command SEMI toplevel						#toplevel_command
+		| EOF										#toplevel_eof;
+command	: term										#command_term					
+		| UCID tybinder								#command_tybinder
+		| LCID binder								#command_binder;
 binder: COLON type | EQ term				;
 type: arrowtype;
 atype: LPAREN type RPAREN 

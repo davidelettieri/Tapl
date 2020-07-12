@@ -8,7 +8,7 @@ namespace FullSimple.Syntax
 {
     public static class ContextExtensions
     {
-        private static IBinding GetBinding(Context ctx, int i)
+        public static IBinding GetBinding(this Context ctx, int i)
         {
             var b = ctx.Value.ElementAt(i).Item2;
             return BindingShift(i + 1, b);
