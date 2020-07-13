@@ -67,17 +67,26 @@ public interface IFullSimpleVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.binder"/>.
+	/// Visit a parse tree produced by the <c>binder_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBinder([NotNull] FullSimpleParser.BinderContext context);
+	Result VisitBinder_type([NotNull] FullSimpleParser.Binder_typeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.type"/>.
+	/// Visit a parse tree produced by the <c>binder_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitType([NotNull] FullSimpleParser.TypeContext context);
+	Result VisitBinder_term([NotNull] FullSimpleParser.Binder_termContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>type_arrowtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitType_arrowtype([NotNull] FullSimpleParser.Type_arrowtypeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.atype"/>.
 	/// </summary>

@@ -89,7 +89,8 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.binder"/>.
+	/// Visit a parse tree produced by the <c>binder_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -97,9 +98,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBinder([NotNull] FullSimpleParser.BinderContext context) { return VisitChildren(context); }
+	public virtual Result VisitBinder_type([NotNull] FullSimpleParser.Binder_typeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.type"/>.
+	/// Visit a parse tree produced by the <c>binder_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -107,7 +109,18 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitType([NotNull] FullSimpleParser.TypeContext context) { return VisitChildren(context); }
+	public virtual Result VisitBinder_term([NotNull] FullSimpleParser.Binder_termContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>type_arrowtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.type"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitType_arrowtype([NotNull] FullSimpleParser.Type_arrowtypeContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.atype"/>.
 	/// <para>

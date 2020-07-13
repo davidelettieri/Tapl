@@ -5,8 +5,9 @@ toplevel: command SEMI toplevel						#toplevel_command
 command	: term										#command_term					
 		| UCID tybinder								#command_tybinder
 		| LCID binder								#command_binder;
-binder: COLON type | EQ term				;
-type: arrowtype;
+binder: COLON type									#binder_type
+		| EQ term									#binder_term;
+type: arrowtype										#type_arrowtype;
 atype: LPAREN type RPAREN 
 	 | UCID
 	 | BOOL
