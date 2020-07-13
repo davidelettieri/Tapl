@@ -1,7 +1,6 @@
 ﻿using Antlr4.Runtime.Misc;
 using Common;
 using System;
-using static FullSimple.Helper;
 
 namespace FullSimple.Visitors
 {
@@ -12,7 +11,7 @@ namespace FullSimple.Visitors
         private static readonly TermVisitor _termVisitor = new TermVisitor();
         public override Func<Context, (ICommand, Context)> VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context)
         {
-            var info = GetFileInfo(context);
+            var info = context.GetFileInfo();
             var bind = _binderVisitor.Visit(context.binder());
             var name = context.LCID().GetText();
 
@@ -21,14 +20,14 @@ namespace FullSimple.Visitors
 
         public override Func<Context, (ICommand, Context)> VisitCommand_term([NotNull] FullSimpleParser.Command_termContext context)
         {
-            var info = GetFileInfo(context);
+            var info = context.GetFileInfo();
             var term = _termVisitor.Visit(context.term());
             return ctx => (new Eval(info, term(ctx)), ctx);
         }
 
         public override Func<Context, (ICommand, Context)> VisitCommand_tybinder([NotNull] FullSimpleParser.Command_tybinderContext context)
         {
-            var info = GetFileInfo(context);
+            var info = context.GetFileInfo();
             var bind = _typeBinderVisitor.Visit(context.tybinder());
             var name = context.UCID().GetText();
 

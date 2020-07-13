@@ -31,8 +31,9 @@ namespace Untyped
         {
             if (context.bind() != null)
             {
+                var info = context.GetFileInfo();
                 var boundName = context.bind().VAR().GetText();
-                return ctx => (new Bind(boundName), ctx.AddName(boundName));
+                return ctx => (new Bind(info, boundName, new NameBinding()), ctx.AddName(boundName));
             }
 
             var termFunc = _termVisitor.Visit(context.term());

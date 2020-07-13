@@ -5,10 +5,6 @@ using System.Collections.Immutable;
 
 namespace FullSimple.Visitors
 {
-    public class ArrowTypeVisitor : FullSimpleBaseVisitor<Func<Context, IType>>
-    {
-    }
-
     public class TopLevelVisitor : FullSimpleBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
     {
         private static readonly CommandVisitor _commandVisitor = new CommandVisitor();

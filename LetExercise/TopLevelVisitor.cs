@@ -30,23 +30,16 @@ namespace LetExercise
 
         private Func<Context, (ICommand, Context)> GetCommand(TaplParser.CommandContext context)
         {
+            var info = context.GetFileInfo();
             if (context.bind() != null)
             {
                 var boundName = context.bind().VAR().GetText();
-                return ctx => (new Bind(boundName), ctx.AddName(boundName));
+                return ctx => (new Bind(info, boundName, new NameBinding()), ctx.AddName(boundName));
             }
 
             var termFunc = _termVisitor.Visit(context.term());
 
-            return ctx => (new Eval(termFunc(ctx)), ctx);
-        }
-    }
-
-    public static class Helper
-    {
-        public static IInfo GetFileInfo(ParserRuleContext context)
-        {
-            return new FileInfo(context.GetText(), context.Start.Line, context.Start.Column);
+            return ctx => (new Eval(info, termFunc(ctx)), ctx);
         }
     }
 
@@ -58,7 +51,7 @@ namespace LetExercise
         {
             var boundVar = context.VAR().GetText();
             var body = Visit(context.term());
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
             ITerm result(Context c) => new Abs(info, body(c.AddName(boundVar)), boundVar, _typeVisitor.Visit(context.type()));
             return result;
         }
@@ -68,13 +61,13 @@ namespace LetExercise
             var terms = context.term();
             var left = Visit(terms[0]);
             var right = Visit(terms[1]);
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
             return c => new App(info, left(c), right(c));
         }
 
         public override Func<Context, ITerm> VisitFalse([NotNull] TaplParser.FalseContext context)
         {
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
             return _ => new False(info);
         }
 
@@ -84,7 +77,7 @@ namespace LetExercise
             var condition = Visit(terms[0]);
             var then = Visit(terms[1]);
             var @else = Visit(terms[2]);
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
             return c => new If(info, condition(c), then(c), @else(c));
         }
 
@@ -93,7 +86,7 @@ namespace LetExercise
             var variable = context.VAR().GetText();
             var letTerm = Visit(context.term()[0]);
             var inTerm = Visit(context.term()[1]);
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
 
             return c => new Let(info, variable, letTerm(c), inTerm(c.AddName(variable)));
         }
@@ -105,14 +98,14 @@ namespace LetExercise
 
         public override Func<Context, ITerm> VisitTrue([NotNull] TaplParser.TrueContext context)
         {
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
             return _ => new True(info);
         }
 
         public override Func<Context, ITerm> VisitVar([NotNull] TaplParser.VarContext context)
         {
             var name = context.VAR().GetText();
-            var info = Helper.GetFileInfo(context);
+            var info = context.GetFileInfo();
             return ctx => new Var(info, ctx.NameToIndex(name), ctx.Length);
         }
     }

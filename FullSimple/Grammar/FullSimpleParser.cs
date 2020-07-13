@@ -424,32 +424,107 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class AtypeContext : ParserRuleContext {
-		public ITerminalNode LPAREN() { return GetToken(FullSimpleParser.LPAREN, 0); }
-		public TypeContext type() {
-			return GetRuleContext<TypeContext>(0);
-		}
-		public ITerminalNode RPAREN() { return GetToken(FullSimpleParser.RPAREN, 0); }
-		public ITerminalNode UCID() { return GetToken(FullSimpleParser.UCID, 0); }
-		public ITerminalNode BOOL() { return GetToken(FullSimpleParser.BOOL, 0); }
-		public ITerminalNode LT() { return GetToken(FullSimpleParser.LT, 0); }
-		public FieldtypesContext fieldtypes() {
-			return GetRuleContext<FieldtypesContext>(0);
-		}
-		public ITerminalNode GT() { return GetToken(FullSimpleParser.GT, 0); }
-		public ITerminalNode USTRING() { return GetToken(FullSimpleParser.USTRING, 0); }
-		public ITerminalNode UUNIT() { return GetToken(FullSimpleParser.UUNIT, 0); }
-		public ITerminalNode LCURLY() { return GetToken(FullSimpleParser.LCURLY, 0); }
-		public ITerminalNode RCURLY() { return GetToken(FullSimpleParser.RCURLY, 0); }
-		public ITerminalNode UFLOAT() { return GetToken(FullSimpleParser.UFLOAT, 0); }
-		public ITerminalNode NAT() { return GetToken(FullSimpleParser.NAT, 0); }
 		public AtypeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_atype; } }
+	 
+		public AtypeContext() { }
+		public virtual void CopyFrom(AtypeContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class At_natContext : AtypeContext {
+		public ITerminalNode NAT() { return GetToken(FullSimpleParser.NAT, 0); }
+		public At_natContext(AtypeContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAtype(this);
+			if (typedVisitor != null) return typedVisitor.VisitAt_nat(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_boolContext : AtypeContext {
+		public ITerminalNode BOOL() { return GetToken(FullSimpleParser.BOOL, 0); }
+		public At_boolContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_bool(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_recordContext : AtypeContext {
+		public ITerminalNode LCURLY() { return GetToken(FullSimpleParser.LCURLY, 0); }
+		public FieldtypesContext fieldtypes() {
+			return GetRuleContext<FieldtypesContext>(0);
+		}
+		public ITerminalNode RCURLY() { return GetToken(FullSimpleParser.RCURLY, 0); }
+		public At_recordContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_record(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_ucidContext : AtypeContext {
+		public ITerminalNode UCID() { return GetToken(FullSimpleParser.UCID, 0); }
+		public At_ucidContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_ucid(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_uunitContext : AtypeContext {
+		public ITerminalNode UUNIT() { return GetToken(FullSimpleParser.UUNIT, 0); }
+		public At_uunitContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_uunit(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_typeContext : AtypeContext {
+		public ITerminalNode LPAREN() { return GetToken(FullSimpleParser.LPAREN, 0); }
+		public TypeContext type() {
+			return GetRuleContext<TypeContext>(0);
+		}
+		public ITerminalNode RPAREN() { return GetToken(FullSimpleParser.RPAREN, 0); }
+		public At_typeContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_type(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_variantContext : AtypeContext {
+		public ITerminalNode LT() { return GetToken(FullSimpleParser.LT, 0); }
+		public FieldtypesContext fieldtypes() {
+			return GetRuleContext<FieldtypesContext>(0);
+		}
+		public ITerminalNode GT() { return GetToken(FullSimpleParser.GT, 0); }
+		public At_variantContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_variant(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_ustringContext : AtypeContext {
+		public ITerminalNode USTRING() { return GetToken(FullSimpleParser.USTRING, 0); }
+		public At_ustringContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_ustring(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class At_ufloatContext : AtypeContext {
+		public ITerminalNode UFLOAT() { return GetToken(FullSimpleParser.UFLOAT, 0); }
+		public At_ufloatContext(AtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAt_ufloat(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -463,6 +538,7 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case LPAREN:
+				_localctx = new At_typeContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 64; Match(LPAREN);
@@ -471,18 +547,21 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case UCID:
+				_localctx = new At_ucidContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 68; Match(UCID);
 				}
 				break;
 			case BOOL:
+				_localctx = new At_boolContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 69; Match(BOOL);
 				}
 				break;
 			case LT:
+				_localctx = new At_variantContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 70; Match(LT);
@@ -491,18 +570,21 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case USTRING:
+				_localctx = new At_ustringContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 74; Match(USTRING);
 				}
 				break;
 			case UUNIT:
+				_localctx = new At_uunitContext(_localctx);
 				EnterOuterAlt(_localctx, 6);
 				{
 				State = 75; Match(UUNIT);
 				}
 				break;
 			case LCURLY:
+				_localctx = new At_recordContext(_localctx);
 				EnterOuterAlt(_localctx, 7);
 				{
 				State = 76; Match(LCURLY);
@@ -511,12 +593,14 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case UFLOAT:
+				_localctx = new At_ufloatContext(_localctx);
 				EnterOuterAlt(_localctx, 8);
 				{
 				State = 80; Match(UFLOAT);
 				}
 				break;
 			case NAT:
+				_localctx = new At_natContext(_localctx);
 				EnterOuterAlt(_localctx, 9);
 				{
 				State = 81; Match(NAT);
@@ -538,18 +622,26 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class TybinderContext : ParserRuleContext {
-		public ITerminalNode EQ() { return GetToken(FullSimpleParser.EQ, 0); }
-		public TypeContext type() {
-			return GetRuleContext<TypeContext>(0);
-		}
 		public TybinderContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_tybinder; } }
+	 
+		public TybinderContext() { }
+		public virtual void CopyFrom(TybinderContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Tybinder_typeContext : TybinderContext {
+		public ITerminalNode EQ() { return GetToken(FullSimpleParser.EQ, 0); }
+		public TypeContext type() {
+			return GetRuleContext<TypeContext>(0);
+		}
+		public Tybinder_typeContext(TybinderContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTybinder(this);
+			if (typedVisitor != null) return typedVisitor.VisitTybinder_type(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -559,6 +651,7 @@ public partial class FullSimpleParser : Parser {
 		TybinderContext _localctx = new TybinderContext(Context, State);
 		EnterRule(_localctx, 10, RULE_tybinder);
 		try {
+			_localctx = new Tybinder_typeContext(_localctx);
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 84; Match(EQ);
@@ -577,17 +670,25 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class FieldtypesContext : ParserRuleContext {
-		public NefieldtypesContext nefieldtypes() {
-			return GetRuleContext<NefieldtypesContext>(0);
-		}
 		public FieldtypesContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_fieldtypes; } }
+	 
+		public FieldtypesContext() { }
+		public virtual void CopyFrom(FieldtypesContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Fieldtypes_nefieldtypesContext : FieldtypesContext {
+		public NefieldtypesContext nefieldtypes() {
+			return GetRuleContext<NefieldtypesContext>(0);
+		}
+		public Fieldtypes_nefieldtypesContext(FieldtypesContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFieldtypes(this);
+			if (typedVisitor != null) return typedVisitor.VisitFieldtypes_nefieldtypes(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -597,6 +698,7 @@ public partial class FullSimpleParser : Parser {
 		FieldtypesContext _localctx = new FieldtypesContext(Context, State);
 		EnterRule(_localctx, 12, RULE_fieldtypes);
 		try {
+			_localctx = new Fieldtypes_nefieldtypesContext(_localctx);
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 87; nefieldtypes();
@@ -614,6 +716,29 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class NefieldtypesContext : ParserRuleContext {
+		public NefieldtypesContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_nefieldtypes; } }
+	 
+		public NefieldtypesContext() { }
+		public virtual void CopyFrom(NefieldtypesContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Nefieldtypes_fieldtypeContext : NefieldtypesContext {
+		public FieldtypeContext fieldtype() {
+			return GetRuleContext<FieldtypeContext>(0);
+		}
+		public Nefieldtypes_fieldtypeContext(NefieldtypesContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNefieldtypes_fieldtype(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Nefieldtypes_nefieldtypeContext : NefieldtypesContext {
 		public FieldtypeContext fieldtype() {
 			return GetRuleContext<FieldtypeContext>(0);
 		}
@@ -621,14 +746,10 @@ public partial class FullSimpleParser : Parser {
 		public NefieldtypesContext nefieldtypes() {
 			return GetRuleContext<NefieldtypesContext>(0);
 		}
-		public NefieldtypesContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_nefieldtypes; } }
+		public Nefieldtypes_nefieldtypeContext(NefieldtypesContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNefieldtypes(this);
+			if (typedVisitor != null) return typedVisitor.VisitNefieldtypes_nefieldtype(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -642,12 +763,14 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,4,Context) ) {
 			case 1:
+				_localctx = new Nefieldtypes_fieldtypeContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 89; fieldtype();
 				}
 				break;
 			case 2:
+				_localctx = new Nefieldtypes_nefieldtypeContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 90; fieldtype();
@@ -669,19 +792,38 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class FieldtypeContext : ParserRuleContext {
-		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
-		public ITerminalNode COLON() { return GetToken(FullSimpleParser.COLON, 0); }
-		public TypeContext type() {
-			return GetRuleContext<TypeContext>(0);
-		}
 		public FieldtypeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_fieldtype; } }
+	 
+		public FieldtypeContext() { }
+		public virtual void CopyFrom(FieldtypeContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Fieldtype_lcidContext : FieldtypeContext {
+		public ITerminalNode LCID() { return GetToken(FullSimpleParser.LCID, 0); }
+		public ITerminalNode COLON() { return GetToken(FullSimpleParser.COLON, 0); }
+		public TypeContext type() {
+			return GetRuleContext<TypeContext>(0);
+		}
+		public Fieldtype_lcidContext(FieldtypeContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFieldtype(this);
+			if (typedVisitor != null) return typedVisitor.VisitFieldtype_lcid(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Fieldtype_typeContext : FieldtypeContext {
+		public TypeContext type() {
+			return GetRuleContext<TypeContext>(0);
+		}
+		public Fieldtype_typeContext(FieldtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFieldtype_type(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -695,6 +837,7 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case LCID:
+				_localctx = new Fieldtype_lcidContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 96; Match(LCID);
@@ -711,6 +854,7 @@ public partial class FullSimpleParser : Parser {
 			case LT:
 			case LCURLY:
 			case LPAREN:
+				_localctx = new Fieldtype_typeContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 99; type();
@@ -732,6 +876,29 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class ArrowtypeContext : ParserRuleContext {
+		public ArrowtypeContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_arrowtype; } }
+	 
+		public ArrowtypeContext() { }
+		public virtual void CopyFrom(ArrowtypeContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Arrowtype_atypeContext : ArrowtypeContext {
+		public AtypeContext atype() {
+			return GetRuleContext<AtypeContext>(0);
+		}
+		public Arrowtype_atypeContext(ArrowtypeContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitArrowtype_atype(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Arrowtype_arrowContext : ArrowtypeContext {
 		public AtypeContext atype() {
 			return GetRuleContext<AtypeContext>(0);
 		}
@@ -739,14 +906,10 @@ public partial class FullSimpleParser : Parser {
 		public ArrowtypeContext arrowtype() {
 			return GetRuleContext<ArrowtypeContext>(0);
 		}
-		public ArrowtypeContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_arrowtype; } }
+		public Arrowtype_arrowContext(ArrowtypeContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArrowtype(this);
+			if (typedVisitor != null) return typedVisitor.VisitArrowtype_arrow(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -760,6 +923,7 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,6,Context) ) {
 			case 1:
+				_localctx = new Arrowtype_arrowContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 102; atype();
@@ -768,6 +932,7 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case 2:
+				_localctx = new Arrowtype_atypeContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 106; atype();

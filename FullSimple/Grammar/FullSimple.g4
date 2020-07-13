@@ -8,22 +8,23 @@ command	: term										#command_term
 binder: COLON type									#binder_type
 		| EQ term									#binder_term;
 type: arrowtype										#type_arrowtype;
-atype: LPAREN type RPAREN 
-	 | UCID
-	 | BOOL
-	 | LT fieldtypes GT
-	 | USTRING
-	 | UUNIT
-	 | LCURLY fieldtypes RCURLY
-	 | UFLOAT
-	 | NAT;
-tybinder: EQ type;
-fieldtypes: nefieldtypes;
-nefieldtypes: fieldtype 
-			| fieldtype COMMA nefieldtypes;
-fieldtype : LCID COLON type
-          | type;
-arrowtype: atype ARROW arrowtype | atype;
+atype: LPAREN type RPAREN							#at_type
+	 | UCID											#at_ucid
+	 | BOOL											#at_bool
+	 | LT fieldtypes GT								#at_variant
+	 | USTRING										#at_ustring
+	 | UUNIT										#at_uunit
+	 | LCURLY fieldtypes RCURLY						#at_record
+	 | UFLOAT										#at_ufloat
+	 | NAT											#at_nat;
+tybinder: EQ type									#tybinder_type;
+fieldtypes: nefieldtypes							#fieldtypes_nefieldtypes;
+nefieldtypes: fieldtype								#nefieldtypes_fieldtype
+			| fieldtype COMMA nefieldtypes			#nefieldtypes_nefieldtype;
+fieldtype : LCID COLON type							#fieldtype_lcid
+          | type									#fieldtype_type;
+arrowtype: atype ARROW arrowtype					#arrowtype_arrow 
+		 | atype									#arrowtype_atype;
 term	:  appterm									#term_appterm
 		| IF term THEN term ELSE term				#term_ift
 		| CASE term OF cases						#term_caseOf

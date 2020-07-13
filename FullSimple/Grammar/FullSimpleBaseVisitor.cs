@@ -122,7 +122,8 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitType_arrowtype([NotNull] FullSimpleParser.Type_arrowtypeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.atype"/>.
+	/// Visit a parse tree produced by the <c>at_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -130,9 +131,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAtype([NotNull] FullSimpleParser.AtypeContext context) { return VisitChildren(context); }
+	public virtual Result VisitAt_type([NotNull] FullSimpleParser.At_typeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.tybinder"/>.
+	/// Visit a parse tree produced by the <c>at_ucid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -140,9 +142,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTybinder([NotNull] FullSimpleParser.TybinderContext context) { return VisitChildren(context); }
+	public virtual Result VisitAt_ucid([NotNull] FullSimpleParser.At_ucidContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.fieldtypes"/>.
+	/// Visit a parse tree produced by the <c>at_bool</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -150,9 +153,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFieldtypes([NotNull] FullSimpleParser.FieldtypesContext context) { return VisitChildren(context); }
+	public virtual Result VisitAt_bool([NotNull] FullSimpleParser.At_boolContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.nefieldtypes"/>.
+	/// Visit a parse tree produced by the <c>at_variant</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -160,9 +164,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNefieldtypes([NotNull] FullSimpleParser.NefieldtypesContext context) { return VisitChildren(context); }
+	public virtual Result VisitAt_variant([NotNull] FullSimpleParser.At_variantContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.fieldtype"/>.
+	/// Visit a parse tree produced by the <c>at_ustring</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -170,9 +175,10 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFieldtype([NotNull] FullSimpleParser.FieldtypeContext context) { return VisitChildren(context); }
+	public virtual Result VisitAt_ustring([NotNull] FullSimpleParser.At_ustringContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.arrowtype"/>.
+	/// Visit a parse tree produced by the <c>at_uunit</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -180,7 +186,128 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArrowtype([NotNull] FullSimpleParser.ArrowtypeContext context) { return VisitChildren(context); }
+	public virtual Result VisitAt_uunit([NotNull] FullSimpleParser.At_uunitContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_record</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_record([NotNull] FullSimpleParser.At_recordContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_ufloat</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_ufloat([NotNull] FullSimpleParser.At_ufloatContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_nat</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_nat([NotNull] FullSimpleParser.At_natContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>tybinder_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.tybinder"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTybinder_type([NotNull] FullSimpleParser.Tybinder_typeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>fieldtypes_nefieldtypes</c>
+	/// labeled alternative in <see cref="FullSimpleParser.fieldtypes"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFieldtypes_nefieldtypes([NotNull] FullSimpleParser.Fieldtypes_nefieldtypesContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nefieldtypes_fieldtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNefieldtypes_fieldtype([NotNull] FullSimpleParser.Nefieldtypes_fieldtypeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nefieldtypes_nefieldtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNefieldtypes_nefieldtype([NotNull] FullSimpleParser.Nefieldtypes_nefieldtypeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>fieldtype_lcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFieldtype_lcid([NotNull] FullSimpleParser.Fieldtype_lcidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>fieldtype_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFieldtype_type([NotNull] FullSimpleParser.Fieldtype_typeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>arrowtype_arrow</c>
+	/// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitArrowtype_arrow([NotNull] FullSimpleParser.Arrowtype_arrowContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>arrowtype_atype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitArrowtype_atype([NotNull] FullSimpleParser.Arrowtype_atypeContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_appterm</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
