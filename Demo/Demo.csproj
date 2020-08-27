@@ -24,9 +24,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\LetExercise\LetExercise.csproj" />
     <ProjectReference Include="..\SimpleBool\SimpleBool.csproj" />
     <ProjectReference Include="..\Untyped\Untyped.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="fullsimple.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

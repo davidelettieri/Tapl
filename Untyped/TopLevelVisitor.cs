@@ -38,7 +38,7 @@ namespace Untyped
 
             var termFunc = _termVisitor.Visit(context.term());
 
-            return ctx => (new Eval(termFunc(ctx)), ctx);
+            return ctx => (new Eval(context.GetFileInfo(), termFunc(ctx)), ctx);
         }
     }
 

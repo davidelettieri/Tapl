@@ -68,8 +68,6 @@ field : LCID EQ term								#field_lcid
       | term										#field_term;
 
 
-UCID : [A-Z][a-zA-Z]*;
-LCID : [a-z]+;
 
 /** Keywords **/
 
@@ -141,7 +139,9 @@ DDARROW : '==>';
 
 FLOATV	: [1-9]+(.[1-9]+)?;
 INTV	: [1-9]+;
-VAR		: [a-z];
+UCID : [A-Z][a-zA-Z]*;
+LCID : [a-z]+;
+
 WS      : ' ' -> skip;
 NL      : '\r' -> skip;
 NL1		: '\n' -> skip;

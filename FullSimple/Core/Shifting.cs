@@ -42,7 +42,7 @@ namespace FullSimple.Core
                 {
                     Inert i => new Inert(i.Info, onType(c, i.Type)),
                     Var var => onVar(c, var),
-                    Abs abs => new Abs(abs.Info, Walk(c + 1, abs.Body), abs.V, onType(c, abs.Type)),
+                    Abs abs => new Abs(abs.Info, abs.V, onType(c, abs.Type), Walk(c + 1, abs.Body)),
                     App app => new App(app.Info, Walk(c, app.Left), Walk(c, app.Right)),
                     Let let => new Let(let.Info, let.Variable, Walk(c, let.LetTerm), Walk(c + 1, let.InTerm)),
                     Fix fix => new Fix(fix.Info, Walk(c, fix.Term)),
@@ -52,7 +52,7 @@ namespace FullSimple.Core
                     StringTerm s => s,
                     Unit u => u,
                     Proj p => new Proj(p.Info, Walk(c, p.Term), p.Label),
-                    Record r => new Record(r.Info, r.Fields.Select(p => (p.Item1, Walk(c, p.Item2)))),
+                    Record r => new Record(r.Info, r.Fields.Select(p => (p.Item1, Walk(c, p.Item2))).ToList()),
                     Ascribe a => new Ascribe(a.Info, Walk(c, t), onType(c, a.Type)),
                     Float f => f,
                     TimesFloat tf => new TimesFloat(tf.Info, Walk(c, tf.Left), Walk(c, tf.Right)),

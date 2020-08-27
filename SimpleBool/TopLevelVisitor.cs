@@ -33,12 +33,12 @@ namespace SimpleBool
             if (context.bind() != null)
             {
                 var boundName = context.bind().VAR().GetText();
-                return ctx => (new Bind(boundName), ctx.AddName(boundName));
+                return ctx => (new Bind(context.GetFileInfo(), boundName, new NameBinding()), ctx.AddName(boundName));
             }
 
             var termFunc = _termVisitor.Visit(context.term());
 
-            return ctx => (new Eval(termFunc(ctx)), ctx);
+            return ctx => (new Eval(context.GetFileInfo(), termFunc(ctx)), ctx);
         }
     }
 
