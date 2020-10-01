@@ -672,7 +672,8 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAterm_intv([NotNull] FullSimpleParser.Aterm_intvContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.cases"/>.
+	/// Visit a parse tree produced by the <c>cases_case</c>
+	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -680,7 +681,18 @@ public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCases([NotNull] FullSimpleParser.CasesContext context) { return VisitChildren(context); }
+	public virtual Result VisitCases_case([NotNull] FullSimpleParser.Cases_caseContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>cases_case_vbar_cases</c>
+	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCases_case_vbar_cases([NotNull] FullSimpleParser.Cases_case_vbar_casesContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.case"/>.
 	/// <para>

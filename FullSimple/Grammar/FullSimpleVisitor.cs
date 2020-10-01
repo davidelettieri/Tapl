@@ -438,11 +438,19 @@ public interface IFullSimpleVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAterm_intv([NotNull] FullSimpleParser.Aterm_intvContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="FullSimpleParser.cases"/>.
+	/// Visit a parse tree produced by the <c>cases_case</c>
+	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCases([NotNull] FullSimpleParser.CasesContext context);
+	Result VisitCases_case([NotNull] FullSimpleParser.Cases_caseContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>cases_case_vbar_cases</c>
+	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCases_case_vbar_cases([NotNull] FullSimpleParser.Cases_case_vbar_casesContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.case"/>.
 	/// </summary>

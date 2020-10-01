@@ -1964,6 +1964,18 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class CasesContext : ParserRuleContext {
+		public CasesContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_cases; } }
+	 
+		public CasesContext() { }
+		public virtual void CopyFrom(CasesContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class Cases_case_vbar_casesContext : CasesContext {
 		public CaseContext @case() {
 			return GetRuleContext<CaseContext>(0);
 		}
@@ -1971,14 +1983,21 @@ public partial class FullSimpleParser : Parser {
 		public CasesContext cases() {
 			return GetRuleContext<CasesContext>(0);
 		}
-		public CasesContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_cases; } }
+		public Cases_case_vbar_casesContext(CasesContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCases(this);
+			if (typedVisitor != null) return typedVisitor.VisitCases_case_vbar_cases(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class Cases_caseContext : CasesContext {
+		public CaseContext @case() {
+			return GetRuleContext<CaseContext>(0);
+		}
+		public Cases_caseContext(CasesContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCases_case(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -1992,12 +2011,14 @@ public partial class FullSimpleParser : Parser {
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,15,Context) ) {
 			case 1:
+				_localctx = new Cases_caseContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 242; @case();
 				}
 				break;
 			case 2:
+				_localctx = new Cases_case_vbar_casesContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 243; @case();

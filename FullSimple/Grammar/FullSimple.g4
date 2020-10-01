@@ -58,8 +58,8 @@ aterm : LPAREN termseq RPAREN						#aterm_paren
       | LCURLY fields RCURLY						#aterm_fields
       | FLOATV										#aterm_floatv
       | INTV										#aterm_intv;
-cases : case
-      | case VBAR cases;
+cases : case										#cases_case
+      | case VBAR cases								#cases_case_vbar_cases;
 case : LT LCID EQ LCID GT DDARROW appterm;
 fields : nefields?;
 nefields : field									#nefields_field
