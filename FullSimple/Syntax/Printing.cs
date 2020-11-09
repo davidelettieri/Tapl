@@ -29,6 +29,21 @@ namespace FullSimple.Syntax
                     _printTerm(c, abs.Body);
                     Write(")");
                     break;
+                case App app:
+                    Write("(");
+                    _printTerm(ctx, app.Left);
+                    Write(")");
+                    Write("(");
+                    _printTerm(ctx, app.Right);
+                    Write(")");
+                    break;
+                case Ascribe ascribe:
+                    Write("(");
+                    _printTerm(ctx, ascribe.Term);
+                    Write(" as ");
+                    PrintType(ascribe.Type);
+                    Write(")");
+                    break;
                 case If ift:
                     Write("( if ");
                     _printTerm(ctx, ift.Condition);
@@ -38,16 +53,13 @@ namespace FullSimple.Syntax
                     _printTerm(ctx, ift.Else);
                     Write(")");
                     break;
-                case App app:
-                    Write("(");
-                    _printTerm(ctx, app.Left);
-                    Write(")");
-                    Write("(");
-                    _printTerm(ctx, app.Right);
-                    Write(")");
-                    break;
                 case Var var:
                     Write(ctx.IndexToName(var.Index));
+                    break;
+                case StringTerm stringTerm:
+                    Write("(\"");
+                    Write(stringTerm.Value);
+                    Write("\")");
                     break;
                 case True _:
                     Write("true");
@@ -64,6 +76,9 @@ namespace FullSimple.Syntax
         {
             switch (type)
             {
+                case TypeString _:
+                    Write("String");
+                    break;
                 case TypeBool _:
                     Write("Bool");
                     break;

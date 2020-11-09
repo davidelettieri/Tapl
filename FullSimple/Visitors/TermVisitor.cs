@@ -254,7 +254,7 @@ namespace FullSimple.Visitors
         public override Func<Context, ITerm> VisitAterm_stringv([NotNull] FullSimpleParser.Aterm_stringvContext context)
         {
             var info = context.GetFileInfo();
-            var v = context.STRINGV().GetText();
+            var v = context.STRINGV().GetText().Trim('"');
             return _ => new StringTerm(v);
         }
 

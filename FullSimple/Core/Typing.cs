@@ -13,8 +13,6 @@ namespace FullSimple.Core
         {
             switch (t)
             {
-                case Var var:
-                    return ctx.GetTypeFromContext(var.Index);
                 case Abs abs:
                     var ctx1 = ctx.AddBinding(abs.V, new VarBind(abs.Type));
                     var typeBody = TypeOf(ctx1, abs.Body);
@@ -30,10 +28,14 @@ namespace FullSimple.Core
                         throw new ParameterTypeMismatchException();
                     }
                     throw new ArrowTypeExpectedException();
+                case Var var:
+                    return ctx.GetTypeFromContext(var.Index);
                 case True _:
                     return new TypeBool();
                 case False _:
                     return new TypeBool();
+                case StringTerm _:
+                    return new TypeString();
                 case If ift:
                     if (TypeOf(ctx, ift.Condition) is TypeBool)
                     {
