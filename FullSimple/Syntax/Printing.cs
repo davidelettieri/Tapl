@@ -25,9 +25,8 @@ namespace FullSimple.Syntax
                     var (c, x) = ctx.PickFreshName(abs.V);
                     Write("lambda {0} :", x);
                     PrintType(abs.Type);
-                    Write(".(");
+                    Write(".");
                     _printTerm(c, abs.Body);
-                    Write(")");
                     break;
                 case App app:
                     Write("(");
@@ -67,6 +66,12 @@ namespace FullSimple.Syntax
                 case False _:
                     Write("false");
                     break;
+                case Unit _:
+                    Write("unit");
+                    break;
+                case Float f:
+                    Write(f.Value);
+                    break;
                 default:
                     throw new InvalidOperationException();
             }
@@ -83,11 +88,33 @@ namespace FullSimple.Syntax
                     Write("Bool");
                     break;
                 case TypeArrow t:
-                    Write("(");
                     PrintType(t.From);
                     Write(" -> ");
                     PrintType(t.To);
-                    Write(")");
+                    break;
+                case TypeVariant tv:
+                    Write("<");
+                    var enumerator = tv.Variants.GetEnumerator();
+                    if (enumerator.MoveNext())
+                    {
+                        var current = enumerator.Current;
+                        Write($"{current.Item1}:");
+                        PrintType(current.Item2);
+                        while (enumerator.MoveNext())
+                        {
+                            current = enumerator.Current;
+                            Write(",");
+                            Write($"{current.Item1}:");
+                            PrintType(current.Item2);
+                        }
+                    }
+                    Write(">");
+                    break;
+                case TypeUnit _:
+                    Write("Unit");
+                    break;
+                case TypeId ti:
+                    Write(ti.Name);
                     break;
                 default:
                     throw new InvalidOperationException();
