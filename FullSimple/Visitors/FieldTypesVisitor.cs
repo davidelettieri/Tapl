@@ -8,7 +8,13 @@ namespace FullSimple.Visitors
 {
     public class FieldTypesVisitor : FullSimpleBaseVisitor<Func<Context, int, IEnumerable<(string, IType)>>>
     {
-        private static readonly NEFieldTypesVisitor _nefieldTypesVisitor = new NEFieldTypesVisitor();
+        private readonly NEFieldTypesVisitor _nefieldTypesVisitor;
+
+        public FieldTypesVisitor(TypeVisitor typeVisitor)
+        {
+            _nefieldTypesVisitor = new NEFieldTypesVisitor(typeVisitor);
+        }
+
         public override Func<Context, int, IEnumerable<(string, IType)>> VisitFieldtypes_nefieldtypes([NotNull] FullSimpleParser.Fieldtypes_nefieldtypesContext context)
         {
             if (context.nefieldtypes() is null)

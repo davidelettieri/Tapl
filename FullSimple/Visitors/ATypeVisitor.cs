@@ -7,8 +7,14 @@ namespace FullSimple.Visitors
 {
     public class ATypeVisitor : FullSimpleBaseVisitor<Func<Context, IType>>
     {
-        private readonly TypeVisitor _typeVisitor = new TypeVisitor();
-        private readonly FieldTypesVisitor _fieldTypesVisitor = new FieldTypesVisitor();
+        private readonly TypeVisitor _typeVisitor;
+        private readonly FieldTypesVisitor _fieldTypesVisitor;
+
+        public ATypeVisitor(TypeVisitor typeVisitor)
+        {
+            _typeVisitor = typeVisitor;
+            _fieldTypesVisitor = new FieldTypesVisitor(typeVisitor);
+        }
         public override Func<Context, IType> VisitAt_bool([NotNull] FullSimpleParser.At_boolContext context)
         {
             return _ => new TypeBool();

@@ -6,7 +6,6 @@ using System.Text;
 
 namespace FullSimple.Syntax.Terms
 {
-
     public class Float : ITerm
     {
         public IInfo Info { get; }

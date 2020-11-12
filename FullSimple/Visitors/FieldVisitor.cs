@@ -23,7 +23,9 @@ namespace FullSimple.Visitors
 
         public override Func<(Context, int), (string, ITerm)> VisitField_term([NotNull] FullSimpleParser.Field_termContext context)
         {
-            return base.VisitField_term(context);
+            var term = _termVisitor.Visit(context);
+
+            return arg => (arg.Item2.ToString(), term(arg.Item1));
         }
     }
 }

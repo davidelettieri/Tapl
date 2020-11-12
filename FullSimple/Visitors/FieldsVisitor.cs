@@ -38,7 +38,12 @@ namespace FullSimple.Visitors
             var info = context.GetFileInfo();
             var field = _fieldVisitor.Visit(context.field());
             var nefields = Visit(context.nefields());
-            return t => Wrap(field(t)).Concat(nefields(t));
+            return t =>
+            {
+                var ft = field(t);
+                var fields = nefields(t);
+                return Wrap(ft).Concat(fields);
+            };
         }
 
         private static IEnumerable<(string, ITerm)> Wrap((string, ITerm) s)

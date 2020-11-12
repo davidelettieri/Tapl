@@ -5,7 +5,6 @@ using System.Text;
 
 namespace FullSimple.Syntax.Terms
 {
-
     public class Tag : ITerm
     {
         public IInfo Info { get; }

@@ -10,13 +10,14 @@ namespace FullSimple.Visitors
 {
     public class TermVisitor : FullSimpleBaseVisitor<Func<Context, ITerm>>
     {
-        private static readonly CasesVisitor _casesVisitor = new CasesVisitor();
-        private static readonly TypeVisitor _typeVisitor = new TypeVisitor();
+        private readonly CasesVisitor _casesVisitor;
+        private readonly TypeVisitor _typeVisitor = new TypeVisitor();
         private readonly FieldsVisitor _fieldsVisitor;
 
         public TermVisitor()
         {
             _fieldsVisitor = new FieldsVisitor(this);
+            _casesVisitor = new CasesVisitor(this);
         }
 
         public override Func<Context, ITerm> VisitTerm_appterm([NotNull] FullSimpleParser.Term_apptermContext context)

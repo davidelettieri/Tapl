@@ -7,8 +7,9 @@ namespace FullSimple.Visitors
     public class CommandVisitor : FullSimpleBaseVisitor<Func<Context, (ICommand, Context)>>
     {
         private static readonly BinderVisitor _binderVisitor = new BinderVisitor();
-        private static readonly TypeBinderVisitor _typeBinderVisitor = new TypeBinderVisitor();
+        private static readonly TyBinderVisitor _typeBinderVisitor = new TyBinderVisitor();
         private static readonly TermVisitor _termVisitor = new TermVisitor();
+
         public override Func<Context, (ICommand, Context)> VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context)
         {
             var info = context.GetFileInfo();

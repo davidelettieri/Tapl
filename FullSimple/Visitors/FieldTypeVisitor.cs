@@ -6,7 +6,13 @@ namespace FullSimple.Visitors
 {
     public class FieldTypeVisitor : FullSimpleBaseVisitor<Func<Context, int, (string, IType)>>
     {
-        private static readonly TypeVisitor _typeVisitor = new TypeVisitor();
+        private readonly TypeVisitor _typeVisitor;
+
+        public FieldTypeVisitor(TypeVisitor typeVisitor)
+        {
+            _typeVisitor = typeVisitor;
+        }
+
         public override Func<Context, int, (string, IType)> VisitFieldtype_lcid([NotNull] FullSimpleParser.Fieldtype_lcidContext context)
         {
             var name = context.LCID().GetText();

@@ -7,7 +7,13 @@ namespace FullSimple.Visitors
 {
     public class ArrowTypeVisitor : FullSimpleBaseVisitor<Func<Context, IType>>
     {
-        private readonly ATypeVisitor _aTypeVisitor = new ATypeVisitor();
+        private readonly ATypeVisitor _aTypeVisitor;
+
+        public ArrowTypeVisitor(TypeVisitor typeVisitor)
+        {
+            _aTypeVisitor = new ATypeVisitor(typeVisitor);
+        }
+
         public override Func<Context, IType> VisitArrowtype_arrow([NotNull] FullSimpleParser.Arrowtype_arrowContext context)
         {
             var atype = _aTypeVisitor.Visit(context.atype());

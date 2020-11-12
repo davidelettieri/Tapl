@@ -6,7 +6,12 @@ namespace FullSimple.Visitors
 {
     public class CaseVisitor : FullSimpleBaseVisitor<Func<Context, (string, string, ITerm)>>
     {
-        private readonly TermVisitor _termVisitor = new TermVisitor();
+        private readonly TermVisitor _termVisitor;
+
+        public CaseVisitor(TermVisitor termVisitor)
+        {
+            _termVisitor = termVisitor;
+        }
 
         public override Func<Context, (string, string, ITerm)> VisitCase([NotNull] FullSimpleParser.CaseContext context)
         {
