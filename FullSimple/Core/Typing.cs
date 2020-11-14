@@ -104,8 +104,12 @@ namespace FullSimple.Core
                     }
 
                     throw new GuardNotBooleanException();
+                case Float:
+                    return new TypeFloat();
                 case Unit:
                     return new TypeUnit();
+                case Succ:
+                    return new TypeNat();
                 case Record rec:
                     return new TypeRecord(rec.Fields.Select(p => (p.Item1, TypeOf(ctx, p.Item2))));
                 default:

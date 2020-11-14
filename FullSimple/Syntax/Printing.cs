@@ -86,6 +86,10 @@ namespace FullSimple.Syntax
                     }
                     Write("}");
                     break;
+                case Succ succ:
+                    Write("succ ");
+                    _printTerm(ctx, succ.Of);
+                    break;
                 default:
                     throw new InvalidOperationException();
             }
@@ -95,10 +99,13 @@ namespace FullSimple.Syntax
         {
             switch (type)
             {
-                case TypeString _:
+                case TypeNat:
+                    Write("Nat");
+                    break;
+                case TypeString:
                     Write("String");
                     break;
-                case TypeBool _:
+                case TypeBool:
                     Write("Bool");
                     break;
                 case TypeArrow t:

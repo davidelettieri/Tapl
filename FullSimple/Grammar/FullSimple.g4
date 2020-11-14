@@ -137,7 +137,7 @@ ARROW  : '->';
 DARROW : '=>';
 DDARROW : '==>';
 
-FLOATV	: [1-9]+(.[1-9]+)?;
+FLOATV	: [1-9]+(.[1-9]+)+;
 INTV	: [1-9]+;
 UCID : [A-Z][a-zA-Z]*;
 LCID : [a-z]+;
