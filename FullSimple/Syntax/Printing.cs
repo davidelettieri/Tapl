@@ -90,6 +90,9 @@ namespace FullSimple.Syntax
                     Write("succ ");
                     _printTerm(ctx, succ.Of);
                     break;
+                case Zero:
+                    Write("0");
+                    break;
                 default:
                     throw new InvalidOperationException();
             }

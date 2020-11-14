@@ -1,29 +1,56 @@
-lambda x:<a:Bool,b:Bool>. x;
- 
+let x = succ 0 
+	in let y = succ x
+		in y;
 
-"hello";
+evenodd = fix (lambda eo: {even: Nat -> Bool, odd: Nat -> Bool}.
+	{even = lambda x: Nat. if iszero x then true else eo.odd (pred x),
+	 odd = lambda x: Nat. if iszero x then false else eo.even (pred x)});
+		
+evenodd.even (succ 0);
+evenodd.even (succ (succ 0));
 
-unit;
-
-lambda x:A. x;
-
-let x=true in x;
-
-timesfloat 2.0 3.14159;
-
-{x=true, y=false}; 
-{x=true, y=false}.x;
-{true, false}; 
-{true, false}.1; 
+letrec even:Nat -> Bool = 
+	lambda x: Nat.
+		if iszero x then true
+		else if iszero (pred x) then false
+		else even (pred (pred x))
+in
+	even (succ (succ (succ 0)));
 
 
-lambda x:Bool. x;
-(lambda x:Bool->Bool. if x false then true else false) 
-  (lambda x:Bool. if x then false else true); 
+PhysicalAddr = {firstlast:String, addr:String};
+{firstlast= "lambdamix", addr="Russia"} as PhysicalAddr;
+VirtualAddr = {name:String, email:String};
 
-lambda x:Nat. succ x;
-(lambda x:Nat. succ (succ x)) (succ 0); 
+Addr = <physical:PhysicalAddr, virtual:VirtualAddr>;
+getName = lambda a:Addr. case a of
+	<physical=x> ==> x.firstlast | <virtual=y> ==> y.name;
 
-T = Nat->Nat;
-lambda f:T. lambda x:Nat. f (f x);
+"123";
+
+pa = {firstlast= "lambdamix", addr="Russia"} as PhysicalAddr;
+va = {name = "ilya", email = "ilya@ru"} as VirtualAddr;
+addr1 = <physical=pa> as Addr;
+addr2 = <virtual=va> as Addr;
+
+getName addr1;
+getName addr2;
+
+lambda _: Unit. 5;
+\_: Unit. 5;
+
+let x = 5 in 7;
+let _ = 5 in 7;
+
+ff = lambda ieio : {iseven: Nat -> Bool, isodd: Nat -> Bool}.
+    {
+        iseven = lambda x : Nat.
+                    if iszero x then true
+                    else ieio.isodd (pred x),
+        isodd  = lambda x : Nat.
+                    if iszero x then false
+                    else ieio.iseven (pred x)
+    };
+
+r = fix ff;
 

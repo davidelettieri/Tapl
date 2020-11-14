@@ -25,13 +25,13 @@ namespace FullSimple.Core
         {
             return t switch
             {
-                True _ => true,
-                False _ => true,
+                True => true,
+                False => true,
                 Tag tag => IsVal(ctx, tag.Term),
-                StringTerm _ => true,
-                Unit _ => true,
-                Float _ => true,
-                Abs _ => true,
+                StringTerm => true,
+                Unit => true,
+                Float => true,
+                Abs => true,
                 Record r => r.Fields.All(f => IsVal(ctx, f.Item2)),
                 ITerm s when IsNumericVal(ctx, s) => true,
                 _ => false

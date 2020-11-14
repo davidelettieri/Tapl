@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBool", "SimpleBool\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LetExercise", "LetExercise\LetExercise.csproj", "{5FE8D32E-E20A-42FF-B48C-861A67EE2DC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSimple", "FullSimple\FullSimple.csproj", "{0F0A70D0-171F-4BE1-B5BF-397AF3ACB3CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullSimple", "FullSimple\FullSimple.csproj", "{0F0A70D0-171F-4BE1-B5BF-397AF3ACB3CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -112,6 +112,8 @@ namespace FullSimple.Core
                     return new TypeNat();
                 case Record rec:
                     return new TypeRecord(rec.Fields.Select(p => (p.Item1, TypeOf(ctx, p.Item2))));
+                case Zero:
+                    return new TypeNat();
                 default:
                     throw new InvalidOperationException();
             }
