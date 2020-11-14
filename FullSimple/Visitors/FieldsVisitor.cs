@@ -41,7 +41,7 @@ namespace FullSimple.Visitors
             return t =>
             {
                 var ft = field(t);
-                var fields = nefields(t);
+                var fields = nefields((t.Item1, t.Item2 + 1));
                 return Wrap(ft).Concat(fields);
             };
         }

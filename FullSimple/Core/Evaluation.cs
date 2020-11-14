@@ -88,17 +88,19 @@ namespace FullSimple.Core
 
         private static ITerm Record(Context ctx, Record rec)
         {
-            if (rec.Fields.Count == 0)
-                throw new NoRulesAppliesException();
+            return new Record(rec.Info, evalAField(rec.Fields).ToList());
 
-            return new Record(rec.Info, rec.Fields.Select(FieldSelector).ToList());
-
-            (string, ITerm) FieldSelector((string label, ITerm term) field)
+            IEnumerable<(string, ITerm)> evalAField(IEnumerable<(string, ITerm)> l)
             {
-                if (IsVal(ctx, field.term))
-                    return field;
+                if (!l.Any())
+                    throw new NoRulesAppliesException();
 
-                return (field.label, Eval1(ctx, field.term));
+                var first = l.First();
+
+                if (IsVal(ctx, first.Item2))
+                    return Enumerable.Repeat(first, 1).Concat(evalAField(l.Skip(1)));
+
+                return Enumerable.Repeat((first.Item1,Eval1(ctx,first.Item2)),1).Concat(evalAField(l.Skip(1)));
             }
         }
 

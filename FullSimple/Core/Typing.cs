@@ -49,7 +49,7 @@ namespace FullSimple.Core
                 (TypeString _, TypeString _) => true,
                 (TypeUnit _, TypeUnit _) => true,
                 (TypeId b1, TypeId b2) => b1.Equals(b2),
-                (TypeVar tv, _) when IsTyAbb(ctx,tv.N) => TyEqv(ctx,GetTyAbb(ctx,tv.N),t2s),
+                (TypeVar tv, _) when IsTyAbb(ctx, tv.N) => TyEqv(ctx, GetTyAbb(ctx, tv.N), t2s),
                 (_, TypeVar tv) when IsTyAbb(ctx, tv.N) => TyEqv(ctx, t1s, GetTyAbb(ctx, tv.N)),
                 (TypeVar ti, TypeVar tj) => ti.X == tj.X,
 
@@ -87,11 +87,11 @@ namespace FullSimple.Core
                     };
                 case Var var:
                     return ctx.GetTypeFromContext(var.Index);
-                case True _:
+                case True:
                     return new TypeBool();
-                case False _:
+                case False:
                     return new TypeBool();
-                case StringTerm _:
+                case StringTerm:
                     return new TypeString();
                 case If ift:
                     if (TypeOf(ctx, ift.Condition) is TypeBool)
@@ -104,9 +104,10 @@ namespace FullSimple.Core
                     }
 
                     throw new GuardNotBooleanException();
-                case Unit _:
+                case Unit:
                     return new TypeUnit();
-
+                case Record rec:
+                    return new TypeRecord(rec.Fields.Select(p => (p.Item1, TypeOf(ctx, p.Item2))));
                 default:
                     throw new InvalidOperationException();
             }
@@ -138,8 +139,10 @@ namespace FullSimple.Core
             foreach (var tyI in restTy)
             {
                 if (!TyEqv(ctx, tyI, tyT1))
-                    throw new Exception("fields do not have the same type in " + casetypes);
+                    throw new Exception("fields do not have the same type in " + string.Join(',', caseTypes));
             }
+
+            return tyT1;
         }
     }
 }
