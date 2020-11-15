@@ -6,6 +6,8 @@ using System.Collections.Immutable;
 using Antlr4.Runtime;
 using System.Linq;
 using FullSimple.Visitors;
+using FullSimple.Syntax.Bindings;
+using FullSimple.Core;
 
 namespace FullSimple
 {
@@ -37,10 +39,35 @@ namespace FullSimple
                     return ctx;
                 case Bind b:
                     Console.WriteLine($"Bind {b.Name}");
-                    return ctx.AddBinding(b.Name, new NameBinding());
+                    var b1 = CheckBinding(ctx, b.Binding);
+                    var b2 = EvalBinding(ctx, b1);
+                    return ctx.AddBinding(b.Name, b2);
                 default:
                     throw new InvalidOperationException();
             }
+        }
+
+        private static IBinding CheckBinding(Context ctx, IBinding bind)
+        {
+            return bind switch
+            {
+                NameBinding n => n,
+                TypeVarBind tvb => tvb,
+                TermAbbBind tab when tab.Type is null => new TermAbbBind(tab.Term, Typing.TypeOf(ctx, tab.Term)),
+                TermAbbBind tab when Typing.TypeEqual(ctx, tab.Type, Typing.TypeOf(ctx, tab.Term)) => tab,
+                TermAbbBind => throw new Exception("type of binding doesn't match declared type in " + bind),
+                VarBind vb => vb,
+                TypeAbbBind tab => tab
+            };
+        }
+
+        private static IBinding EvalBinding(Context ctx, IBinding bind)
+        {
+            return bind switch
+            {
+                TermAbbBind tab => new TermAbbBind(Eval(ctx, tab.Term), tab.Type),
+                _ => bind
+            };
         }
 
         public static Context Process(string source)

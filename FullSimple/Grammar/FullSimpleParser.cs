@@ -44,7 +44,8 @@ public partial class FullSimpleParser : Parser {
 		COLONCOLON=40, EQ=41, EQEQ=42, LSQUARE=43, LT=44, LCURLY=45, LPAREN=46, 
 		LEFTARROW=47, LCURLYBAR=48, LSQUAREBAR=49, RCURLY=50, RPAREN=51, RSQUARE=52, 
 		GT=53, BARRCURLY=54, BARGT=55, BARRSQUARE=56, COLONEQ=57, ARROW=58, DARROW=59, 
-		DDARROW=60, FLOATV=61, INTV=62, UCID=63, LCID=64, WS=65, NL=66, NL1=67;
+		DDARROW=60, FLOATV=61, INTV=62, UCID=63, LCID=64, WS=65, TAB=66, NL=67, 
+		NL1=68;
 	public const int
 		RULE_toplevel = 0, RULE_command = 1, RULE_binder = 2, RULE_type = 3, RULE_atype = 4, 
 		RULE_tybinder = 5, RULE_fieldtypes = 6, RULE_nefieldtypes = 7, RULE_fieldtype = 8, 
@@ -66,7 +67,7 @@ public partial class FullSimpleParser : Parser {
 		"'#'", "'$'", "'*'", "'|'", "'.'", "';'", "','", "'/'", "':'", "'::'", 
 		"'='", "'=='", "'['", "'<'", "'{'", "'('", "'<-'", "'{|'", "'[|'", "'}'", 
 		"')'", "']'", "'>'", "'|}'", "'|>'", "'|]'", "':='", "'->'", "'=>'", "'==>'", 
-		null, null, null, null, "' '", "'\r'", "'\n'"
+		null, null, null, null, "' '", "'\t'", "'\r'", "'\n'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, "TYPE", "INERT", "IF", "THEN", "ELSE", "TRUE", "FALSE", "BOOL", 
@@ -77,7 +78,7 @@ public partial class FullSimpleParser : Parser {
 		"EQ", "EQEQ", "LSQUARE", "LT", "LCURLY", "LPAREN", "LEFTARROW", "LCURLYBAR", 
 		"LSQUAREBAR", "RCURLY", "RPAREN", "RSQUARE", "GT", "BARRCURLY", "BARGT", 
 		"BARRSQUARE", "COLONEQ", "ARROW", "DARROW", "DDARROW", "FLOATV", "INTV", 
-		"UCID", "LCID", "WS", "NL", "NL1"
+		"UCID", "LCID", "WS", "TAB", "NL", "NL1"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -2309,7 +2310,7 @@ public partial class FullSimpleParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\x45', '\x114', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '\x46', '\x114', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 

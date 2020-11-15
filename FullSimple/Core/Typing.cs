@@ -39,7 +39,7 @@ namespace FullSimple.Core
             }
         }
 
-        private static bool TyEqv(Context ctx, IType t1, IType t2)
+        public static bool TypeEqual(Context ctx, IType t1, IType t2)
         {
             var t1s = SimplifyType(ctx, t1);
             var t2s = SimplifyType(ctx, t2);
@@ -49,8 +49,8 @@ namespace FullSimple.Core
                 (TypeString _, TypeString _) => true,
                 (TypeUnit _, TypeUnit _) => true,
                 (TypeId b1, TypeId b2) => b1.Equals(b2),
-                (TypeVar tv, _) when IsTyAbb(ctx, tv.N) => TyEqv(ctx, GetTyAbb(ctx, tv.N), t2s),
-                (_, TypeVar tv) when IsTyAbb(ctx, tv.N) => TyEqv(ctx, t1s, GetTyAbb(ctx, tv.N)),
+                (TypeVar tv, _) when IsTyAbb(ctx, tv.N) => TypeEqual(ctx, GetTyAbb(ctx, tv.N), t2s),
+                (_, TypeVar tv) when IsTyAbb(ctx, tv.N) => TypeEqual(ctx, t1s, GetTyAbb(ctx, tv.N)),
                 (TypeVar ti, TypeVar tj) => ti.X == tj.X,
 
 
@@ -114,6 +114,11 @@ namespace FullSimple.Core
                     return new TypeRecord(rec.Fields.Select(p => (p.Item1, TypeOf(ctx, p.Item2))));
                 case Zero:
                     return new TypeNat();
+                case Proj proj:
+                    var t2 = SimplifyType(ctx, TypeOf(ctx, proj.Term));
+                    return TypeOf(ctx, proj.Term);
+                case Fix fix:
+                    return TypeOf(ctx, fix.Term);
                 default:
                     throw new InvalidOperationException();
             }
@@ -144,7 +149,7 @@ namespace FullSimple.Core
 
             foreach (var tyI in restTy)
             {
-                if (!TyEqv(ctx, tyI, tyT1))
+                if (!TypeEqual(ctx, tyI, tyT1))
                     throw new Exception("fields do not have the same type in " + string.Join(',', caseTypes));
             }
 

@@ -31,6 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="fullsimple - Copy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="fullsimple.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

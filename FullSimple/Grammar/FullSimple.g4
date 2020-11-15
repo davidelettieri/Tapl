@@ -143,5 +143,6 @@ UCID : [A-Z][a-zA-Z]*;
 LCID : [a-z]+;
 
 WS      : ' ' -> skip;
+TAB      : '\t' -> skip;
 NL      : '\r' -> skip;
 NL1		: '\n' -> skip;

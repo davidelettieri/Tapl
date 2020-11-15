@@ -44,6 +44,25 @@ namespace FullSimple.Syntax
                     PrintType(ascribe.Type);
                     Write(")");
                     break;
+                case Case _case:
+                    Write("case ");
+                    _printTerm(ctx, _case.Term);
+                    Write(" of ");
+                    var source = _case.Cases.ToList();
+                    for (int i = 0; i < source.Count; i++)
+                    {
+                        var item = source[i];
+                        pc(item.label, item.variable, item.term);
+                        if (i < source.Count - 1)
+                            Write("|");
+                    }
+                    void pc(string li, string xi, ITerm ti)
+                    {
+                        var (ctx1, x1) = ctx.PickFreshName(xi);
+                        Write($"<{li}={xi}>==>");
+                        _printTerm(ctx1, ti);
+                    }
+                    break;
                 case If ift:
                     Write("( if ");
                     _printTerm(ctx, ift.Condition);
@@ -92,6 +111,11 @@ namespace FullSimple.Syntax
                     break;
                 case Zero:
                     Write("0");
+                    break;
+                case Proj proj:
+                    _printTerm(ctx, proj.Term);
+                    Write(".");
+                    Write(proj.Label);
                     break;
                 default:
                     throw new InvalidOperationException();
