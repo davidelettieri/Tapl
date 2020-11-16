@@ -1,6 +1,6 @@
-evenodd = fix (lambda eo: {even: Nat -> Bool, odd: Nat -> Bool}.
-	{even = lambda x: Nat. if iszero x then true else eo.odd (pred x),
-	 odd = lambda x: Nat. if iszero x then false else eo.even (pred x)});
-		
-evenodd.even (succ 0);
-evenodd.even (succ (succ 0));
+PhysicalAddr = {firstlast:String, addr:String};
+{firstlast= "lambdamix", addr="Russia"} as PhysicalAddr;
+VirtualAddr = {name:String, email:String};
+
+Addr = <physical:PhysicalAddr, virtual:VirtualAddr>;
+getName = lambda a:Addr. case a of <physical=x> ==> x.firstlast | <virtual=y> ==> y.name;

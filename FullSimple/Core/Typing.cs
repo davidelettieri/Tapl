@@ -22,7 +22,7 @@ namespace FullSimple.Core
         private static IType ComputeType(Context ctx, IType t)
             => t switch
             {
-                TypeVar tv when IsTyAbb(ctx, tv.N) => GetTyAbb(ctx, tv.N),
+                TypeVar tv when IsTyAbb(ctx, tv.X) => GetTyAbb(ctx, tv.X),
                 _ => throw new NoRulesAppliesException()
             };
 
@@ -147,11 +147,11 @@ namespace FullSimple.Core
             var tyT1 = caseTypes.FirstOrDefault();
             var restTy = caseTypes.Skip(1);
 
-            foreach (var tyI in restTy)
-            {
-                if (!TypeEqual(ctx, tyI, tyT1))
-                    throw new Exception("fields do not have the same type in " + string.Join(',', caseTypes));
-            }
+            //foreach (var tyI in restTy)
+            //{
+            //    if (!TypeEqual(ctx, tyI, tyT1))
+            //        throw new Exception("fields do not have the same type in " + string.Join(',', caseTypes));
+            //}
 
             return tyT1;
         }

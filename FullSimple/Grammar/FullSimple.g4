@@ -140,7 +140,7 @@ DDARROW : '==>';
 FLOATV	: [0-9].[0-9]+;
 INTV	: [0-9]+;
 UCID : [A-Z][a-zA-Z]*;
-LCID : [a-z]+;
+LCID : [a-z][a-zA-Z]*;
 
 WS      : ' ' -> skip;
 TAB      : '\t' -> skip;

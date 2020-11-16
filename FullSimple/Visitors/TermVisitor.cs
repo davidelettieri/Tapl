@@ -100,10 +100,9 @@ namespace FullSimple.Visitors
 
             return ctx =>
             {
-                var ctx1 = ctx.AddName(v);
-                var abs = new Abs(info, v, type(ctx), eqTerm(ctx1));
+                var abs = new Abs(info, v, type(ctx), eqTerm(ctx.AddName(v)));
                 var fix = new Fix(info, abs);
-                return new Let(info, v, fix, inTerm(ctx));
+                return new Let(info, v, fix, inTerm(ctx.AddName(v)));
             };
         }
 
