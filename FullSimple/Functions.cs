@@ -38,9 +38,10 @@ namespace FullSimple
                     PrintTerm(ctx, t);
                     return ctx;
                 case Bind b:
-                    Console.WriteLine($"Bind {b.Name}");
                     var b1 = CheckBinding(ctx, b.Binding);
                     var b2 = EvalBinding(ctx, b1);
+                    Console.Write(b.Name);
+                    PrintBindingType(ctx, b.Binding);
                     return ctx.AddBinding(b.Name, b2);
                 default:
                     throw new InvalidOperationException();

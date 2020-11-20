@@ -5,16 +5,40 @@ using static FullSimple.Core.Typing;
 using FullSimple.Syntax.Terms;
 using FullSimple.Syntax.Types;
 using System.Linq;
+using FullSimple.Syntax.Bindings;
 
 namespace FullSimple.Syntax
 {
     public static class Printing
     {
+        public static void PrintBindingType(Context ctx, IBinding b)
+        {
+            switch (b)
+            {
+                case VarBind vb:
+                    Write(": ");
+                    PrintType(ctx, vb.Type);
+                    break;
+                case TermAbbBind tab when tab.Type != null:
+                    Write(": ");
+                    PrintType(ctx, tab.Type);
+                    break;
+                case TermAbbBind tab:
+                    Write(": ");
+                    PrintType(ctx, TypeOf(ctx, tab.Term));
+                    break;
+                case TypeAbbBind:
+                    Write(":: *");
+                    break;
+            }
+            WriteLine();
+        }
+
         public static void PrintTerm(Context ctx, ITerm t)
         {
             _printTerm(ctx, t);
             Write(" : ");
-            PrintType(TypeOf(ctx, t));
+            PrintType(ctx, TypeOf(ctx, t));
             WriteLine();
         }
 
@@ -25,7 +49,7 @@ namespace FullSimple.Syntax
                 case Abs abs:
                     var (c, x) = ctx.PickFreshName(abs.V);
                     Write("lambda {0} :", x);
-                    PrintType(abs.Type);
+                    PrintType(ctx, abs.Type);
                     Write(".");
                     _printTerm(c, abs.Body);
                     break;
@@ -41,7 +65,7 @@ namespace FullSimple.Syntax
                     Write("(");
                     _printTerm(ctx, ascribe.Term);
                     Write(" as ");
-                    PrintType(ascribe.Type);
+                    PrintType(ctx, ascribe.Type);
                     Write(")");
                     break;
                 case Case _case:
@@ -122,7 +146,7 @@ namespace FullSimple.Syntax
             }
         }
 
-        private static void PrintType(IType type)
+        private static void PrintType(Context ctx, IType type)
         {
             switch (type)
             {
@@ -136,9 +160,9 @@ namespace FullSimple.Syntax
                     Write("Bool");
                     break;
                 case TypeArrow t:
-                    PrintType(t.From);
+                    PrintType(ctx, t.From);
                     Write(" -> ");
-                    PrintType(t.To);
+                    PrintType(ctx, t.To);
                     break;
                 case TypeVariant tv:
                     Write("<");
@@ -147,13 +171,13 @@ namespace FullSimple.Syntax
                     {
                         var current = enumerator.Current;
                         Write($"{current.Item1}:");
-                        PrintType(current.Item2);
+                        PrintType(ctx, current.Item2);
                         while (enumerator.MoveNext())
                         {
                             current = enumerator.Current;
                             Write(",");
                             Write($"{current.Item1}:");
-                            PrintType(current.Item2);
+                            PrintType(ctx, current.Item2);
                         }
                     }
                     Write(">");
@@ -172,11 +196,17 @@ namespace FullSimple.Syntax
                         var si = source[i];
                         if (si.Item1 != i.ToString())
                             Write(si.Item1 + "=");
-                        PrintType(si.Item2);
+                        PrintType(ctx, si.Item2);
                         if (i < source.Count - 1)
                             Write(",");
                     }
                     Write("}");
+                    break;
+                case TypeVar tv:
+                    if (ctx.Length == tv.N)
+                        Write(ctx.IndexToName(tv.X));
+                    else
+                        Write("[bad index]");
                     break;
                 default:
                     throw new InvalidOperationException();
