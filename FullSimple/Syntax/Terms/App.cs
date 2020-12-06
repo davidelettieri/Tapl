@@ -25,5 +25,10 @@ namespace FullSimple.Syntax.Terms
             Left = left;
             Right = right;
         }
+
+        public override string ToString()
+        {
+            return $"TmApp({Left},{Right})";
+        }
     }
 }

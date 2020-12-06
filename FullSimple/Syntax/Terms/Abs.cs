@@ -27,5 +27,10 @@ namespace FullSimple.Syntax.Terms
             Type = type;
             Body = body;
         }
+
+        public override string ToString()
+        {
+            return $"TmAbs({V},{Type},{Body})";
+        }
     }
 }

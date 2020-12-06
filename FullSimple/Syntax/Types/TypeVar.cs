@@ -12,5 +12,10 @@ namespace FullSimple.Syntax.Types
             X = x;
             N = n;
         }
+
+        public override string ToString()
+        {
+            return $"TyVar({X},{N})";
+        }
     }
 }

@@ -88,8 +88,9 @@ namespace FullSimple.Core
                     if (TypeOf(ctx, ift.Condition) is TypeBool)
                     {
                         var typeThen = TypeOf(ctx, ift.Then);
+                        var typeElse = TypeOf(ctx, ift.Else);
 
-                        if (typeThen.Equals(TypeOf(ctx, ift.Then)))
+                        if (TypeEqual(ctx, typeThen, typeElse))
                             return typeThen;
                         else throw new ArmsOfConditionalHaveDifferentTypesException();
                     }
@@ -114,7 +115,7 @@ namespace FullSimple.Core
                     var ty2 = TypeOf(ctx, tag.Term);
 
                     if (TypeEqual(ctx, ty2, field.Item2))
-                        return ty2;
+                        return ty;
 
                     throw new Exception("Field doesn't have expected type in " + t);
                 case Var var:
@@ -198,7 +199,7 @@ namespace FullSimple.Core
                     throw new Exception("Argument of pred is not a number");
                 case IsZero iz:
                     if (TypeEqual(ctx, TypeOf(ctx, iz.Term), new TypeNat()))
-                        return new TypeNat();
+                        return new TypeBool();
                     throw new Exception("Argument of iszero is not a number");
                 default:
                     throw new InvalidOperationException();

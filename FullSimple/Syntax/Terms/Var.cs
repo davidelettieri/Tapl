@@ -25,5 +25,10 @@ namespace FullSimple.Syntax.Terms
             Index = index;
             ContextLength = ctxl;
         }
+
+        public override string ToString()
+        {
+            return $"TmVar({Index},{ContextLength})";
+        }
     }
 }

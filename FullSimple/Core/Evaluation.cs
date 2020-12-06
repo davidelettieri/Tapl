@@ -6,6 +6,7 @@ using FullSimple.Syntax.Terms;
 using System.Linq;
 using System.Collections.Generic;
 using FullSimple.Syntax.Bindings;
+using System;
 
 namespace FullSimple.Core
 {
@@ -40,6 +41,8 @@ namespace FullSimple.Core
 
         private static ITerm Eval1(Context ctx, ITerm t)
         {
+            //Console.WriteLine(t);
+
             return t switch
             {
                 If ift when ift.Condition is True => ift.Then,
@@ -100,7 +103,7 @@ namespace FullSimple.Core
                 if (IsVal(ctx, first.Item2))
                     return Enumerable.Repeat(first, 1).Concat(evalAField(l.Skip(1)));
 
-                return Enumerable.Repeat((first.Item1,Eval1(ctx,first.Item2)),1).Concat(evalAField(l.Skip(1)));
+                return Enumerable.Repeat((first.Item1, Eval1(ctx, first.Item2)), 1).Concat(evalAField(l.Skip(1)));
             }
         }
 

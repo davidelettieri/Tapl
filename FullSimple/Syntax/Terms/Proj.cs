@@ -18,5 +18,10 @@ namespace FullSimple.Syntax.Terms
             Term = term;
             Label = s;
         }
+
+        public override string ToString()
+        {
+            return $"TmProj({Term},{Label})";
+        }
     }
 }

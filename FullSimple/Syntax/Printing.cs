@@ -16,15 +16,12 @@ namespace FullSimple.Syntax
             switch (b)
             {
                 case VarBind vb:
-                    Write(": ");
                     PrintType(ctx, vb.Type);
                     break;
                 case TermAbbBind tab when tab.Type != null:
-                    Write(": ");
                     PrintType(ctx, tab.Type);
                     break;
                 case TermAbbBind tab:
-                    Write(": ");
                     PrintType(ctx, TypeOf(ctx, tab.Term));
                     break;
                 case TypeAbbBind:
@@ -37,9 +34,6 @@ namespace FullSimple.Syntax
         public static void PrintTerm(Context ctx, ITerm t)
         {
             _printTerm(ctx, t);
-            Write(" : ");
-            PrintType(ctx, TypeOf(ctx, t));
-            WriteLine();
         }
 
         private static void _printTerm(Context ctx, ITerm t)
@@ -75,8 +69,8 @@ namespace FullSimple.Syntax
                     var source = _case.Cases.ToList();
                     for (int i = 0; i < source.Count; i++)
                     {
-                        var item = source[i];
-                        pc(item.label, item.variable, item.term);
+                        var (label, variable, term) = source[i];
+                        pc(label, variable, term);
                         if (i < source.Count - 1)
                             Write("|");
                     }
@@ -100,9 +94,7 @@ namespace FullSimple.Syntax
                     Write(ctx.IndexToName(var.Index));
                     break;
                 case StringTerm stringTerm:
-                    Write("(\"");
                     Write(stringTerm.Value);
-                    Write("\")");
                     break;
                 case True _:
                     Write("true");
@@ -141,13 +133,18 @@ namespace FullSimple.Syntax
                     Write(".");
                     Write(proj.Label);
                     break;
+                case Tag tag:
+                    break;
                 default:
                     throw new InvalidOperationException();
             }
         }
 
-        private static void PrintType(Context ctx, IType type)
+        public static void PrintType(Context ctx, IType type, bool startWithColon = true)
         {
+            if (startWithColon)
+                Write(" : ");
+
             switch (type)
             {
                 case TypeNat:
@@ -160,9 +157,9 @@ namespace FullSimple.Syntax
                     Write("Bool");
                     break;
                 case TypeArrow t:
-                    PrintType(ctx, t.From);
+                    PrintType(ctx, t.From, false);
                     Write(" -> ");
-                    PrintType(ctx, t.To);
+                    PrintType(ctx, t.To, false);
                     break;
                 case TypeVariant tv:
                     Write("<");
@@ -195,7 +192,7 @@ namespace FullSimple.Syntax
                     {
                         var si = source[i];
                         if (si.Item1 != i.ToString())
-                            Write(si.Item1 + "=");
+                            Write(si.Item1);
                         PrintType(ctx, si.Item2);
                         if (i < source.Count - 1)
                             Write(",");

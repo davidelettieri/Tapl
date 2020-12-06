@@ -40,11 +40,11 @@ namespace FullSimple.Core
             {
                 return t switch
                 {
-                    Inert i => new Inert(i.Info, onType(c, i.Type)),
                     Var var => onVar(c, var),
                     Abs abs => new Abs(abs.Info, abs.V, onType(c, abs.Type), Walk(c + 1, abs.Body)),
                     App app => new App(app.Info, Walk(c, app.Left), Walk(c, app.Right)),
                     Let let => new Let(let.Info, let.Variable, Walk(c, let.LetTerm), Walk(c + 1, let.InTerm)),
+                    Inert i => new Inert(i.Info, onType(c, i.Type)),
                     Fix fix => new Fix(fix.Info, Walk(c, fix.Term)),
                     True e => e,
                     False f => f,
@@ -61,7 +61,7 @@ namespace FullSimple.Core
                     Pred p => new Pred(p.Info, Walk(c, p.Of)),
                     IsZero iz => new IsZero(iz.Info, Walk(c, iz.Term)),
                     Tag tag => new Tag(tag.Info, tag.Label, Walk(c, tag.Term), onType(c, tag.Type)),
-                    Case @case => new Case(@case.Info, Walk(c, @case.Term), @case.Cases.Select(p => (p.label, p.variable, Walk(c, p.term)))),
+                    Case @case => new Case(@case.Info, Walk(c, @case.Term), @case.Cases.Select(p => (p.label, p.variable, Walk(c + 1, p.term)))),
                     _ => throw new InvalidOperationException()
                 };
             }

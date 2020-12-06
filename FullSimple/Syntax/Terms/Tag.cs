@@ -19,5 +19,10 @@ namespace FullSimple.Syntax.Terms
             Term = term;
             Type = type;
         }
+
+        public override string ToString()
+        {
+            return $"TmTag({Label},{Term},{Type})";
+        }
     }
 }

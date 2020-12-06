@@ -1,5 +1,6 @@
 ﻿using Common;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FullSimple.Syntax.Terms
 {
@@ -14,6 +15,12 @@ namespace FullSimple.Syntax.Terms
             Info = info;
             Term = term;
             Cases = cases;
+        }
+
+        public override string ToString()
+        {
+            var cases = string.Join(",", Cases.Select(p => $"({p.label},{p.variable},{p.term})"));
+            return $"TmCase({Term},List({cases}))";
         }
     }
 }

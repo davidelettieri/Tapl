@@ -34,14 +34,17 @@ namespace FullSimple
             switch (c)
             {
                 case Eval e:
+                    var type = Typing.TypeOf(ctx, e.Term);
                     var t = Eval(ctx, e.Term);
                     PrintTerm(ctx, t);
+                    PrintType(ctx, type);
                     return ctx;
                 case Bind b:
                     var b1 = CheckBinding(ctx, b.Binding);
                     var b2 = EvalBinding(ctx, b1);
                     Console.Write(b.Name);
-                    PrintBindingType(ctx, b.Binding);
+                    PrintBindingType(ctx, b2);
+                    Console.WriteLine();
                     return ctx.AddBinding(b.Name, b2);
                 default:
                     throw new InvalidOperationException();

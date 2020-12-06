@@ -9,5 +9,10 @@ namespace FullSimple.Syntax.Terms
         {
             Value = value;
         }
+
+        public override string ToString()
+        {
+            return $"TmString({Value})";
+        }
     }
 }
