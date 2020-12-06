@@ -97,7 +97,7 @@ PRED	: 'pred';
 ISZERO	: 'iszero';
 NAT		: 'Nat';
 
-STRINGV: DQUOTE [a-zA-Z]+ DQUOTE;
+STRINGV: DQUOTE .+? DQUOTE;
 
 /** Symbols **/
 USCORE : '_';
@@ -139,8 +139,8 @@ DDARROW : '==>';
 
 FLOATV	: [0-9].[0-9]+;
 INTV	: [0-9]+;
-UCID : [A-Z][a-zA-Z]*;
-LCID : [a-z][a-zA-Z]*;
+UCID : [A-Z][a-zA-Z0-9]*;
+LCID : [a-z][a-zA-Z0-9]*;
 
 WS      : ' ' -> skip;
 TAB      : '\t' -> skip;

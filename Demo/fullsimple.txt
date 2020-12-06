@@ -3,4 +3,15 @@ PhysicalAddr = {firstlast:String, addr:String};
 VirtualAddr = {name:String, email:String};
 
 Addr = <physical:PhysicalAddr, virtual:VirtualAddr>;
-getName = lambda a:Addr. case a of <physical=x> ==> x.firstlast | <virtual=y> ==> y.name;
+getName = lambda a:Addr. case a of
+	<physical=x> ==> x.firstlast | <virtual=y> ==> y.name;
+
+"123";
+
+pa = {firstlast= "lambdamix", addr="Russia"} as PhysicalAddr;
+va = {name = "ilya", email = "ilya@ru"} as VirtualAddr;
+addr1 = <physical=pa> as Addr;
+addr2 = <virtual=va> as Addr;
+
+getName addr1;
+getName addr2;
