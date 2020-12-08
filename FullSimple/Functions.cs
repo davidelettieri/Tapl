@@ -53,13 +53,13 @@ namespace FullSimple
         {
             return bind switch
             {
-                NameBinding n => n,
-                TypeVarBind tvb => tvb,
+                NameBinding => bind,
+                TypeVarBind => bind,
                 TermAbbBind tab when tab.Type is null => new TermAbbBind(tab.Term, Typing.TypeOf(ctx, tab.Term)),
-                TermAbbBind tab when Typing.TypeEqual(ctx, tab.Type, Typing.TypeOf(ctx, tab.Term)) => tab,
+                TermAbbBind tab when Typing.TypeEqual(ctx, tab.Type, Typing.TypeOf(ctx, tab.Term)) => bind,
                 TermAbbBind => throw new Exception("type of binding doesn't match declared type in " + bind),
-                VarBind vb => vb,
-                TypeAbbBind tab => tab
+                VarBind => bind,
+                TypeAbbBind => bind
             };
         }
 

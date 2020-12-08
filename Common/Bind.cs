@@ -14,5 +14,10 @@ namespace Common
             Info = info;
             Binding = binding;
         }
+
+        public override string ToString()
+        {
+            return $"Bind({Name},{Binding})";
+        }
     }
 }

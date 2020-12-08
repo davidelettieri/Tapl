@@ -115,7 +115,7 @@ namespace FullSimple.Core
                     var ty2 = TypeOf(ctx, tag.Term);
 
                     if (TypeEqual(ctx, ty2, field.Item2))
-                        return ty;
+                        return tag.Type;
 
                     throw new Exception("Field doesn't have expected type in " + t);
                 case Var var:

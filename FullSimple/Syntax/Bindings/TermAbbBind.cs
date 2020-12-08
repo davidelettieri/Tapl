@@ -14,5 +14,10 @@ namespace FullSimple.Syntax.Bindings
             Term = term;
             Type = type;
         }
+
+        public override string ToString()
+        {
+            return $"TmAbbBind({Term},{(object)Type ?? "None"})";
+        }
     }
 }
