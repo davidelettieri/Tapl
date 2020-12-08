@@ -3,7 +3,6 @@ using System;
 using static System.Console;
 using static FullSimple.Core.Typing;
 using FullSimple.Syntax.Terms;
-using FullSimple.Syntax.Types;
 using System.Linq;
 using FullSimple.Syntax.Bindings;
 using System.Globalization;
@@ -78,7 +77,7 @@ namespace FullSimple.Syntax
                     }
                     void pc(string li, string xi, ITerm ti)
                     {
-                        var (ctx1, x1) = ctx.PickFreshName(xi);
+                        var (ctx1, _) = ctx.PickFreshName(xi);
                         Write($"<{li}={xi}>==>");
                         _printTerm(ctx1, ti);
                     }

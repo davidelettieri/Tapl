@@ -1,6 +1,6 @@
 ﻿using Antlr4.Runtime.Misc;
 using Common;
-using FullSimple.Syntax.Types;
+using FullSimple.Syntax;
 using System;
 
 namespace FullSimple.Visitors

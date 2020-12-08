@@ -1,7 +1,6 @@
 ﻿using FullSimple.Syntax;
 using Common;
 using System;
-using FullSimple.Syntax.Types;
 using FullSimple.Syntax.Terms;
 using FullSimple.Syntax.Bindings;
 using System.Linq;

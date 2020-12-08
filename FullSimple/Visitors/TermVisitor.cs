@@ -3,8 +3,8 @@ using Common;
 using System;
 using FullSimple.Syntax.Terms;
 using static Common.Helper;
-using FullSimple.Syntax.Types;
 using System.Linq;
+using FullSimple.Syntax;
 
 namespace FullSimple.Visitors
 {

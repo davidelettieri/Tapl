@@ -1,9 +1,9 @@
 ﻿using Common;
 using System;
 using FullSimple.Syntax.Terms;
-using FullSimple.Syntax.Types;
 using System.Linq;
 using FullSimple.Syntax.Bindings;
+using FullSimple.Syntax;
 
 namespace FullSimple.Core
 {
@@ -82,7 +82,7 @@ namespace FullSimple.Core
             ITerm f(int c, Var v) =>
                 v.Index >= c ? new Var(v.Info, v.Index + d, v.ContextLength + d) : new Var(v.Info, v.Index, v.ContextLength + d);
 
-            Func<int, IType, IType> onType = (c, t) => TypeShiftAbove(d, c, t);
+            IType onType(int c, IType t) => TypeShiftAbove(d, c, t);
 
             return TmMap(f, onType, c, t);
         }
