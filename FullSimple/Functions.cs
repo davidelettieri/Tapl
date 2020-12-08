@@ -37,14 +37,12 @@ namespace FullSimple
                     var type = Typing.TypeOf(ctx, e.Term);
                     var t = Eval(ctx, e.Term);
                     PrintTerm(ctx, t);
-                    PrintType(ctx, type);
+                    PrintType(ctx, type, addNewline: true);
                     return ctx;
                 case Bind b:
                     var b1 = CheckBinding(ctx, b.Binding);
                     var b2 = EvalBinding(ctx, b1);
-                    Console.Write(b.Name);
-                    PrintBindingType(ctx, b2);
-                    Console.WriteLine();
+                    PrintBindingType(ctx, b2, b.Name);
                     return ctx.AddBinding(b.Name, b2);
                 default:
                     throw new InvalidOperationException();

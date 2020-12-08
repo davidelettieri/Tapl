@@ -6,13 +6,15 @@ using FullSimple.Syntax.Terms;
 using FullSimple.Syntax.Types;
 using System.Linq;
 using FullSimple.Syntax.Bindings;
+using System.Globalization;
 
 namespace FullSimple.Syntax
 {
     public static class Printing
     {
-        public static void PrintBindingType(Context ctx, IBinding b)
+        public static void PrintBindingType(Context ctx, IBinding b, string name)
         {
+            Write(name);
             switch (b)
             {
                 case VarBind vb:
@@ -122,8 +124,24 @@ namespace FullSimple.Syntax
                     Write("}");
                     break;
                 case Succ succ:
-                    Write("succ ");
-                    _printTerm(ctx, succ.Of);
+                    PrintSucc(succ, 1);
+
+                    void PrintSucc(Succ c, int i)
+                    {
+                        switch (c.Of)
+                        {
+                            case Zero:
+                                Write(i.ToString(CultureInfo.InvariantCulture));
+                                break;
+                            case Succ s:
+                                PrintSucc(s, i + 1);
+                                break;
+                            default:
+                                Write("succ ");
+                                _printTerm(ctx, c.Of);
+                                break;
+                        }
+                    }
                     break;
                 case Zero:
                     Write("0");
@@ -133,14 +151,12 @@ namespace FullSimple.Syntax
                     Write(".");
                     Write(proj.Label);
                     break;
-                case Tag tag:
-                    break;
                 default:
                     throw new InvalidOperationException();
             }
         }
 
-        public static void PrintType(Context ctx, IType type, bool startWithColon = true)
+        public static void PrintType(Context ctx, IType type, bool startWithColon = true, bool addNewline = false)
         {
             if (startWithColon)
                 Write(" : ");
@@ -208,6 +224,9 @@ namespace FullSimple.Syntax
                 default:
                     throw new InvalidOperationException();
             }
+
+            if (addNewline)
+                WriteLine();
         }
     }
 }
