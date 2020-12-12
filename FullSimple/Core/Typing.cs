@@ -122,7 +122,7 @@ namespace FullSimple.Core
                 case Abs abs:
                     var ctx1 = ctx.AddBinding(abs.V, new VarBind(abs.Type));
                     var typeBody = TypeOf(ctx1, abs.Body);
-                    return new TypeArrow(abs.Type, typeBody);
+                    return new TypeArrow(abs.Type, Shifting.TypeShift(-1, typeBody));
                 case App app:
                     var leftType = TypeOf(ctx, app.Left);
                     var rightType = TypeOf(ctx, app.Right);

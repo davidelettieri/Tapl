@@ -16,7 +16,7 @@ namespace FullSimple.Core
         {
             return t switch
             {
-                Zero _ => true,
+                Zero => true,
                 Succ s => IsNumericVal(ctx, s.Of),
                 _ => false
             };
@@ -41,8 +41,6 @@ namespace FullSimple.Core
 
         private static ITerm Eval1(Context ctx, ITerm t)
         {
-            //Console.WriteLine(t);
-
             return t switch
             {
                 If ift when ift.Condition is True => ift.Then,
@@ -51,8 +49,7 @@ namespace FullSimple.Core
                 Tag tag => new Tag(tag.Info, tag.Label, Eval1(ctx, tag.Term), tag.Type),
                 Case c when c.Term is Tag tag && IsVal(ctx, tag.Term) => CaseTag(c.Cases, tag.Label, tag.Term),
                 Case c => new Case(c.Info, Eval1(ctx, c.Term), c.Cases),
-                App app when app.Left is Abs abs && IsVal(ctx, app.Right)
-                    => TermSubsTop(app.Right, abs.Body),
+                App app when app.Left is Abs abs && IsVal(ctx, app.Right) => TermSubsTop(app.Right, abs.Body),
                 App app when IsVal(ctx, app.Left) => new App(app.Info, app.Left, Eval1(ctx, app.Right)),
                 App app => new App(app.Info, Eval1(ctx, app.Left), app.Right),
                 Let let when IsVal(ctx, let.LetTerm) => TermSubsTop(let.LetTerm, let.InTerm),
@@ -91,7 +88,9 @@ namespace FullSimple.Core
 
         private static ITerm Record(Context ctx, Record rec)
         {
-            return new Record(rec.Info, evalAField(rec.Fields).ToList());
+            var result = new Record(rec.Info, evalAField(rec.Fields).ToList());
+
+            return result;
 
             IEnumerable<(string, ITerm)> evalAField(IEnumerable<(string, ITerm)> l)
             {
@@ -103,7 +102,7 @@ namespace FullSimple.Core
                 if (IsVal(ctx, first.Item2))
                     return Enumerable.Repeat(first, 1).Concat(evalAField(l.Skip(1)));
 
-                return Enumerable.Repeat((first.Item1, Eval1(ctx, first.Item2)), 1).Concat(evalAField(l.Skip(1)));
+                return Enumerable.Repeat((first.Item1, Eval1(ctx, first.Item2)), 1).Concat(l.Skip(1));
             }
         }
 

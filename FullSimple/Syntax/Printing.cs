@@ -142,6 +142,11 @@ namespace FullSimple.Syntax
                         }
                     }
                     break;
+                case Pred pred:
+                    Write("pred (");
+                    _printTerm(ctx, pred.Of);
+                    Write(")");
+                    break;
                 case Zero:
                     Write("0");
                     break;

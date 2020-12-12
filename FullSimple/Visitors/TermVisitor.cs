@@ -269,7 +269,7 @@ namespace FullSimple.Visitors
             var info = context.GetFileInfo();
             var fields = _fieldsVisitor.Visit(context.fields());
 
-            return c => new Record(info, fields((c, 0)).ToList());
+            return c => new Record(info, fields((c, 1)).ToList());
         }
 
         public override Func<Context, ITerm> VisitAterm_floatv([NotNull] FullSimpleParser.Aterm_floatvContext context)

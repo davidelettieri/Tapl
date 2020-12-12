@@ -1,3 +1,14 @@
+and = lambda b: Bool. lambda c:Bool. if b then c else false;
+not = lambda b: Bool. if b then false else true;
+not true;
+equalDef = lambda equal: Nat -> Nat -> Bool. lambda n: Nat. lambda m: Nat. if iszero n then iszero m else equal (pred n) (pred m);
+equal = fix equalDef;
+OptionalNat = <none:Unit, some:Nat>;
+Table = Nat -> OptionalNat;
+emptyTable = lambda n: Nat. <none=unit> as OptionalNat;
+extendTable = lambda t:Table. lambda m:Nat. lambda v:Nat. lambda n:Nat. if equal n m then <some=v> as OptionalNat else t n;
+
+
 let x = succ 0 
 	in let y = succ x
 		in y;
@@ -37,7 +48,6 @@ getName addr1;
 getName addr2;
 
 lambda _: Unit. 5;
-\_: Unit. 5;
 
 let x = 5 in 7;
 let _ = 5 in 7;
@@ -53,4 +63,3 @@ ff = lambda ieio : {iseven: Nat -> Bool, isodd: Nat -> Bool}.
     };
 
 r = fix ff;
-
