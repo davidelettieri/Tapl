@@ -6,7 +6,6 @@ using FullSimple.Syntax.Terms;
 using System.Linq;
 using System.Collections.Generic;
 using FullSimple.Syntax.Bindings;
-using System;
 
 namespace FullSimple.Core
 {
@@ -130,7 +129,6 @@ namespace FullSimple.Core
 
             if (string.IsNullOrWhiteSpace(c.label))
                 throw new NoRulesAppliesException();
-
 
             return TermSubsTop(term, c.term);
         }
