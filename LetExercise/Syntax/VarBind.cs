@@ -1,16 +1,12 @@
 ﻿using Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace LetExercise.Syntax
+namespace LetExercise.Syntax;
+
+public class VarBind : IBinding
 {
-    public class VarBind : IBinding
+    public IType Type { get; }
+    public VarBind(IType type)
     {
-        public IType Type { get; }
-        public VarBind(IType type)
-        {
             Type = type;
         }
-    }
 }

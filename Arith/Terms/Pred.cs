@@ -1,16 +1,5 @@
 ﻿using Common;
 
-namespace Arith.Terms
-{
-    public class Pred : ITerm
-    {
-        public ITerm Of { get; }
+namespace Arith.Terms;
 
-        public Pred(ITerm of)
-        {
-            Of = of;
-        }
-    }
-
-
-}
+public record Pred(ITerm Of) : ITerm;

@@ -1,18 +1,17 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
+﻿using Antlr4.Runtime.Misc;
 using LetExercise.Syntax;
 using Common;
 using System;
 using System.Collections.Immutable;
 
-namespace LetExercise
-{
-    public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
-    {
-        private readonly TermVisitor _termVisitor = new TermVisitor();
+namespace LetExercise;
 
-        public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel([NotNull] TaplParser.ToplevelContext context)
-        {
+public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
+{
+    private readonly TermVisitor _termVisitor = new TermVisitor();
+
+    public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel([NotNull] TaplParser.ToplevelContext context)
+    {
             Func<Context, (ImmutableStack<ICommand>, Context)> fnext =
                 context.toplevel() != null ? Visit(context.toplevel()) : c => (ImmutableStack.Create<ICommand>(), c);
 
@@ -28,8 +27,8 @@ namespace LetExercise
             };
         }
 
-        private Func<Context, (ICommand, Context)> GetCommand(TaplParser.CommandContext context)
-        {
+    private Func<Context, (ICommand, Context)> GetCommand(TaplParser.CommandContext context)
+    {
             var info = context.GetFileInfo();
             if (context.bind() != null)
             {
@@ -41,14 +40,14 @@ namespace LetExercise
 
             return ctx => (new Eval(info, termFunc(ctx)), ctx);
         }
-    }
+}
 
-    public class TermVisitor : TaplBaseVisitor<Func<Context, ITerm>>
+public class TermVisitor : TaplBaseVisitor<Func<Context, ITerm>>
+{
+    private readonly TypeVisitor _typeVisitor = new TypeVisitor();
+
+    public override Func<Context, ITerm> VisitAbs([NotNull] TaplParser.AbsContext context)
     {
-        private readonly TypeVisitor _typeVisitor = new TypeVisitor();
-
-        public override Func<Context, ITerm> VisitAbs([NotNull] TaplParser.AbsContext context)
-        {
             var boundVar = context.VAR().GetText();
             var body = Visit(context.term());
             var info = context.GetFileInfo();
@@ -56,8 +55,8 @@ namespace LetExercise
             return result;
         }
 
-        public override Func<Context, ITerm> VisitApp([NotNull] TaplParser.AppContext context)
-        {
+    public override Func<Context, ITerm> VisitApp([NotNull] TaplParser.AppContext context)
+    {
             var terms = context.term();
             var left = Visit(terms[0]);
             var right = Visit(terms[1]);
@@ -65,14 +64,14 @@ namespace LetExercise
             return c => new App(info, left(c), right(c));
         }
 
-        public override Func<Context, ITerm> VisitFalse([NotNull] TaplParser.FalseContext context)
-        {
+    public override Func<Context, ITerm> VisitFalse([NotNull] TaplParser.FalseContext context)
+    {
             var info = context.GetFileInfo();
             return _ => new False(info);
         }
 
-        public override Func<Context, ITerm> VisitIft([NotNull] TaplParser.IftContext context)
-        {
+    public override Func<Context, ITerm> VisitIft([NotNull] TaplParser.IftContext context)
+    {
             var terms = context.term();
             var condition = Visit(terms[0]);
             var then = Visit(terms[1]);
@@ -81,8 +80,8 @@ namespace LetExercise
             return c => new If(info, condition(c), then(c), @else(c));
         }
 
-        public override Func<Context, ITerm> VisitLet([NotNull] TaplParser.LetContext context)
-        {
+    public override Func<Context, ITerm> VisitLet([NotNull] TaplParser.LetContext context)
+    {
             var variable = context.VAR().GetText();
             var letTerm = Visit(context.term()[0]);
             var inTerm = Visit(context.term()[1]);
@@ -91,36 +90,35 @@ namespace LetExercise
             return c => new Let(info, variable, letTerm(c), inTerm(c.AddName(variable)));
         }
 
-        public override Func<Context, ITerm> VisitPar([NotNull] TaplParser.ParContext context)
-        {
+    public override Func<Context, ITerm> VisitPar([NotNull] TaplParser.ParContext context)
+    {
             return Visit(context.term());
         }
 
-        public override Func<Context, ITerm> VisitTrue([NotNull] TaplParser.TrueContext context)
-        {
+    public override Func<Context, ITerm> VisitTrue([NotNull] TaplParser.TrueContext context)
+    {
             var info = context.GetFileInfo();
             return _ => new True(info);
         }
 
-        public override Func<Context, ITerm> VisitVar([NotNull] TaplParser.VarContext context)
-        {
+    public override Func<Context, ITerm> VisitVar([NotNull] TaplParser.VarContext context)
+    {
             var name = context.VAR().GetText();
             var info = context.GetFileInfo();
             return ctx => new Var(info, ctx.NameToIndex(name), ctx.Length);
         }
-    }
+}
 
-    public class TypeVisitor : TaplBaseVisitor<IType>
+public class TypeVisitor : TaplBaseVisitor<IType>
+{
+    public override IType VisitArrow([NotNull] TaplParser.ArrowContext context)
     {
-        public override IType VisitArrow([NotNull] TaplParser.ArrowContext context)
-        {
             var el = context.type();
             return new TypeArrow(Visit(el[0]), Visit(el[1]));
         }
 
-        public override IType VisitBool([NotNull] TaplParser.BoolContext context)
-        {
+    public override IType VisitBool([NotNull] TaplParser.BoolContext context)
+    {
             return new TypeBool();
         }
-    }
 }

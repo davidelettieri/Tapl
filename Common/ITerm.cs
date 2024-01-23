@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Common;
 
-namespace Common
+public interface ITerm
 {
-    public interface ITerm
-    {
-        IInfo Info => new UnknownInfo();
-    }
+    IInfo Info => new UnknownInfo();
 }

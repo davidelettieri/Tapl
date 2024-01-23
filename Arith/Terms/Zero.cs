@@ -1,9 +1,5 @@
 ﻿using Common;
 
-namespace Arith.Terms
-{
-    public class Zero : ITerm
-    {
+namespace Arith.Terms;
 
-    }
-}
+public record Zero : ITerm;

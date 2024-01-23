@@ -3,20 +3,20 @@ using System;
 using static System.Console;
 using static LetExercise.Core.Typing;
 
-namespace LetExercise.Syntax
+namespace LetExercise.Syntax;
+
+public static class Printing
 {
-    public static class Printing
+    public static void PrintTerm(Context ctx, ITerm t)
     {
-        public static void PrintTerm(Context ctx, ITerm t)
-        {
             PrintTerm1(ctx, t);
             Write(" : ");
             PrintType(TypeOf(ctx, t));
             WriteLine();
         }
 
-        private static void PrintTerm1(Context ctx, ITerm t)
-        {
+    private static void PrintTerm1(Context ctx, ITerm t)
+    {
             switch (t)
             {
                 case Let let:
@@ -54,10 +54,10 @@ namespace LetExercise.Syntax
                 case Var var:
                     Write(ctx.IndexToName(var.Index));
                     break;
-                case True _:
+                case True:
                     Write("true");
                     break;
-                case False _:
+                case False:
                     Write("false");
                     break;
                 default:
@@ -65,11 +65,11 @@ namespace LetExercise.Syntax
             }
         }
 
-        private static void PrintType(IType type)
-        {
+    private static void PrintType(IType type)
+    {
             switch (type)
             {
-                case TypeBool _:
+                case TypeBool:
                     Write("Bool");
                     break;
                 case TypeArrow t:
@@ -83,5 +83,4 @@ namespace LetExercise.Syntax
                     throw new InvalidOperationException();
             }
         }
-    }
 }

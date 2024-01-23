@@ -1,23 +1,3 @@
-﻿using Common;
+﻿namespace Common;
 
-namespace Common
-{
-    public class Bind : ICommand
-    {
-        public IInfo Info { get; }
-        public string Name { get; }
-        public IBinding Binding { get; }
-
-        public Bind(IInfo info, string name, IBinding binding)
-        {
-            Name = name;
-            Info = info;
-            Binding = binding;
-        }
-
-        public override string ToString()
-        {
-            return $"Bind({Name},{Binding})";
-        }
-    }
-}
+public record Bind(IInfo Info, string Name, IBinding Binding) : ICommand;

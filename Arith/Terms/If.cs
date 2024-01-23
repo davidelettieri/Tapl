@@ -1,20 +1,5 @@
 ﻿using Common;
 
-namespace Arith.Terms
-{
-    public class If : ITerm
-    {
-        public ITerm Condition { get; }
-        public ITerm Then { get; }
-        public ITerm Else { get; }
+namespace Arith.Terms;
 
-        public If(ITerm condition, ITerm then, ITerm @else)
-        {
-            Condition = condition;
-            Then = then;
-            Else = @else;
-        }
-    }
-
-
-}
+public record If(ITerm Condition, ITerm Then, ITerm @Else) : ITerm;

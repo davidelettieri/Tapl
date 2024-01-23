@@ -1,13 +1,12 @@
 ﻿using Common;
 
-namespace LetExercise.Syntax
+namespace LetExercise.Syntax;
+
+public class True : ITerm
 {
-    public class True : ITerm
+    public IInfo Info { get; }
+    public True(IInfo info)
     {
-        public IInfo Info { get; }
-        public True(IInfo info)
-        {
             Info = info;
         }
-    }
 }

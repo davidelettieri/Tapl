@@ -2,12 +2,12 @@
 using Common;
 using System;
 
-namespace LetExercise.Core
+namespace LetExercise.Core;
+
+public static class Typing
 {
-    public static class Typing
+    public static IType TypeOf(Context ctx, ITerm t)
     {
-        public static IType TypeOf(Context ctx, ITerm t)
-        {
             switch (t)
             {
                 case Let let:
@@ -31,9 +31,9 @@ namespace LetExercise.Core
                         throw new ParameterTypeMismatchException();
                     }
                     throw new ArrowTypeExpectedException();
-                case True _:
+                case True:
                     return new TypeBool();
-                case False _:
+                case False:
                     return new TypeBool();
                 case If ift:
                     if (TypeOf(ctx, ift.Condition) is TypeBool)
@@ -50,5 +50,4 @@ namespace LetExercise.Core
                     throw new InvalidOperationException();
             }
         }
-    }
 }

@@ -1,11 +1,5 @@
 ﻿using Common;
 
-namespace Arith.Terms
-{
-    public class True : ITerm
-    {
+namespace Arith.Terms;
 
-    }
-
-
-}
+public record True : ITerm;

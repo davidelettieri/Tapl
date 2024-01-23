@@ -1,6 +1,5 @@
 ﻿using Common;
 
-namespace LetExercise.Syntax
-{
-    public class TypeBool : IType { }
-}
+namespace LetExercise.Syntax;
+
+public class TypeBool : IType;

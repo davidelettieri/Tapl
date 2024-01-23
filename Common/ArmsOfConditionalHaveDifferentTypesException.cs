@@ -1,19 +1,18 @@
 ﻿using System;
 
-namespace Common
+namespace Common;
+
+public class ArmsOfConditionalHaveDifferentTypesException : Exception
 {
-    public class ArmsOfConditionalHaveDifferentTypesException : Exception
+    public ArmsOfConditionalHaveDifferentTypesException(string message) : base(message)
     {
-        public ArmsOfConditionalHaveDifferentTypesException(string message) : base(message)
-        {
-        }
+    }
 
-        public ArmsOfConditionalHaveDifferentTypesException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+    public ArmsOfConditionalHaveDifferentTypesException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
 
-        public ArmsOfConditionalHaveDifferentTypesException()
-        {
-        }
+    public ArmsOfConditionalHaveDifferentTypesException()
+    {
     }
 }

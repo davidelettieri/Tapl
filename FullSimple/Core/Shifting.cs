@@ -5,12 +5,12 @@ using System.Linq;
 using FullSimple.Syntax.Bindings;
 using FullSimple.Syntax;
 
-namespace FullSimple.Core
+namespace FullSimple.Core;
+
+public static class Shifting
 {
-    public static class Shifting
+    public static IType TypeMap(Func<int, TypeVar, IType> onVar, int c, IType t)
     {
-        public static IType TypeMap(Func<int, TypeVar, IType> onVar, int c, IType t)
-        {
             IType Walk(int c, IType t)
             {
                 return t switch
@@ -31,11 +31,11 @@ namespace FullSimple.Core
             return Walk(c, t);
         }
 
-        public static ITerm TmMap(Func<int, Var, ITerm> onVar,
-                                  Func<int, IType, IType> onType,
-                                  int c,
-                                  ITerm t)
-        {
+    public static ITerm TmMap(Func<int, Var, ITerm> onVar,
+        Func<int, IType, IType> onType,
+        int c,
+        ITerm t)
+    {
             ITerm Walk(int c, ITerm t)
             {
                 return t switch
@@ -69,16 +69,16 @@ namespace FullSimple.Core
             return Walk(c, t);
         }
 
-        public static IType TypeShiftAbove(int d, int c, IType t)
-        {
+    public static IType TypeShiftAbove(int d, int c, IType t)
+    {
             IType f(int c, TypeVar tv)
                 => tv.X >= c ? new TypeVar(tv.X + d, tv.N + d) : new TypeVar(tv.X, tv.N + d);
 
             return TypeMap(f, c, t);
         }
 
-        public static ITerm TermShiftAbove(int d, int c, ITerm t)
-        {
+    public static ITerm TermShiftAbove(int d, int c, ITerm t)
+    {
             ITerm f(int c, Var v) =>
                 v.Index >= c ? new Var(v.Info, v.Index + d, v.ContextLength + d) : new Var(v.Info, v.Index, v.ContextLength + d);
 
@@ -87,12 +87,12 @@ namespace FullSimple.Core
             return TmMap(f, onType, c, t);
         }
 
-        public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
+    public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
 
-        public static IType TypeShift(int d, IType t) => TypeShiftAbove(d, 0, t);
+    public static IType TypeShift(int d, IType t) => TypeShiftAbove(d, 0, t);
 
-        public static IBinding BindingShift(int d, IBinding bind)
-        {
+    public static IBinding BindingShift(int d, IBinding bind)
+    {
             return bind switch
             {
                 NameBinding nb => nb,
@@ -105,5 +105,4 @@ namespace FullSimple.Core
                 _ => throw new InvalidOperationException()
             };
         }
-    }
 }

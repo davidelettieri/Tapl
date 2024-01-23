@@ -1,31 +1,30 @@
-﻿using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using static System.Console;
 
-namespace Demo
-{
-    static class Program
-    {
-        private static Dictionary<int, Sample> _samples = new Dictionary<int, Sample>()
-        {
-            { 1, new Sample( "untyped", Untyped.Functions.Process) },
-            { 2, new Sample( "simplebool", SimpleBool.Functions.Process) },
-            { 3, new Sample( "letexercise", LetExercise.Functions.Process) },
-            { 4, new Sample( "fullsimple", FullSimple.Functions.Process) }
-        };
+namespace Demo;
 
-        static void Main(string[] args)
-        {
+static class Program
+{
+    private static Dictionary<int, Sample> _samples = new Dictionary<int, Sample>()
+    {
+        { 1, new Sample( "untyped", Untyped.Functions.Process) },
+        { 2, new Sample( "simplebool", SimpleBool.Functions.Process) },
+        { 3, new Sample( "letexercise", LetExercise.Functions.Process) },
+        { 4, new Sample( "fullsimple", FullSimple.Functions.Process) }
+    };
+
+    static void Main(string[] args)
+    {
             WriteIntro();
             var n = ChooseSample();
             var t = ChooseRunType();
             RunSample(_samples[n], t);
         }
 
-        private static void WriteIntro()
-        {
+    private static void WriteIntro()
+    {
             PrintText(">TAPL Examples:");
             foreach (var item in _samples)
             {
@@ -33,8 +32,8 @@ namespace Demo
             }
         }
 
-        private static int ChooseSample()
-        {
+    private static int ChooseSample()
+    {
             while (true)
             {
                 PrintText(">Enter sample number:");
@@ -44,8 +43,8 @@ namespace Demo
             }
         }
 
-        private static RunType ChooseRunType()
-        {
+    private static RunType ChooseRunType()
+    {
             while (true)
             {
                 PrintText("What do you want to run?");
@@ -58,8 +57,8 @@ namespace Demo
             }
         }
 
-        private static void RunSample(Sample sample, RunType t)
-        {
+    private static void RunSample(Sample sample, RunType t)
+    {
             PrintText($">Running sample {sample.Name}");
 
             if (t == RunType.FileSample)
@@ -81,12 +80,11 @@ namespace Demo
             }
         }
 
-        private static void PrintText(string msg)
-        {
+    private static void PrintText(string msg)
+    {
             BackgroundColor = ConsoleColor.Blue;
             ForegroundColor = ConsoleColor.White;
             WriteLine(msg);
             ResetColor();
         }
-    }
 }

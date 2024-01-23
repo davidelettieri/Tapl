@@ -1,25 +1,22 @@
 ﻿using Common;
 using System;
-using System.Collections.Generic;
-using System.Security;
-using System.Text;
 using static System.Console;
 using static SimpleBool.Core.Typing;
 
-namespace SimpleBool.Syntax
+namespace SimpleBool.Syntax;
+
+public static class Printing
 {
-    public static class Printing
+    public static void PrintTerm(Context ctx, ITerm t)
     {
-        public static void PrintTerm(Context ctx, ITerm t)
-        {
             _printTerm(ctx, t);
             Write(" : ");
             PrintType(TypeOf(ctx, t));
             WriteLine();
         }
 
-        private static void _printTerm(Context ctx, ITerm t)
-        {
+    private static void _printTerm(Context ctx, ITerm t)
+    {
             switch (t)
             {
                 case Abs abs:
@@ -50,10 +47,10 @@ namespace SimpleBool.Syntax
                 case Var var:
                     Write(ctx.IndexToName(var.Index));
                     break;
-                case True _:
+                case True:
                     Write("true");
                     break;
-                case False _:
+                case False:
                     Write("false");
                     break;
                 default:
@@ -61,11 +58,11 @@ namespace SimpleBool.Syntax
             }
         }
 
-        private static void PrintType(IType type)
-        {
+    private static void PrintType(IType type)
+    {
             switch (type)
             {
-                case TypeBool _:
+                case TypeBool:
                     Write("Bool");
                     break;
                 case TypeArrow t:
@@ -79,5 +76,4 @@ namespace SimpleBool.Syntax
                     throw new InvalidOperationException();
             }
         }
-    }
 }

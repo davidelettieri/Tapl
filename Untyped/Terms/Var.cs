@@ -1,28 +1,24 @@
 ﻿using Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Untyped.Terms
+namespace Untyped.Terms;
+
+public class Var : ITerm
 {
-    public class Var : ITerm
+    public int Index { get; }
+    public int ContextLength { get; }
+
+    /// <summary>
+    /// Variable term
+    /// </summary>
+    /// <param name="index">De bruijn index</param>
+    /// <param name="contextLength">Context length</param>
+    public Var(int index, int contextLength)
     {
-        public int Index { get; }
-        public int ContextLength { get; }
+        if (contextLength < index)
+            throw new ArgumentOutOfRangeException(nameof(index), "Index cannot be greater than context length");
 
-        /// <summary>
-        /// Variable term
-        /// </summary>
-        /// <param name="index">De bruijn index</param>
-        /// <param name="ctxl">Context length</param>
-        public Var(int index, int ctxl)
-        {
-            Index = index;
-
-            if (ctxl < index)
-                throw new InvalidOperationException();
-
-            ContextLength = ctxl;
-        }
+        Index = index;
+        ContextLength = contextLength;
     }
 }

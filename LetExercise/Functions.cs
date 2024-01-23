@@ -1,5 +1,4 @@
-﻿using LetExercise.Syntax;
-using Common;
+﻿using Common;
 using System;
 using static LetExercise.Syntax.Printing;
 using static LetExercise.Core.Evaluation;
@@ -7,12 +6,12 @@ using System.Collections.Immutable;
 using Antlr4.Runtime;
 using System.Linq;
 
-namespace LetExercise
+namespace LetExercise;
+
+public static class Functions
 {
-    public static class Functions
+    public static Func<Context, (ImmutableStack<ICommand>, Context)> Parse(string s)
     {
-        public static Func<Context, (ImmutableStack<ICommand>, Context)> Parse(string s)
-        {
             if (string.IsNullOrWhiteSpace(s))
                 throw new ArgumentException($"{nameof(s)} cannot be null or empty");
 
@@ -28,8 +27,8 @@ namespace LetExercise
         }
 
 
-        public static Context ProcessCommand(Context ctx, ICommand c)
-        {
+    public static Context ProcessCommand(Context ctx, ICommand c)
+    {
             switch (c)
             {
                 case Eval e:
@@ -44,12 +43,11 @@ namespace LetExercise
             }
         }
 
-        public static Context Process(string source)
-        {
+    public static Context Process(string source)
+    {
             var fcommands = Parse(source);
             var commands = fcommands(new Context());
 
             return commands.Item1.Aggregate(new Context(), ProcessCommand);
         }
-    }
 }

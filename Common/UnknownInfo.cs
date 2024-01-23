@@ -1,10 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Common;
 
-namespace Common
-{
-    public class UnknownInfo : IInfo
-    {
-    }
-}
+public class UnknownInfo : IInfo;

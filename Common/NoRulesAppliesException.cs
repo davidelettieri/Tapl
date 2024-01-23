@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Common
+namespace Common;
+
+public class NoRulesAppliesException : Exception
 {
-    public class NoRulesAppliesException : Exception
+    public NoRulesAppliesException(string message) : base(message)
     {
-        public NoRulesAppliesException(string message) : base(message)
-        {
-        }
+    }
 
-        public NoRulesAppliesException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+    public NoRulesAppliesException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
 
-        public NoRulesAppliesException()
-        {
-        }
+    public NoRulesAppliesException()
+    {
     }
 }

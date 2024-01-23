@@ -2,12 +2,12 @@
 using Common;
 using System;
 
-namespace LetExercise.Core
+namespace LetExercise.Core;
+
+public static class Shifting
 {
-    public static class Shifting
+    public static ITerm TmMap(Func<int, Var, ITerm> onVar, int c, ITerm t)
     {
-        public static ITerm TmMap(Func<int, Var, ITerm> onVar, int c, ITerm t)
-        {
             ITerm Walk(int c, ITerm t)
             {
                 return t switch
@@ -26,14 +26,13 @@ namespace LetExercise.Core
             return Walk(c, t);
         }
 
-        public static ITerm TermShiftAbove(int d, int c, ITerm t)
-        {
+    public static ITerm TermShiftAbove(int d, int c, ITerm t)
+    {
             ITerm f(int c, Var v) =>
                 v.Index >= c ? new Var(v.Info, v.Index + d, v.ContextLength + d) : new Var(v.Info, v.Index, v.ContextLength + d);
 
             return TmMap(f, c, t);
         }
 
-        public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
-    }
+    public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
 }

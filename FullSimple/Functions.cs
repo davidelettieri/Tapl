@@ -9,12 +9,12 @@ using FullSimple.Visitors;
 using FullSimple.Syntax.Bindings;
 using FullSimple.Core;
 
-namespace FullSimple
+namespace FullSimple;
+
+public static class Functions
 {
-    public static class Functions
+    public static Func<Context, (ImmutableStack<ICommand>, Context)> Parse(string s)
     {
-        public static Func<Context, (ImmutableStack<ICommand>, Context)> Parse(string s)
-        {
             if (string.IsNullOrWhiteSpace(s))
                 throw new ArgumentException($"{nameof(s)} cannot be null or empty");
 
@@ -29,8 +29,8 @@ namespace FullSimple
             return visitor.Visit(context);
         }
 
-        public static Context ProcessCommand(Context ctx, ICommand c)
-        {
+    public static Context ProcessCommand(Context ctx, ICommand c)
+    {
             switch (c)
             {
                 case Eval e:
@@ -49,13 +49,13 @@ namespace FullSimple
             }
         }
 
-        private static IBinding CheckBinding(Context ctx, IBinding bind)
-        {
+    private static IBinding CheckBinding(Context ctx, IBinding bind)
+    {
             return bind switch
             {
                 NameBinding => bind,
                 TypeVarBind => bind,
-                TermAbbBind tab when tab.Type is null => new TermAbbBind(tab.Term, Typing.TypeOf(ctx, tab.Term)),
+                TermAbbBind { Type: null } tab => new TermAbbBind(tab.Term, Typing.TypeOf(ctx, tab.Term)),
                 TermAbbBind tab when Typing.TypeEqual(ctx, tab.Type, Typing.TypeOf(ctx, tab.Term)) => bind,
                 TermAbbBind => throw new Exception("type of binding doesn't match declared type in " + bind),
                 VarBind => bind,
@@ -63,8 +63,8 @@ namespace FullSimple
             };
         }
 
-        private static IBinding EvalBinding(Context ctx, IBinding bind)
-        {
+    private static IBinding EvalBinding(Context ctx, IBinding bind)
+    {
             return bind switch
             {
                 TermAbbBind tab => new TermAbbBind(Eval(ctx, tab.Term), tab.Type),
@@ -72,12 +72,11 @@ namespace FullSimple
             };
         }
 
-        public static Context Process(string source)
-        {
+    public static Context Process(string source)
+    {
             var fcommands = Parse(source);
             var commands = fcommands(new Context());
 
             return commands.Item1.Aggregate(new Context(), ProcessCommand);
         }
-    }
 }

@@ -1,6 +1,5 @@
 ﻿using Common;
 
-namespace SimpleBool.Syntax
-{
-    public class TypeBool : IType { }
-}
+namespace SimpleBool.Syntax;
+
+public class TypeBool : IType;

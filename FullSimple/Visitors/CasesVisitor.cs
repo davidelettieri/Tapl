@@ -1,35 +1,32 @@
-﻿using Antlr4.Runtime.Atn;
-using Antlr4.Runtime.Misc;
+﻿using Antlr4.Runtime.Misc;
 using Common;
-using FullSimple.Syntax.Terms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FullSimple.Visitors
-{
-    public class CasesVisitor : FullSimpleBaseVisitor<Func<Context, IEnumerable<(string, string, ITerm)>>>
-    {
-        private readonly CaseVisitor _caseVisitor;
+namespace FullSimple.Visitors;
 
-        public CasesVisitor(TermVisitor termVisitor)
-        {
+public class CasesVisitor : FullSimpleBaseVisitor<Func<Context, IEnumerable<(string, string, ITerm)>>>
+{
+    private readonly CaseVisitor _caseVisitor;
+
+    public CasesVisitor(TermVisitor termVisitor)
+    {
             _caseVisitor = new CaseVisitor(termVisitor);
         }
 
-        public override Func<Context, IEnumerable<(string, string, ITerm)>> VisitCases_case([NotNull] FullSimpleParser.Cases_caseContext context)
-        {
+    public override Func<Context, IEnumerable<(string, string, ITerm)>> VisitCases_case([NotNull] FullSimpleParser.Cases_caseContext context)
+    {
             var c = _caseVisitor.Visit(context.@case());
 
             return ctx => Enumerable.Repeat(c(ctx), 1);
         }
 
-        public override Func<Context, IEnumerable<(string, string, ITerm)>> VisitCases_case_vbar_cases([NotNull] FullSimpleParser.Cases_case_vbar_casesContext context)
-        {
+    public override Func<Context, IEnumerable<(string, string, ITerm)>> VisitCases_case_vbar_cases([NotNull] FullSimpleParser.Cases_case_vbar_casesContext context)
+    {
             var c = _caseVisitor.Visit(context.@case());
             var @cases = Visit(context.cases());
 
             return ctx => Enumerable.Repeat(c(ctx), 1).Concat(@cases(ctx));
         }
-    }
 }

@@ -7,19 +7,19 @@ using System.Linq;
 using FullSimple.Syntax.Bindings;
 using System.Globalization;
 
-namespace FullSimple.Syntax
+namespace FullSimple.Syntax;
+
+public static class Printing
 {
-    public static class Printing
+    public static void PrintBindingType(Context ctx, IBinding b, string name)
     {
-        public static void PrintBindingType(Context ctx, IBinding b, string name)
-        {
             Write(name);
             switch (b)
             {
                 case VarBind vb:
                     PrintType(ctx, vb.Type);
                     break;
-                case TermAbbBind tab when tab.Type != null:
+                case TermAbbBind { Type: not null } tab:
                     PrintType(ctx, tab.Type);
                     break;
                 case TermAbbBind tab:
@@ -32,13 +32,13 @@ namespace FullSimple.Syntax
             WriteLine();
         }
 
-        public static void PrintTerm(Context ctx, ITerm t)
-        {
+    public static void PrintTerm(Context ctx, ITerm t)
+    {
             _printTerm(ctx, t);
         }
 
-        private static void _printTerm(Context ctx, ITerm t)
-        {
+    private static void _printTerm(Context ctx, ITerm t)
+    {
             switch (t)
             {
                 case Abs abs:
@@ -97,13 +97,13 @@ namespace FullSimple.Syntax
                 case StringTerm stringTerm:
                     Write(stringTerm.Value);
                     break;
-                case True _:
+                case True:
                     Write("true");
                     break;
-                case False _:
+                case False:
                     Write("false");
                     break;
-                case Unit _:
+                case Unit:
                     Write("unit");
                     break;
                 case Float f:
@@ -160,8 +160,8 @@ namespace FullSimple.Syntax
             }
         }
 
-        public static void PrintType(Context ctx, IType type, bool startWithColon = true, bool addNewline = false)
-        {
+    public static void PrintType(Context ctx, IType type, bool startWithColon = true, bool addNewline = false)
+    {
             if (startWithColon)
                 Write(" : ");
 
@@ -199,7 +199,7 @@ namespace FullSimple.Syntax
                     }
                     Write(">");
                     break;
-                case TypeUnit _:
+                case TypeUnit:
                     Write("Unit");
                     break;
                 case TypeId ti:
@@ -232,5 +232,4 @@ namespace FullSimple.Syntax
             if (addNewline)
                 WriteLine();
         }
-    }
 }
