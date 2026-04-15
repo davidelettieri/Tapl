@@ -92,8 +92,8 @@ public static class Functions
         switch (t)
         {
             case Abs abs:
-                var (ctxp, xp) = ctx.PickFreshName(abs.BoundedVariable);
-                return $"(lambda {xp}.{PrintTerm(ctxp, abs.Body)})";
+                var (newContext, xp) = ctx.PickFreshName(abs.BoundedVariable);
+                return $"(lambda {xp}.{PrintTerm(newContext, abs.Body)})";
             case App app:
                 return $"({PrintTerm(ctx, app.Left)}{PrintTerm(ctx, app.Right)})";
             case Var var:
