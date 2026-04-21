@@ -37,67 +37,67 @@ public interface ITaplVisitor<Result> : IParseTreeVisitor<Result> {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPar([NotNull] TaplParser.ParContext context);
+	Result VisitPar(TaplParser.ParContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>IfThenElse</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitIfThenElse([NotNull] TaplParser.IfThenElseContext context);
+	Result VisitIfThenElse(TaplParser.IfThenElseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>Succ</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitSucc([NotNull] TaplParser.SuccContext context);
+	Result VisitSucc(TaplParser.SuccContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>Pred</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPred([NotNull] TaplParser.PredContext context);
+	Result VisitPred(TaplParser.PredContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>IsZero</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitIsZero([NotNull] TaplParser.IsZeroContext context);
+	Result VisitIsZero(TaplParser.IsZeroContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>True</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTrue([NotNull] TaplParser.TrueContext context);
+	Result VisitTrue(TaplParser.TrueContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>False</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFalse([NotNull] TaplParser.FalseContext context);
+	Result VisitFalse(TaplParser.FalseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>Zero</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitZero([NotNull] TaplParser.ZeroContext context);
+	Result VisitZero(TaplParser.ZeroContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>numericvalue</c>
 	/// labeled alternative in <see cref="TaplParser.v"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNumericvalue([NotNull] TaplParser.NumericvalueContext context);
+	Result VisitNumericvalue(TaplParser.NumericvalueContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TaplParser.nv"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNv([NotNull] TaplParser.NvContext context);
+	Result VisitNv(TaplParser.NvContext context);
 }

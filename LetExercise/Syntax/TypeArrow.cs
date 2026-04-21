@@ -2,14 +2,8 @@
 
 namespace LetExercise.Syntax;
 
-public class TypeArrow : IType
+public class TypeArrow(IType from, IType to) : IType
 {
-    public IType From { get; }
-    public IType To { get; }
-
-    public TypeArrow(IType from, IType to)
-    {
-            From = from;
-            To = to;
-        }
+    public IType From { get; } = from;
+    public IType To { get; } = to;
 }

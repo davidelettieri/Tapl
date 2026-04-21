@@ -4,27 +4,23 @@ using System;
 
 namespace FullSimple.Visitors;
 
-public class FieldTypeVisitor : FullSimpleBaseVisitor<Func<Context, int, (string, IType)>>
+public sealed class FieldTypeVisitor(TypeVisitor typeVisitor)
+    : FullSimpleBaseVisitor<Func<Context, int, (string, IType)>>
 {
-    private readonly TypeVisitor _typeVisitor;
-
-    public FieldTypeVisitor(TypeVisitor typeVisitor)
+    public override Func<Context, int, (string, IType)> VisitFieldtype_lcid(
+        FullSimpleParser.Fieldtype_lcidContext context)
     {
-            _typeVisitor = typeVisitor;
-        }
+        var name = context.LCID().GetText();
+        var type = typeVisitor.Visit(context.type());
 
-    public override Func<Context, int, (string, IType)> VisitFieldtype_lcid([NotNull] FullSimpleParser.Fieldtype_lcidContext context)
+        return (ctx, _) => (name, type(ctx));
+    }
+
+    public override Func<Context, int, (string, IType)> VisitFieldtype_type(
+        FullSimpleParser.Fieldtype_typeContext context)
     {
-            var name = context.LCID().GetText();
-            var type = _typeVisitor.Visit(context.type());
+        var type = typeVisitor.Visit(context.type());
 
-            return (ctx, _) => (name, type(ctx));
-        }
-
-    public override Func<Context, int, (string, IType)> VisitFieldtype_type([NotNull] FullSimpleParser.Fieldtype_typeContext context)
-    {
-            var type = _typeVisitor.Visit(context.type());
-
-            return (ctx, i) => (i.ToString(), type(ctx));
-        }
+        return (ctx, i) => (i.ToString(), type(ctx));
+    }
 }

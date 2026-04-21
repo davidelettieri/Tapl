@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="10.0.5" />
   </ItemGroup>
 
 </Project>

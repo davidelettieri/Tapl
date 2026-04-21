@@ -2,18 +2,11 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class If : ITerm
+public sealed class If(IInfo info, ITerm condition, ITerm then, ITerm @else)
+    : ITerm
 {
-    public IInfo Info { get; }
-    public ITerm Condition { get; }
-    public ITerm Then { get; }
-    public ITerm Else { get; }
-
-    public If(IInfo info, ITerm condition, ITerm then, ITerm @else)
-    {
-            Info = info;
-            Condition = condition;
-            Then = then;
-            Else = @else;
-        }
+    public IInfo Info { get; } = info;
+    public ITerm Condition { get; } = condition;
+    public ITerm Then { get; } = then;
+    public ITerm Else { get; } = @else;
 }

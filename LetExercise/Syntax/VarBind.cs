@@ -2,11 +2,7 @@
 
 namespace LetExercise.Syntax;
 
-public class VarBind : IBinding
+public class VarBind(IType type) : IBinding
 {
-    public IType Type { get; }
-    public VarBind(IType type)
-    {
-            Type = type;
-        }
+    public IType Type { get; } = type;
 }

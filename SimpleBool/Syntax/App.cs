@@ -18,8 +18,8 @@ public class App : ITerm
     /// <param name="right">The second term in the application</param>
     public App(IInfo info, ITerm left, ITerm right)
     {
-            Info = info;
-            Left = left;
-            Right = right;
-        }
+        Info = info;
+        Left = left;
+        Right = right;
+    }
 }

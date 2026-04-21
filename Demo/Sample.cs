@@ -10,7 +10,7 @@ public class Sample
 
     public Sample(string name, Func<string, Context> run)
     {
-            Name = name;
-            Run = run;
-        }
+        Name = name;
+        Run = run;
+    }
 }

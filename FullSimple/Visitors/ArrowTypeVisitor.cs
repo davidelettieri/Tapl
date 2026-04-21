@@ -5,27 +5,22 @@ using System;
 
 namespace FullSimple.Visitors;
 
-public class ArrowTypeVisitor : FullSimpleBaseVisitor<Func<Context, IType>>
+public sealed class ArrowTypeVisitor(TypeVisitor typeVisitor) : FullSimpleBaseVisitor<Func<Context, IType>>
 {
-    private readonly ATypeVisitor _aTypeVisitor;
+    private readonly ATypeVisitor _aTypeVisitor = new(typeVisitor);
 
-    public ArrowTypeVisitor(TypeVisitor typeVisitor)
+    public override Func<Context, IType> VisitArrowtype_arrow(FullSimpleParser.Arrowtype_arrowContext context)
     {
-            _aTypeVisitor = new ATypeVisitor(typeVisitor);
-        }
+        var atype = _aTypeVisitor.Visit(context.atype());
+        var arrType = Visit(context.arrowtype());
 
-    public override Func<Context, IType> VisitArrowtype_arrow([NotNull] FullSimpleParser.Arrowtype_arrowContext context)
+        return ctx => new TypeArrow(atype(ctx), arrType(ctx));
+    }
+
+    public override Func<Context, IType> VisitArrowtype_atype(FullSimpleParser.Arrowtype_atypeContext context)
     {
-            var atype = _aTypeVisitor.Visit(context.atype());
-            var arrType = Visit(context.arrowtype());
+        var atype = _aTypeVisitor.Visit(context.atype());
 
-            return ctx => new TypeArrow(atype(ctx), arrType(ctx));
-        }
-
-    public override Func<Context, IType> VisitArrowtype_atype([NotNull] FullSimpleParser.Arrowtype_atypeContext context)
-    {
-            var atype = _aTypeVisitor.Visit(context.atype());
-
-            return ctx => atype(ctx);
-        }
+        return ctx => atype(ctx);
+    }
 }

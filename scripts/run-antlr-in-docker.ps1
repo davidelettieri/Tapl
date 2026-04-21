@@ -48,7 +48,7 @@ if ($LASTEXITCODE -ne 0) {
 $volumeSpec = "${repoRoot}:/workspace"
 $containerGrammarDirectory = "/workspace/$normalizedGrammarDirectory"
 
-$containerCommand = "set -eu && mkdir -p /tmp/antlr-out && cp $containerGrammarDirectory/$GrammarFile /tmp/$GrammarFile && java -jar /opt/antlr/antlr-4.8-complete.jar -Dlanguage=CSharp -o /tmp/antlr-out /tmp/$GrammarFile -visitor -no-listener && cp /tmp/antlr-out/* $containerGrammarDirectory/"
+$containerCommand = "set -eu && mkdir -p /tmp/antlr-out && cp $containerGrammarDirectory/$GrammarFile /tmp/$GrammarFile && java -jar /opt/antlr/antlr-4.13.1-complete.jar -Dlanguage=CSharp -o /tmp/antlr-out /tmp/$GrammarFile -visitor -no-listener && cp /tmp/antlr-out/* $containerGrammarDirectory/"
 
 & docker run --rm -v $volumeSpec --entrypoint sh $imageName -lc $containerCommand
 exit $LASTEXITCODE

@@ -2,11 +2,7 @@
 
 namespace LetExercise.Syntax;
 
-public class False : ITerm
+public class False(IInfo info) : ITerm
 {
-    public IInfo Info { get; }
-    public False(IInfo info)
-    {
-            Info = info;
-        }
+    public IInfo Info { get; } = info;
 }

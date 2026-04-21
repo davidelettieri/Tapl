@@ -19,14 +19,11 @@ public class Abs : ITerm
     /// <param name="v">The bounded variable</param>
     public Abs(IInfo info, string v, IType type, ITerm body)
     {
-            Info = info;
-            V = v;
-            Type = type;
-            Body = body;
-        }
+        Info = info;
+        V = v;
+        Type = type;
+        Body = body;
+    }
 
-    public override string ToString()
-    {
-            return $"TmAbs({V},{Type},{Body})";
-        }
+    public override string ToString() => $"TmAbs({V},{Type},{Body})";
 }

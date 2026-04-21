@@ -36,80 +36,80 @@ public interface ITaplVisitor<Result> : IParseTreeVisitor<Result> {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitToplevel([NotNull] TaplParser.ToplevelContext context);
+	Result VisitToplevel(TaplParser.ToplevelContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TaplParser.command"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCommand([NotNull] TaplParser.CommandContext context);
+	Result VisitCommand(TaplParser.CommandContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TaplParser.bind"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBind([NotNull] TaplParser.BindContext context);
+	Result VisitBind(TaplParser.BindContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>par</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPar([NotNull] TaplParser.ParContext context);
+	Result VisitPar(TaplParser.ParContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>app</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitApp([NotNull] TaplParser.AppContext context);
+	Result VisitApp(TaplParser.AppContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>abs</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAbs([NotNull] TaplParser.AbsContext context);
+	Result VisitAbs(TaplParser.AbsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>var</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitVar([NotNull] TaplParser.VarContext context);
+	Result VisitVar(TaplParser.VarContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ift</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitIft([NotNull] TaplParser.IftContext context);
+	Result VisitIft(TaplParser.IftContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>true</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTrue([NotNull] TaplParser.TrueContext context);
+	Result VisitTrue(TaplParser.TrueContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>false</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFalse([NotNull] TaplParser.FalseContext context);
+	Result VisitFalse(TaplParser.FalseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>bool</c>
 	/// labeled alternative in <see cref="TaplParser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBool([NotNull] TaplParser.BoolContext context);
+	Result VisitBool(TaplParser.BoolContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>arrow</c>
 	/// labeled alternative in <see cref="TaplParser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArrow([NotNull] TaplParser.ArrowContext context);
+	Result VisitArrow(TaplParser.ArrowContext context);
 }

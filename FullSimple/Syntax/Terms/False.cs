@@ -2,11 +2,7 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class False : ITerm
+public sealed class False(IInfo info) : ITerm
 {
-    public IInfo Info { get; }
-    public False(IInfo info)
-    {
-            Info = info;
-        }
+    public IInfo Info { get; } = info;
 }

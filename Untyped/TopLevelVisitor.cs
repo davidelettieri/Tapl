@@ -11,7 +11,7 @@ public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICo
     private readonly TermVisitor _termVisitor = new();
 
     public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel(
-        [NotNull] TaplParser.ToplevelContext context)
+        TaplParser.ToplevelContext context)
     {
         Func<Context, (ImmutableStack<ICommand>, Context)> fnext =
             context.toplevel() != null ? Visit(context.toplevel()) : c => (ImmutableStack.Create<ICommand>(), c);
@@ -45,7 +45,7 @@ public class TopLevelVisitor : TaplBaseVisitor<Func<Context, (ImmutableStack<ICo
 
 public class TermVisitor : TaplBaseVisitor<Func<Context, ITerm>>
 {
-    public override Func<Context, ITerm> VisitAbs([NotNull] TaplParser.AbsContext context)
+    public override Func<Context, ITerm> VisitAbs(TaplParser.AbsContext context)
     {
         var boundVar = context.VAR().GetText();
         var body = Visit(context.term());
@@ -53,7 +53,7 @@ public class TermVisitor : TaplBaseVisitor<Func<Context, ITerm>>
         return Result;
     }
 
-    public override Func<Context, ITerm> VisitApp([NotNull] TaplParser.AppContext context)
+    public override Func<Context, ITerm> VisitApp(TaplParser.AppContext context)
     {
         var terms = context.term();
         var left = Visit(terms[0]);
@@ -62,12 +62,9 @@ public class TermVisitor : TaplBaseVisitor<Func<Context, ITerm>>
         return c => new App(left(c), right(c));
     }
 
-    public override Func<Context, ITerm> VisitPar([NotNull] TaplParser.ParContext context)
-    {
-        return Visit(context.term());
-    }
+    public override Func<Context, ITerm> VisitPar(TaplParser.ParContext context) => Visit(context.term());
 
-    public override Func<Context, ITerm> VisitVar([NotNull] TaplParser.VarContext context)
+    public override Func<Context, ITerm> VisitVar(TaplParser.VarContext context)
     {
         var name = context.VAR().GetText();
         return ctx => new Var(ctx.NameToIndex(name), ctx.Length);

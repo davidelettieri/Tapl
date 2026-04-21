@@ -2,14 +2,8 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class Float : ITerm
+public sealed class Float(IInfo info, float value) : ITerm
 {
-    public IInfo Info { get; }
-    public float Value { get; }
-
-    public Float(IInfo info, float value)
-    {
-            Info = info;
-            Value = value;
-        }
+    public IInfo Info { get; } = info;
+    public float Value { get; } = value;
 }

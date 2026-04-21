@@ -36,45 +36,45 @@ public interface ITaplVisitor<Result> : IParseTreeVisitor<Result> {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitToplevel([NotNull] TaplParser.ToplevelContext context);
+	Result VisitToplevel(TaplParser.ToplevelContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TaplParser.command"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCommand([NotNull] TaplParser.CommandContext context);
+	Result VisitCommand(TaplParser.CommandContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TaplParser.bind"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBind([NotNull] TaplParser.BindContext context);
+	Result VisitBind(TaplParser.BindContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>par</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPar([NotNull] TaplParser.ParContext context);
+	Result VisitPar(TaplParser.ParContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>app</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitApp([NotNull] TaplParser.AppContext context);
+	Result VisitApp(TaplParser.AppContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>abs</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAbs([NotNull] TaplParser.AbsContext context);
+	Result VisitAbs(TaplParser.AbsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>var</c>
 	/// labeled alternative in <see cref="TaplParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitVar([NotNull] TaplParser.VarContext context);
+	Result VisitVar(TaplParser.VarContext context);
 }

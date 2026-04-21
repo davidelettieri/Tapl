@@ -16,11 +16,11 @@ public class Var : ITerm
     /// <param name="ctxl">Context length</param>
     public Var(IInfo info, int index, int ctxl)
     {
-            if (ctxl < index)
-                throw new InvalidOperationException();
+        if (ctxl < index)
+            throw new InvalidOperationException();
 
-            Info = info;
-            Index = index;
-            ContextLength = ctxl;
-        }
+        Info = info;
+        Index = index;
+        ContextLength = ctxl;
+    }
 }
