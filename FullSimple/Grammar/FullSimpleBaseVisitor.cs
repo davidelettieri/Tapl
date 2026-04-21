@@ -34,728 +34,716 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
 public partial class FullSimpleBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IFullSimpleVisitor<Result> {
-    /// <summary>
-    /// Visit a parse tree produced by the <c>toplevel_command</c>
-    /// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitToplevel_command(FullSimpleParser.Toplevel_commandContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>toplevel_eof</c>
-    /// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitToplevel_eof(FullSimpleParser.Toplevel_eofContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>command_term</c>
-    /// labeled alternative in <see cref="FullSimpleParser.command"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitCommand_term(FullSimpleParser.Command_termContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>command_tybinder</c>
-    /// labeled alternative in <see cref="FullSimpleParser.command"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitCommand_tybinder(FullSimpleParser.Command_tybinderContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>command_binder</c>
-    /// labeled alternative in <see cref="FullSimpleParser.command"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitCommand_binder(FullSimpleParser.Command_binderContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>binder_type</c>
-    /// labeled alternative in <see cref="FullSimpleParser.binder"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitBinder_type(FullSimpleParser.Binder_typeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>binder_term</c>
-    /// labeled alternative in <see cref="FullSimpleParser.binder"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitBinder_term(FullSimpleParser.Binder_termContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>type_arrowtype</c>
-    /// labeled alternative in <see cref="FullSimpleParser.type"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitType_arrowtype(FullSimpleParser.Type_arrowtypeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_type</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_type(FullSimpleParser.At_typeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_ucid</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_ucid(FullSimpleParser.At_ucidContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_bool</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_bool(FullSimpleParser.At_boolContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_variant</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_variant(FullSimpleParser.At_variantContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_ustring</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_ustring(FullSimpleParser.At_ustringContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_uunit</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_uunit(FullSimpleParser.At_uunitContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_record</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_record(FullSimpleParser.At_recordContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_ufloat</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_ufloat(FullSimpleParser.At_ufloatContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>at_nat</c>
-    /// labeled alternative in <see cref="FullSimpleParser.atype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAt_nat(FullSimpleParser.At_natContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>tybinder_type</c>
-    /// labeled alternative in <see cref="FullSimpleParser.tybinder"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTybinder_type(FullSimpleParser.Tybinder_typeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>fieldtypes_nefieldtypes</c>
-    /// labeled alternative in <see cref="FullSimpleParser.fieldtypes"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitFieldtypes_nefieldtypes(FullSimpleParser.Fieldtypes_nefieldtypesContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>nefieldtypes_fieldtype</c>
-    /// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitNefieldtypes_fieldtype(FullSimpleParser.Nefieldtypes_fieldtypeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>nefieldtypes_nefieldtype</c>
-    /// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitNefieldtypes_nefieldtype(FullSimpleParser.Nefieldtypes_nefieldtypeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>fieldtype_lcid</c>
-    /// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitFieldtype_lcid(FullSimpleParser.Fieldtype_lcidContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>fieldtype_type</c>
-    /// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitFieldtype_type(FullSimpleParser.Fieldtype_typeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>arrowtype_arrow</c>
-    /// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitArrowtype_arrow(FullSimpleParser.Arrowtype_arrowContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>arrowtype_atype</c>
-    /// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitArrowtype_atype(FullSimpleParser.Arrowtype_atypeContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_appterm</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_appterm(FullSimpleParser.Term_apptermContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_ift</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_ift(FullSimpleParser.Term_iftContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_caseOf</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_caseOf(FullSimpleParser.Term_caseOfContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_llcid</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_llcid(FullSimpleParser.Term_llcidContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_luc</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_luc(FullSimpleParser.Term_lucContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_ll</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_ll(FullSimpleParser.Term_llContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_lu</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_lu(FullSimpleParser.Term_luContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>term_letrec</c>
-    /// labeled alternative in <see cref="FullSimpleParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTerm_letrec(FullSimpleParser.Term_letrecContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_times</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_times(FullSimpleParser.Appterm_timesContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_iszero</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_iszero(FullSimpleParser.Appterm_iszeroContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_path</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_path(FullSimpleParser.Appterm_pathContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_app_path</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_app_path(FullSimpleParser.Appterm_app_pathContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_succ</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_succ(FullSimpleParser.Appterm_succContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_pred</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_pred(FullSimpleParser.Appterm_predContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>appterm_fix</c>
-    /// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAppterm_fix(FullSimpleParser.Appterm_fixContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>ascribeterm_aaa</c>
-    /// labeled alternative in <see cref="FullSimpleParser.ascribeterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAscribeterm_aaa(FullSimpleParser.Ascribeterm_aaaContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>ascribeterm_a</c>
-    /// labeled alternative in <see cref="FullSimpleParser.ascribeterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAscribeterm_a(FullSimpleParser.Ascribeterm_aContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>pathterm_intv</c>
-    /// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitPathterm_intv(FullSimpleParser.Pathterm_intvContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>pathterm_lcid</c>
-    /// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitPathterm_lcid(FullSimpleParser.Pathterm_lcidContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>pathterm_asterm</c>
-    /// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitPathterm_asterm(FullSimpleParser.Pathterm_astermContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>termseq_term</c>
-    /// labeled alternative in <see cref="FullSimpleParser.termseq"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTermseq_term(FullSimpleParser.Termseq_termContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>termseq_termseq</c>
-    /// labeled alternative in <see cref="FullSimpleParser.termseq"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTermseq_termseq(FullSimpleParser.Termseq_termseqContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_paren</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_paren(FullSimpleParser.Aterm_parenContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_inert</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_inert(FullSimpleParser.Aterm_inertContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_true</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_true(FullSimpleParser.Aterm_trueContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_false</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_false(FullSimpleParser.Aterm_falseContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_lt</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_lt(FullSimpleParser.Aterm_ltContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_lcid</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_lcid(FullSimpleParser.Aterm_lcidContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_stringv</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_stringv(FullSimpleParser.Aterm_stringvContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_unit</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_unit(FullSimpleParser.Aterm_unitContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_fields</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_fields(FullSimpleParser.Aterm_fieldsContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_floatv</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_floatv(FullSimpleParser.Aterm_floatvContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>aterm_intv</c>
-    /// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitAterm_intv(FullSimpleParser.Aterm_intvContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>cases_case</c>
-    /// labeled alternative in <see cref="FullSimpleParser.cases"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitCases_case(FullSimpleParser.Cases_caseContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>cases_case_vbar_cases</c>
-    /// labeled alternative in <see cref="FullSimpleParser.cases"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitCases_case_vbar_cases(FullSimpleParser.Cases_case_vbar_casesContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by <see cref="FullSimpleParser.case"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitCase(FullSimpleParser.CaseContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by <see cref="FullSimpleParser.fields"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitFields(FullSimpleParser.FieldsContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>nefields_field</c>
-    /// labeled alternative in <see cref="FullSimpleParser.nefields"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitNefields_field(FullSimpleParser.Nefields_fieldContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>nefields_field_comma_nefields</c>
-    /// labeled alternative in <see cref="FullSimpleParser.nefields"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitNefields_field_comma_nefields(FullSimpleParser.Nefields_field_comma_nefieldsContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>field_lcid</c>
-    /// labeled alternative in <see cref="FullSimpleParser.field"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitField_lcid(FullSimpleParser.Field_lcidContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>field_term</c>
-    /// labeled alternative in <see cref="FullSimpleParser.field"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitField_term(FullSimpleParser.Field_termContext context) => VisitChildren(context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="FullSimpleParser.toplevel"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitToplevel([NotNull] FullSimpleParser.ToplevelContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCommand_term([NotNull] FullSimpleParser.Command_termContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_tybinder</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCommand_tybinder([NotNull] FullSimpleParser.Command_tybinderContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>command_binder</c>
+	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>binder_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitBinder_type([NotNull] FullSimpleParser.Binder_typeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>binder_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitBinder_term([NotNull] FullSimpleParser.Binder_termContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>type_arrowtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.type"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitType_arrowtype([NotNull] FullSimpleParser.Type_arrowtypeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_type([NotNull] FullSimpleParser.At_typeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_ucid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_ucid([NotNull] FullSimpleParser.At_ucidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_bool</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_bool([NotNull] FullSimpleParser.At_boolContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_variant</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_variant([NotNull] FullSimpleParser.At_variantContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_ustring</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_ustring([NotNull] FullSimpleParser.At_ustringContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_uunit</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_uunit([NotNull] FullSimpleParser.At_uunitContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_record</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_record([NotNull] FullSimpleParser.At_recordContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_ufloat</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_ufloat([NotNull] FullSimpleParser.At_ufloatContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>at_nat</c>
+	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAt_nat([NotNull] FullSimpleParser.At_natContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>tybinder_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.tybinder"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTybinder_type([NotNull] FullSimpleParser.Tybinder_typeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>fieldtypes_nefieldtypes</c>
+	/// labeled alternative in <see cref="FullSimpleParser.fieldtypes"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFieldtypes_nefieldtypes([NotNull] FullSimpleParser.Fieldtypes_nefieldtypesContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nefieldtypes_fieldtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNefieldtypes_fieldtype([NotNull] FullSimpleParser.Nefieldtypes_fieldtypeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nefieldtypes_nefieldtype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNefieldtypes_nefieldtype([NotNull] FullSimpleParser.Nefieldtypes_nefieldtypeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>fieldtype_lcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFieldtype_lcid([NotNull] FullSimpleParser.Fieldtype_lcidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>fieldtype_type</c>
+	/// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFieldtype_type([NotNull] FullSimpleParser.Fieldtype_typeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>arrowtype_arrow</c>
+	/// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitArrowtype_arrow([NotNull] FullSimpleParser.Arrowtype_arrowContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>arrowtype_atype</c>
+	/// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitArrowtype_atype([NotNull] FullSimpleParser.Arrowtype_atypeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_appterm</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_appterm([NotNull] FullSimpleParser.Term_apptermContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_ift</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_ift([NotNull] FullSimpleParser.Term_iftContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_caseOf</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_caseOf([NotNull] FullSimpleParser.Term_caseOfContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_llcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_llcid([NotNull] FullSimpleParser.Term_llcidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_luc</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_luc([NotNull] FullSimpleParser.Term_lucContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_ll</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_ll([NotNull] FullSimpleParser.Term_llContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_lu</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_lu([NotNull] FullSimpleParser.Term_luContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>term_letrec</c>
+	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTerm_letrec([NotNull] FullSimpleParser.Term_letrecContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_times</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_times([NotNull] FullSimpleParser.Appterm_timesContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_iszero</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_iszero([NotNull] FullSimpleParser.Appterm_iszeroContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_path</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_path([NotNull] FullSimpleParser.Appterm_pathContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_app_path</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_app_path([NotNull] FullSimpleParser.Appterm_app_pathContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_succ</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_succ([NotNull] FullSimpleParser.Appterm_succContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_pred</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_pred([NotNull] FullSimpleParser.Appterm_predContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>appterm_fix</c>
+	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAppterm_fix([NotNull] FullSimpleParser.Appterm_fixContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ascribeterm_aaa</c>
+	/// labeled alternative in <see cref="FullSimpleParser.ascribeterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAscribeterm_aaa([NotNull] FullSimpleParser.Ascribeterm_aaaContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ascribeterm_a</c>
+	/// labeled alternative in <see cref="FullSimpleParser.ascribeterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAscribeterm_a([NotNull] FullSimpleParser.Ascribeterm_aContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>pathterm_intv</c>
+	/// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitPathterm_intv([NotNull] FullSimpleParser.Pathterm_intvContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>pathterm_lcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitPathterm_lcid([NotNull] FullSimpleParser.Pathterm_lcidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>pathterm_asterm</c>
+	/// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitPathterm_asterm([NotNull] FullSimpleParser.Pathterm_astermContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>termseq_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.termseq"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTermseq_term([NotNull] FullSimpleParser.Termseq_termContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>termseq_termseq</c>
+	/// labeled alternative in <see cref="FullSimpleParser.termseq"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTermseq_termseq([NotNull] FullSimpleParser.Termseq_termseqContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_paren</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_paren([NotNull] FullSimpleParser.Aterm_parenContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_inert</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_inert([NotNull] FullSimpleParser.Aterm_inertContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_true</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_true([NotNull] FullSimpleParser.Aterm_trueContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_false</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_false([NotNull] FullSimpleParser.Aterm_falseContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_lt</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_lt([NotNull] FullSimpleParser.Aterm_ltContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_lcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_lcid([NotNull] FullSimpleParser.Aterm_lcidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_stringv</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_stringv([NotNull] FullSimpleParser.Aterm_stringvContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_unit</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_unit([NotNull] FullSimpleParser.Aterm_unitContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_fields</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_fields([NotNull] FullSimpleParser.Aterm_fieldsContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_floatv</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_floatv([NotNull] FullSimpleParser.Aterm_floatvContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>aterm_intv</c>
+	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAterm_intv([NotNull] FullSimpleParser.Aterm_intvContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>cases_case</c>
+	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCases_case([NotNull] FullSimpleParser.Cases_caseContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>cases_case_vbar_cases</c>
+	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCases_case_vbar_cases([NotNull] FullSimpleParser.Cases_case_vbar_casesContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="FullSimpleParser.case"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCase([NotNull] FullSimpleParser.CaseContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="FullSimpleParser.fields"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFields([NotNull] FullSimpleParser.FieldsContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nefields_field</c>
+	/// labeled alternative in <see cref="FullSimpleParser.nefields"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNefields_field([NotNull] FullSimpleParser.Nefields_fieldContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nefields_field_comma_nefields</c>
+	/// labeled alternative in <see cref="FullSimpleParser.nefields"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNefields_field_comma_nefields([NotNull] FullSimpleParser.Nefields_field_comma_nefieldsContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>field_lcid</c>
+	/// labeled alternative in <see cref="FullSimpleParser.field"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitField_lcid([NotNull] FullSimpleParser.Field_lcidContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>field_term</c>
+	/// labeled alternative in <see cref="FullSimpleParser.field"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitField_term([NotNull] FullSimpleParser.Field_termContext context) { return VisitChildren(context); }
 }

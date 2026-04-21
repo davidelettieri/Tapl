@@ -113,18 +113,6 @@ public partial class FullSimpleParser : Parser {
 	}
 
 	public partial class ToplevelContext : ParserRuleContext {
-		public ToplevelContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_toplevel; } }
-	 
-		public ToplevelContext() { }
-		public virtual void CopyFrom(ToplevelContext context) {
-			base.CopyFrom(context);
-		}
-	}
-	public partial class Toplevel_commandContext : ToplevelContext {
 		[System.Diagnostics.DebuggerNonUserCode] public CommandContext command() {
 			return GetRuleContext<CommandContext>(0);
 		}
@@ -132,21 +120,16 @@ public partial class FullSimpleParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ToplevelContext toplevel() {
 			return GetRuleContext<ToplevelContext>(0);
 		}
-		public Toplevel_commandContext(ToplevelContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitToplevel_command(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class Toplevel_eofContext : ToplevelContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(FullSimpleParser.Eof, 0); }
-		public Toplevel_eofContext(ToplevelContext context) { CopyFrom(context); }
+		public ToplevelContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_toplevel; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IFullSimpleVisitor<TResult> typedVisitor = visitor as IFullSimpleVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitToplevel_eof(this);
+			if (typedVisitor != null) return typedVisitor.VisitToplevel(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -181,7 +164,6 @@ public partial class FullSimpleParser : Parser {
 			case INTV:
 			case UCID:
 			case LCID:
-				_localctx = new Toplevel_commandContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 42;
@@ -193,7 +175,6 @@ public partial class FullSimpleParser : Parser {
 				}
 				break;
 			case Eof:
-				_localctx = new Toplevel_eofContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 46;

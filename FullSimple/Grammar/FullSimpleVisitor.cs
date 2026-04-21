@@ -32,463 +32,455 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IFullSimpleVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by the <c>toplevel_command</c>
-	/// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
+	/// Visit a parse tree produced by <see cref="FullSimpleParser.toplevel"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitToplevel_command(FullSimpleParser.Toplevel_commandContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>toplevel_eof</c>
-	/// labeled alternative in <see cref="FullSimpleParser.toplevel"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitToplevel_eof(FullSimpleParser.Toplevel_eofContext context);
+	Result VisitToplevel([NotNull] FullSimpleParser.ToplevelContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>command_term</c>
 	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCommand_term(FullSimpleParser.Command_termContext context);
+	Result VisitCommand_term([NotNull] FullSimpleParser.Command_termContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>command_tybinder</c>
 	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCommand_tybinder(FullSimpleParser.Command_tybinderContext context);
+	Result VisitCommand_tybinder([NotNull] FullSimpleParser.Command_tybinderContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>command_binder</c>
 	/// labeled alternative in <see cref="FullSimpleParser.command"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCommand_binder(FullSimpleParser.Command_binderContext context);
+	Result VisitCommand_binder([NotNull] FullSimpleParser.Command_binderContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>binder_type</c>
 	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBinder_type(FullSimpleParser.Binder_typeContext context);
+	Result VisitBinder_type([NotNull] FullSimpleParser.Binder_typeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>binder_term</c>
 	/// labeled alternative in <see cref="FullSimpleParser.binder"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBinder_term(FullSimpleParser.Binder_termContext context);
+	Result VisitBinder_term([NotNull] FullSimpleParser.Binder_termContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>type_arrowtype</c>
 	/// labeled alternative in <see cref="FullSimpleParser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitType_arrowtype(FullSimpleParser.Type_arrowtypeContext context);
+	Result VisitType_arrowtype([NotNull] FullSimpleParser.Type_arrowtypeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_type</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_type(FullSimpleParser.At_typeContext context);
+	Result VisitAt_type([NotNull] FullSimpleParser.At_typeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_ucid</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_ucid(FullSimpleParser.At_ucidContext context);
+	Result VisitAt_ucid([NotNull] FullSimpleParser.At_ucidContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_bool</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_bool(FullSimpleParser.At_boolContext context);
+	Result VisitAt_bool([NotNull] FullSimpleParser.At_boolContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_variant</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_variant(FullSimpleParser.At_variantContext context);
+	Result VisitAt_variant([NotNull] FullSimpleParser.At_variantContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_ustring</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_ustring(FullSimpleParser.At_ustringContext context);
+	Result VisitAt_ustring([NotNull] FullSimpleParser.At_ustringContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_uunit</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_uunit(FullSimpleParser.At_uunitContext context);
+	Result VisitAt_uunit([NotNull] FullSimpleParser.At_uunitContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_record</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_record(FullSimpleParser.At_recordContext context);
+	Result VisitAt_record([NotNull] FullSimpleParser.At_recordContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_ufloat</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_ufloat(FullSimpleParser.At_ufloatContext context);
+	Result VisitAt_ufloat([NotNull] FullSimpleParser.At_ufloatContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>at_nat</c>
 	/// labeled alternative in <see cref="FullSimpleParser.atype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAt_nat(FullSimpleParser.At_natContext context);
+	Result VisitAt_nat([NotNull] FullSimpleParser.At_natContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>tybinder_type</c>
 	/// labeled alternative in <see cref="FullSimpleParser.tybinder"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTybinder_type(FullSimpleParser.Tybinder_typeContext context);
+	Result VisitTybinder_type([NotNull] FullSimpleParser.Tybinder_typeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>fieldtypes_nefieldtypes</c>
 	/// labeled alternative in <see cref="FullSimpleParser.fieldtypes"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFieldtypes_nefieldtypes(FullSimpleParser.Fieldtypes_nefieldtypesContext context);
+	Result VisitFieldtypes_nefieldtypes([NotNull] FullSimpleParser.Fieldtypes_nefieldtypesContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>nefieldtypes_fieldtype</c>
 	/// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNefieldtypes_fieldtype(FullSimpleParser.Nefieldtypes_fieldtypeContext context);
+	Result VisitNefieldtypes_fieldtype([NotNull] FullSimpleParser.Nefieldtypes_fieldtypeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>nefieldtypes_nefieldtype</c>
 	/// labeled alternative in <see cref="FullSimpleParser.nefieldtypes"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNefieldtypes_nefieldtype(FullSimpleParser.Nefieldtypes_nefieldtypeContext context);
+	Result VisitNefieldtypes_nefieldtype([NotNull] FullSimpleParser.Nefieldtypes_nefieldtypeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>fieldtype_lcid</c>
 	/// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFieldtype_lcid(FullSimpleParser.Fieldtype_lcidContext context);
+	Result VisitFieldtype_lcid([NotNull] FullSimpleParser.Fieldtype_lcidContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>fieldtype_type</c>
 	/// labeled alternative in <see cref="FullSimpleParser.fieldtype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFieldtype_type(FullSimpleParser.Fieldtype_typeContext context);
+	Result VisitFieldtype_type([NotNull] FullSimpleParser.Fieldtype_typeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>arrowtype_arrow</c>
 	/// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArrowtype_arrow(FullSimpleParser.Arrowtype_arrowContext context);
+	Result VisitArrowtype_arrow([NotNull] FullSimpleParser.Arrowtype_arrowContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>arrowtype_atype</c>
 	/// labeled alternative in <see cref="FullSimpleParser.arrowtype"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArrowtype_atype(FullSimpleParser.Arrowtype_atypeContext context);
+	Result VisitArrowtype_atype([NotNull] FullSimpleParser.Arrowtype_atypeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_appterm</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_appterm(FullSimpleParser.Term_apptermContext context);
+	Result VisitTerm_appterm([NotNull] FullSimpleParser.Term_apptermContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_ift</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_ift(FullSimpleParser.Term_iftContext context);
+	Result VisitTerm_ift([NotNull] FullSimpleParser.Term_iftContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_caseOf</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_caseOf(FullSimpleParser.Term_caseOfContext context);
+	Result VisitTerm_caseOf([NotNull] FullSimpleParser.Term_caseOfContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_llcid</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_llcid(FullSimpleParser.Term_llcidContext context);
+	Result VisitTerm_llcid([NotNull] FullSimpleParser.Term_llcidContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_luc</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_luc(FullSimpleParser.Term_lucContext context);
+	Result VisitTerm_luc([NotNull] FullSimpleParser.Term_lucContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_ll</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_ll(FullSimpleParser.Term_llContext context);
+	Result VisitTerm_ll([NotNull] FullSimpleParser.Term_llContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_lu</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_lu(FullSimpleParser.Term_luContext context);
+	Result VisitTerm_lu([NotNull] FullSimpleParser.Term_luContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>term_letrec</c>
 	/// labeled alternative in <see cref="FullSimpleParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTerm_letrec(FullSimpleParser.Term_letrecContext context);
+	Result VisitTerm_letrec([NotNull] FullSimpleParser.Term_letrecContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_times</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_times(FullSimpleParser.Appterm_timesContext context);
+	Result VisitAppterm_times([NotNull] FullSimpleParser.Appterm_timesContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_iszero</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_iszero(FullSimpleParser.Appterm_iszeroContext context);
+	Result VisitAppterm_iszero([NotNull] FullSimpleParser.Appterm_iszeroContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_path</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_path(FullSimpleParser.Appterm_pathContext context);
+	Result VisitAppterm_path([NotNull] FullSimpleParser.Appterm_pathContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_app_path</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_app_path(FullSimpleParser.Appterm_app_pathContext context);
+	Result VisitAppterm_app_path([NotNull] FullSimpleParser.Appterm_app_pathContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_succ</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_succ(FullSimpleParser.Appterm_succContext context);
+	Result VisitAppterm_succ([NotNull] FullSimpleParser.Appterm_succContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_pred</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_pred(FullSimpleParser.Appterm_predContext context);
+	Result VisitAppterm_pred([NotNull] FullSimpleParser.Appterm_predContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>appterm_fix</c>
 	/// labeled alternative in <see cref="FullSimpleParser.appterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppterm_fix(FullSimpleParser.Appterm_fixContext context);
+	Result VisitAppterm_fix([NotNull] FullSimpleParser.Appterm_fixContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ascribeterm_aaa</c>
 	/// labeled alternative in <see cref="FullSimpleParser.ascribeterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAscribeterm_aaa(FullSimpleParser.Ascribeterm_aaaContext context);
+	Result VisitAscribeterm_aaa([NotNull] FullSimpleParser.Ascribeterm_aaaContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ascribeterm_a</c>
 	/// labeled alternative in <see cref="FullSimpleParser.ascribeterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAscribeterm_a(FullSimpleParser.Ascribeterm_aContext context);
+	Result VisitAscribeterm_a([NotNull] FullSimpleParser.Ascribeterm_aContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>pathterm_intv</c>
 	/// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPathterm_intv(FullSimpleParser.Pathterm_intvContext context);
+	Result VisitPathterm_intv([NotNull] FullSimpleParser.Pathterm_intvContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>pathterm_lcid</c>
 	/// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPathterm_lcid(FullSimpleParser.Pathterm_lcidContext context);
+	Result VisitPathterm_lcid([NotNull] FullSimpleParser.Pathterm_lcidContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>pathterm_asterm</c>
 	/// labeled alternative in <see cref="FullSimpleParser.pathterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitPathterm_asterm(FullSimpleParser.Pathterm_astermContext context);
+	Result VisitPathterm_asterm([NotNull] FullSimpleParser.Pathterm_astermContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>termseq_term</c>
 	/// labeled alternative in <see cref="FullSimpleParser.termseq"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTermseq_term(FullSimpleParser.Termseq_termContext context);
+	Result VisitTermseq_term([NotNull] FullSimpleParser.Termseq_termContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>termseq_termseq</c>
 	/// labeled alternative in <see cref="FullSimpleParser.termseq"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTermseq_termseq(FullSimpleParser.Termseq_termseqContext context);
+	Result VisitTermseq_termseq([NotNull] FullSimpleParser.Termseq_termseqContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_paren</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_paren(FullSimpleParser.Aterm_parenContext context);
+	Result VisitAterm_paren([NotNull] FullSimpleParser.Aterm_parenContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_inert</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_inert(FullSimpleParser.Aterm_inertContext context);
+	Result VisitAterm_inert([NotNull] FullSimpleParser.Aterm_inertContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_true</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_true(FullSimpleParser.Aterm_trueContext context);
+	Result VisitAterm_true([NotNull] FullSimpleParser.Aterm_trueContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_false</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_false(FullSimpleParser.Aterm_falseContext context);
+	Result VisitAterm_false([NotNull] FullSimpleParser.Aterm_falseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_lt</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_lt(FullSimpleParser.Aterm_ltContext context);
+	Result VisitAterm_lt([NotNull] FullSimpleParser.Aterm_ltContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_lcid</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_lcid(FullSimpleParser.Aterm_lcidContext context);
+	Result VisitAterm_lcid([NotNull] FullSimpleParser.Aterm_lcidContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_stringv</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_stringv(FullSimpleParser.Aterm_stringvContext context);
+	Result VisitAterm_stringv([NotNull] FullSimpleParser.Aterm_stringvContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_unit</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_unit(FullSimpleParser.Aterm_unitContext context);
+	Result VisitAterm_unit([NotNull] FullSimpleParser.Aterm_unitContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_fields</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_fields(FullSimpleParser.Aterm_fieldsContext context);
+	Result VisitAterm_fields([NotNull] FullSimpleParser.Aterm_fieldsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_floatv</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_floatv(FullSimpleParser.Aterm_floatvContext context);
+	Result VisitAterm_floatv([NotNull] FullSimpleParser.Aterm_floatvContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>aterm_intv</c>
 	/// labeled alternative in <see cref="FullSimpleParser.aterm"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAterm_intv(FullSimpleParser.Aterm_intvContext context);
+	Result VisitAterm_intv([NotNull] FullSimpleParser.Aterm_intvContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>cases_case</c>
 	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCases_case(FullSimpleParser.Cases_caseContext context);
+	Result VisitCases_case([NotNull] FullSimpleParser.Cases_caseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>cases_case_vbar_cases</c>
 	/// labeled alternative in <see cref="FullSimpleParser.cases"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCases_case_vbar_cases(FullSimpleParser.Cases_case_vbar_casesContext context);
+	Result VisitCases_case_vbar_cases([NotNull] FullSimpleParser.Cases_case_vbar_casesContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.case"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCase(FullSimpleParser.CaseContext context);
+	Result VisitCase([NotNull] FullSimpleParser.CaseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="FullSimpleParser.fields"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFields(FullSimpleParser.FieldsContext context);
+	Result VisitFields([NotNull] FullSimpleParser.FieldsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>nefields_field</c>
 	/// labeled alternative in <see cref="FullSimpleParser.nefields"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNefields_field(FullSimpleParser.Nefields_fieldContext context);
+	Result VisitNefields_field([NotNull] FullSimpleParser.Nefields_fieldContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>nefields_field_comma_nefields</c>
 	/// labeled alternative in <see cref="FullSimpleParser.nefields"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNefields_field_comma_nefields(FullSimpleParser.Nefields_field_comma_nefieldsContext context);
+	Result VisitNefields_field_comma_nefields([NotNull] FullSimpleParser.Nefields_field_comma_nefieldsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>field_lcid</c>
 	/// labeled alternative in <see cref="FullSimpleParser.field"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitField_lcid(FullSimpleParser.Field_lcidContext context);
+	Result VisitField_lcid([NotNull] FullSimpleParser.Field_lcidContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>field_term</c>
 	/// labeled alternative in <see cref="FullSimpleParser.field"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitField_term(FullSimpleParser.Field_termContext context);
+	Result VisitField_term([NotNull] FullSimpleParser.Field_termContext context);
 }
