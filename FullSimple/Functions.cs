@@ -4,7 +4,6 @@ using static FullSimple.Syntax.Printing;
 using static FullSimple.Core.Evaluation;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
-using System.Linq;
 using FullSimple.Visitors;
 using FullSimple.Syntax.Bindings;
 using FullSimple.Core;
@@ -66,11 +65,5 @@ public static class Functions
         _ => bind
     };
 
-    public static Context Process(string source)
-    {
-        var fcommands = Parse(source);
-        var commands = fcommands(new Context());
-
-        return commands.Item1.Aggregate(new Context(), ProcessCommand);
-    }
+    public static Context Process(string source) => CommandRunner.Process(source, Parse, ProcessCommand);
 }

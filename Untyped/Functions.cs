@@ -2,7 +2,6 @@
 using Common;
 using System;
 using System.Collections.Immutable;
-using System.Linq;
 using Untyped.Terms;
 
 namespace Untyped;
@@ -139,9 +138,6 @@ public static class Functions
 
     public static Context Process(string source)
     {
-        var fcommands = Parse(source);
-        var commands = fcommands(new Context());
-
-        return commands.Item1.Aggregate(new Context(), ProcessCommand);
+        return CommandRunner.Process(source, Parse, ProcessCommand);
     }
 }

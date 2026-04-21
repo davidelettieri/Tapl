@@ -4,7 +4,6 @@ using static LetExercise.Syntax.Printing;
 using static LetExercise.Core.Evaluation;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
-using System.Linq;
 
 namespace LetExercise;
 
@@ -45,9 +44,6 @@ public static class Functions
 
     public static Context Process(string source)
     {
-        var fcommands = Parse(source);
-        var commands = fcommands(new Context());
-
-        return commands.Item1.Aggregate(new Context(), ProcessCommand);
+        return CommandRunner.Process(source, Parse, ProcessCommand);
     }
 }
