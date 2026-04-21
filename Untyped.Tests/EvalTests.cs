@@ -1,7 +1,7 @@
-﻿using Untyped.Terms;
+﻿using Common;
+using Untyped.Terms;
 using Xunit;
 using static Untyped.Functions;
-using Common;
 
 namespace Untyped.Tests;
 

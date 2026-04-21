@@ -1,8 +1,7 @@
-﻿using Antlr4.Runtime.Misc;
-using SimpleBool.Syntax;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Immutable;
+using Common;
+using SimpleBool.Syntax;
 
 namespace SimpleBool;
 

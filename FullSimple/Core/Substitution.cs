@@ -1,7 +1,7 @@
 ﻿using Common;
-using static FullSimple.Core.Shifting;
-using FullSimple.Syntax.Terms;
 using FullSimple.Syntax;
+using FullSimple.Syntax.Terms;
+using static FullSimple.Core.Shifting;
 
 namespace FullSimple.Core;
 

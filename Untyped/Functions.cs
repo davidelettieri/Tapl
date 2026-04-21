@@ -1,7 +1,7 @@
-﻿using Antlr4.Runtime;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Immutable;
+using Antlr4.Runtime;
+using Common;
 using Untyped.Terms;
 
 namespace Untyped;

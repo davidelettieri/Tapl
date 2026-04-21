@@ -1,11 +1,11 @@
-﻿using FullSimple.Syntax;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Common;
+using FullSimple.Syntax;
+using FullSimple.Syntax.Bindings;
+using FullSimple.Syntax.Terms;
 using static FullSimple.Core.Shifting;
 using static FullSimple.Core.Substitution;
-using FullSimple.Syntax.Terms;
-using System.Linq;
-using System.Collections.Generic;
-using FullSimple.Syntax.Bindings;
 
 namespace FullSimple.Core;
 

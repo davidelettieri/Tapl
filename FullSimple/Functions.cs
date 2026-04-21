@@ -1,12 +1,12 @@
-﻿using Common;
-using System;
-using static FullSimple.Syntax.Printing;
-using static FullSimple.Core.Evaluation;
+﻿using System;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
-using FullSimple.Visitors;
-using FullSimple.Syntax.Bindings;
+using Common;
 using FullSimple.Core;
+using FullSimple.Syntax.Bindings;
+using FullSimple.Visitors;
+using static FullSimple.Core.Evaluation;
+using static FullSimple.Syntax.Printing;
 
 namespace FullSimple;
 
@@ -56,7 +56,8 @@ public static class Functions
         TermAbbBind tab when Typing.TypeEqual(ctx, tab.Type, Typing.TypeOf(ctx, tab.Term)) => bind,
         TermAbbBind => throw new Exception("type of binding doesn't match declared type in " + bind),
         VarBind => bind,
-        TypeAbbBind => bind
+        TypeAbbBind => bind,
+        _ => throw new InvalidOperationException()
     };
 
     private static IBinding EvalBinding(Context ctx, IBinding bind) => bind switch

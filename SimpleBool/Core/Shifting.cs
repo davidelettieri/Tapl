@@ -1,6 +1,6 @@
-﻿using SimpleBool.Syntax;
+﻿using System;
 using Common;
-using System;
+using SimpleBool.Syntax;
 
 namespace SimpleBool.Core;
 

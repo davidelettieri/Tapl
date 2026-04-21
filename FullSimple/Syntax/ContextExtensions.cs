@@ -1,7 +1,7 @@
-﻿using Common;
-using FullSimple.Syntax.Bindings;
-using System;
+﻿using System;
 using System.Linq;
+using Common;
+using FullSimple.Syntax.Bindings;
 using static FullSimple.Core.Shifting;
 
 namespace FullSimple.Syntax;

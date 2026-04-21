@@ -1,11 +1,11 @@
-﻿using Common;
-using System;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using Common;
+using FullSimple.Syntax.Bindings;
+using FullSimple.Syntax.Terms;
 using static System.Console;
 using static FullSimple.Core.Typing;
-using FullSimple.Syntax.Terms;
-using System.Linq;
-using FullSimple.Syntax.Bindings;
-using System.Globalization;
 
 namespace FullSimple.Syntax;
 

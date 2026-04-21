@@ -1,9 +1,9 @@
-﻿using Common;
-using System;
-using static LetExercise.Syntax.Printing;
-using static LetExercise.Core.Evaluation;
+﻿using System;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
+using Common;
+using static LetExercise.Core.Evaluation;
+using static LetExercise.Syntax.Printing;
 
 namespace LetExercise;
 

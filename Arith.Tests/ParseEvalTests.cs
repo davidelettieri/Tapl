@@ -1,6 +1,6 @@
 ﻿using Arith.Terms;
-using static Arith.Functions;
 using Xunit;
+using static Arith.Functions;
 
 namespace Arith.Tests;
 

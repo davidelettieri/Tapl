@@ -1,5 +1,5 @@
-﻿using SimpleBool.Syntax;
-using Common;
+﻿using Common;
+using SimpleBool.Syntax;
 using static SimpleBool.Core.Shifting;
 using static SimpleBool.Core.Substitution;
 

@@ -1,5 +1,5 @@
-﻿using Common;
-using System;
+﻿using System;
+using Common;
 using static System.Console;
 using static LetExercise.Core.Typing;
 

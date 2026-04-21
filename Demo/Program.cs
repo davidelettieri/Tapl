@@ -7,7 +7,7 @@ namespace Demo;
 
 static class Program
 {
-    private static Dictionary<int, Sample> _samples = new Dictionary<int, Sample>()
+    private static readonly Dictionary<int, Sample> _samples = new Dictionary<int, Sample>()
     {
         { 1, new Sample("untyped", Untyped.Functions.Process) },
         { 2, new Sample("simplebool", SimpleBool.Functions.Process) },

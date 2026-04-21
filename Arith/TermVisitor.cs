@@ -1,5 +1,4 @@
-﻿using Antlr4.Runtime.Misc;
-using Arith.Terms;
+﻿using Arith.Terms;
 using Common;
 
 namespace Arith;

@@ -1,5 +1,5 @@
-﻿using LetExercise.Syntax;
-using Common;
+﻿using Common;
+using LetExercise.Syntax;
 using static LetExercise.Core.Shifting;
 using static LetExercise.Core.Substitution;
 

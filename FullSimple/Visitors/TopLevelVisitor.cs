@@ -1,7 +1,6 @@
-﻿using Antlr4.Runtime.Misc;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Immutable;
+using Common;
 
 namespace FullSimple.Visitors;
 

@@ -1,7 +1,7 @@
-﻿using Antlr4.Runtime;
+﻿using System;
+using Antlr4.Runtime;
 using Arith.Terms;
 using Common;
-using System;
 
 namespace Arith;
 

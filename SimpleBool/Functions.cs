@@ -1,9 +1,9 @@
-﻿using Common;
-using System;
-using static SimpleBool.Syntax.Printing;
-using static SimpleBool.Core.Evaluation;
+﻿using System;
 using System.Collections.Immutable;
 using Antlr4.Runtime;
+using Common;
+using static SimpleBool.Core.Evaluation;
+using static SimpleBool.Syntax.Printing;
 
 namespace SimpleBool;
 

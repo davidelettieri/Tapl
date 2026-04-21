@@ -1,9 +1,9 @@
-﻿using Common;
-using System;
-using FullSimple.Syntax.Terms;
+﻿using System;
 using System.Linq;
-using FullSimple.Syntax.Bindings;
+using Common;
 using FullSimple.Syntax;
+using FullSimple.Syntax.Bindings;
+using FullSimple.Syntax.Terms;
 
 namespace FullSimple.Core;
 

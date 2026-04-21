@@ -1,6 +1,6 @@
-﻿using LetExercise.Syntax;
+﻿using System;
 using Common;
-using System;
+using LetExercise.Syntax;
 
 namespace LetExercise.Core;
 

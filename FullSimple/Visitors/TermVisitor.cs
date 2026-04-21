@@ -1,9 +1,8 @@
-﻿using Antlr4.Runtime.Misc;
-using Common;
-using System;
-using FullSimple.Syntax.Terms;
+﻿using System;
 using System.Linq;
+using Common;
 using FullSimple.Syntax;
+using FullSimple.Syntax.Terms;
 
 namespace FullSimple.Visitors;
 

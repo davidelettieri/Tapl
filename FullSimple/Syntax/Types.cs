@@ -1,5 +1,5 @@
-﻿using Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Common;
 
 namespace FullSimple.Syntax;
 

@@ -1,5 +1,5 @@
-﻿using Common;
-using System.Linq;
+﻿using System.Linq;
+using Common;
 
 namespace SimpleBool.Syntax;
 
