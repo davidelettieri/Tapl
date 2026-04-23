@@ -6,6 +6,8 @@ namespace SimpleBool.Core;
 
 public static class Shifting
 {
+    internal static IDeBruijnTermAdapter<ITerm, Var> Adapter { get; } = new SimpleBoolDeBruijnTermAdapter();
+
     public static ITerm TmMap(Func<int, Var, ITerm> onVar, int c, ITerm t)
     {
         ITerm Walk(int c, ITerm t)
@@ -25,15 +27,19 @@ public static class Shifting
         return Walk(c, t);
     }
 
-    private static ITerm TermShiftAbove(int d, int c, ITerm t)
+    public static ITerm TermShift(int d, ITerm t) => DeBruijnTermOperations.TermShift(d, t, Adapter);
+
+    private sealed class SimpleBoolDeBruijnTermAdapter : IDeBruijnTermAdapter<ITerm, Var>
     {
-        ITerm F(int c, Var v) =>
-            v.Index >= c
-                ? new Var(v.Info, v.Index + d, v.ContextLength + d)
-                : new Var(v.Info, v.Index, v.ContextLength + d);
+        public ITerm Map(Func<int, Var, ITerm> onVar, int c, ITerm term) => TmMap(onVar, c, term);
 
-        return TmMap(F, c, t);
+        public int GetIndex(Var variable) => variable.Index;
+
+        public int GetContextLength(Var variable) => variable.ContextLength;
+
+        public ITerm ToTerm(Var variable) => variable;
+
+        public ITerm CreateShiftedVar(Var variable, int shiftedIndex, int shiftedContextLength)
+            => new Var(variable.Info, shiftedIndex, shiftedContextLength);
     }
-
-    public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
 }

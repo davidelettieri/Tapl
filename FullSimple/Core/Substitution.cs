@@ -1,4 +1,5 @@
 ﻿using Common;
+using System;
 using FullSimple.Syntax;
 using FullSimple.Syntax.Terms;
 using static FullSimple.Core.Shifting;
@@ -7,15 +8,13 @@ namespace FullSimple.Core;
 
 public static class Substitution
 {
+    private static readonly IDeBruijnTermAdapter<ITerm, Var> Adapter = new FullSimpleSubstitutionAdapter();
+
     public static ITerm TermSubst(int j, ITerm s, ITerm t)
-    {
-        ITerm f(int j, Var v) => v.Index == j ? TermShift(j, s) : v;
-        IType g(int _, IType t) => t;
-        return TmMap(f, g, j, t);
-    }
+        => DeBruijnTermOperations.TermSubst(j, s, t, Adapter, TermShift);
 
     public static ITerm TermSubsTop(ITerm s, ITerm t)
-        => TermShift(-1, TermSubst(0, TermShift(1, s), t));
+        => DeBruijnTermOperations.TermSubstTop(s, t, Adapter, TermShift);
 
     private static IType TypeSubs(IType tyS, int j, IType tyT)
     {
@@ -37,4 +36,22 @@ public static class Substitution
 
     public static ITerm TypeTermSubsTop(IType tyS, ITerm t)
         => TermShift(-1, TyTermSubst(TypeShift(1, tyS), 0, t));
+
+    private sealed class FullSimpleSubstitutionAdapter : IDeBruijnTermAdapter<ITerm, Var>
+    {
+        public ITerm Map(Func<int, Var, ITerm> onVar, int c, ITerm term)
+        {
+            IType OnType(int _, IType type) => type;
+            return TmMap(onVar, OnType, c, term);
+        }
+
+        public int GetIndex(Var variable) => variable.Index;
+
+        public int GetContextLength(Var variable) => variable.ContextLength;
+
+        public ITerm ToTerm(Var variable) => variable;
+
+        public ITerm CreateShiftedVar(Var variable, int shiftedIndex, int shiftedContextLength)
+            => new Var(variable.Info, shiftedIndex, shiftedContextLength);
+    }
 }

@@ -7,12 +7,8 @@ namespace LetExercise.Core;
 public static class Substitution
 {
     public static ITerm TermSubst(int j, ITerm s, ITerm t)
-    {
-        ITerm f(int j, Var v) => v.Index == j ? TermShift(j, s) : v;
-
-        return TmMap(f, j, t);
-    }
+        => DeBruijnTermOperations.TermSubst(j, s, t, Shifting.Adapter, TermShift);
 
     public static ITerm TermSubsTop(ITerm s, ITerm t)
-        => TermShift(-1, TermSubst(0, TermShift(1, s), t));
+        => DeBruijnTermOperations.TermSubstTop(s, t, Shifting.Adapter, TermShift);
 }

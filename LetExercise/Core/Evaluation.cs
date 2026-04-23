@@ -1,6 +1,5 @@
 ﻿using Common;
 using LetExercise.Syntax;
-using static LetExercise.Core.Shifting;
 using static LetExercise.Core.Substitution;
 
 namespace LetExercise.Core;
@@ -44,7 +43,4 @@ public static class Evaluation
             return t;
         }
     }
-
-    private static ITerm TermSubsTop(ITerm s, ITerm t)
-        => TermShift(-1, TermSubst(0, TermShift(1, s), t));
 }

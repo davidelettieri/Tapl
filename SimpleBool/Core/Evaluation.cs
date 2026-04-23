@@ -1,6 +1,5 @@
 ﻿using Common;
 using SimpleBool.Syntax;
-using static SimpleBool.Core.Shifting;
 using static SimpleBool.Core.Substitution;
 
 namespace SimpleBool.Core;
@@ -40,8 +39,4 @@ public static class Evaluation
             return t;
         }
     }
-
-
-    private static ITerm TermSubsTop(ITerm s, ITerm t)
-        => TermShift(-1, TermSubst(0, TermShift(1, s), t));
 }
