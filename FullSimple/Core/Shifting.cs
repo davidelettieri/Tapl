@@ -54,7 +54,7 @@ public static class Shifting
                 Unit u => u,
                 Proj p => new Proj(p.Info, Walk(c, p.Term), p.Label),
                 Record r => new Record(r.Info, r.Fields.Select(p => (p.Item1, Walk(c, p.Item2))).ToList()),
-                Ascribe a => new Ascribe(a.Info, Walk(c, t), onType(c, a.Type)),
+                Ascribe a => new Ascribe(a.Info, Walk(c, a.Term), onType(c, a.Type)),
                 Float f => f,
                 TimesFloat tf => new TimesFloat(tf.Info, Walk(c, tf.Left), Walk(c, tf.Right)),
                 Zero z => z,
