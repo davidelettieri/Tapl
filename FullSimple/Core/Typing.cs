@@ -91,7 +91,7 @@ public static class Typing
 
                     if (TypeEqual(ctx, typeThen, typeElse))
                         return typeThen;
-                    else throw new ArmsOfConditionalHaveDifferentTypesException();
+                    throw new ArmsOfConditionalHaveDifferentTypesException();
                 }
                 throw new GuardNotBooleanException();
             case Case c:

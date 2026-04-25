@@ -10,6 +10,7 @@
   <Project Path="Demo/Demo.csproj" />
   <Project Path="FullSimple.Tests/FullSimple.Tests.csproj" />
   <Project Path="FullSimple/FullSimple.csproj" />
+  <Project Path="Harness.Runner/Harness.Runner.csproj" />
   <Project Path="LetExercise/LetExercise.csproj" />
   <Project Path="SimpleBool/SimpleBool.csproj" />
   <Project Path="Untyped.Tests/Untyped.Tests.csproj" />
