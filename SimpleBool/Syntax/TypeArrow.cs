@@ -9,7 +9,7 @@ public class TypeArrow : IType
 
     public TypeArrow(IType from, IType to)
     {
-            From = from;
-            To = to;
-        }
+        From = from;
+        To = to;
+    }
 }

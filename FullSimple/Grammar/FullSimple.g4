@@ -1,7 +1,7 @@
 grammar FullSimple;
 
-toplevel: command SEMI toplevel						#toplevel_command
-		| EOF										#toplevel_eof;
+toplevel: command SEMI toplevel
+		| EOF;
 command	: term										#command_term					
 		| UCID tybinder								#command_tybinder
 		| LCID binder								#command_binder;

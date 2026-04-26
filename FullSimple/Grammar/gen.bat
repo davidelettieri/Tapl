@@ -1,1 +1,0 @@
-antlr -Dlanguage=CSharp FullSimple.g4 -visitor -no-listener

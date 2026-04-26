@@ -2,16 +2,9 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class StringTerm : ITerm
+public class StringTerm(string value) : ITerm
 {
-    public string Value { get; }
-    public StringTerm(string value)
-    {
-            Value = value;
-        }
+    public string Value { get; } = value;
 
-    public override string ToString()
-    {
-            return $"TmString({Value})";
-        }
+    public override string ToString() => $"TmString({Value})";
 }

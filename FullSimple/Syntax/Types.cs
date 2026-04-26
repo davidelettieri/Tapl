@@ -1,15 +1,15 @@
-﻿using Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Common;
 
 namespace FullSimple.Syntax;
 
-public record TypeArrow(IType From, IType To) : IType;
-public record TypeBool : IType;
-public record TypeFloat : IType;
-public record TypeId(string Name) : IType;
-public record TypeNat : IType;
-public record TypeRecord(IEnumerable<(string, IType)> Variants) : IType;
-public record TypeString : IType;
-public record TypeUnit : IType;
-public record TypeVar(int X, int N) : IType;
-public record TypeVariant(IEnumerable<(string, IType)> Variants) : IType;
+public sealed record TypeArrow(IType From, IType To) : IType;
+public sealed record TypeBool : IType;
+public sealed record TypeFloat : IType;
+public sealed record TypeId(string Name) : IType;
+public sealed record TypeNat : IType;
+public sealed record TypeRecord(IEnumerable<(string, IType)> Variants) : IType;
+public sealed record TypeString : IType;
+public sealed record TypeUnit : IType;
+public sealed record TypeVar(int X, int N) : IType;
+public sealed record TypeVariant(IEnumerable<(string, IType)> Variants) : IType;

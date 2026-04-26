@@ -2,11 +2,7 @@
 
 namespace FullSimple.Syntax.Bindings;
 
-public class TypeAbbBind : IBinding
+public sealed class TypeAbbBind(IType type) : IBinding
 {
-    public IType Type { get; }
-    public TypeAbbBind(IType type)
-    {
-            Type = type;
-        }
+    public IType Type { get; } = type;
 }

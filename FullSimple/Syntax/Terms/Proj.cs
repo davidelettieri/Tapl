@@ -2,21 +2,11 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class Proj : ITerm
+public sealed class Proj(IInfo info, ITerm term, string label) : ITerm
 {
-    public IInfo Info { get; }
-    public ITerm Term { get; }
-    public string Label { get; }
+    public IInfo Info { get; } = info;
+    public ITerm Term { get; } = term;
+    public string Label { get; } = label;
 
-    public Proj(IInfo info, ITerm term, string s)
-    {
-            Info = info;
-            Term = term;
-            Label = s;
-        }
-
-    public override string ToString()
-    {
-            return $"TmProj({Term},{Label})";
-        }
+    public override string ToString() => $"TmProj({Term},{Label})";
 }

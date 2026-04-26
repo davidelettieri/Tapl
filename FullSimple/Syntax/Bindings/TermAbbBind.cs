@@ -2,18 +2,10 @@
 
 namespace FullSimple.Syntax.Bindings;
 
-public class TermAbbBind : IBinding
+public sealed class TermAbbBind(ITerm term, IType? type) : IBinding
 {
-    public ITerm Term { get; }
-    public IType Type { get; }
-    public TermAbbBind(ITerm term, IType type)
-    {
-            Term = term;
-            Type = type;
-        }
+    public ITerm Term { get; } = term;
+    public IType? Type { get; } = type;
 
-    public override string ToString()
-    {
-            return $"TmAbbBind({Term},{(object)Type ?? "None"})";
-        }
+    public override string ToString() => $"TmAbbBind({Term},{Type?.ToString() ?? "None"})";
 }

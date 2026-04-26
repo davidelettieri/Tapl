@@ -2,16 +2,9 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class TimesFloat : ITerm
+public sealed class TimesFloat(IInfo info, ITerm left, ITerm right) : ITerm
 {
-    public IInfo Info { get; }
-    public ITerm Left { get; }
-    public ITerm Right { get; }
-
-    public TimesFloat(IInfo info, ITerm left, ITerm right)
-    {
-            Info = info;
-            Left = left;
-            Right = right;
-        }
+    public IInfo Info { get; } = info;
+    public ITerm Left { get; } = left;
+    public ITerm Right { get; } = right;
 }

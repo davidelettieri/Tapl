@@ -1,27 +1,23 @@
-﻿using Antlr4.Runtime.Misc;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 
 namespace FullSimple.Visitors;
 
-public class FieldTypesVisitor : FullSimpleBaseVisitor<Func<Context, int, IEnumerable<(string, IType)>>>
+public sealed class FieldTypesVisitor(TypeVisitor typeVisitor)
+    : FullSimpleBaseVisitor<Func<Context, int, IEnumerable<(string, IType)>>>
 {
-    private readonly NEFieldTypesVisitor _nefieldTypesVisitor;
+    private readonly NEFieldTypesVisitor _nefieldTypesVisitor = new(typeVisitor);
 
-    public FieldTypesVisitor(TypeVisitor typeVisitor)
+    public override Func<Context, int, IEnumerable<(string, IType)>> VisitFieldtypes_nefieldtypes(
+        FullSimpleParser.Fieldtypes_nefieldtypesContext context)
     {
-            _nefieldTypesVisitor = new NEFieldTypesVisitor(typeVisitor);
-        }
+        if (context.nefieldtypes() is null)
+            return (ctx, i) => Enumerable.Empty<(string, IType)>();
 
-    public override Func<Context, int, IEnumerable<(string, IType)>> VisitFieldtypes_nefieldtypes([NotNull] FullSimpleParser.Fieldtypes_nefieldtypesContext context)
-    {
-            if (context.nefieldtypes() is null)
-                return (ctx, i) => Enumerable.Empty<(string, IType)>();
+        var nefieldTypes = _nefieldTypesVisitor.Visit(context.nefieldtypes());
 
-            var nefieldTypes = _nefieldTypesVisitor.Visit(context.nefieldtypes());
-
-            return (ctx, i) => nefieldTypes(ctx, i);
-        }
+        return (ctx, i) => nefieldTypes(ctx, i);
+    }
 }

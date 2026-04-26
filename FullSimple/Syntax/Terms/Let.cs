@@ -2,17 +2,11 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class Let : ITerm
+public sealed class Let(IInfo info, string variable, ITerm letTerm, ITerm inTerm)
+    : ITerm
 {
-    public IInfo Info { get; }
-    public string Variable { get; }
-    public ITerm LetTerm { get; }
-    public ITerm InTerm { get; }
-    public Let(IInfo info, string variable, ITerm letTerm, ITerm inTerm)
-    {
-            Info = info;
-            Variable = variable;
-            LetTerm = letTerm;
-            InTerm = inTerm;
-        }
+    public IInfo Info { get; } = info;
+    public string Variable { get; } = variable;
+    public ITerm LetTerm { get; } = letTerm;
+    public ITerm InTerm { get; } = inTerm;
 }

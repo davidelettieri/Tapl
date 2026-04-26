@@ -2,13 +2,8 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class Inert : ITerm
+public sealed class Inert(IInfo info, IType type) : ITerm
 {
-    public IInfo Info { get; }
-    public IType Type { get; }
-    public Inert(IInfo info, IType type)
-    {
-            Info = info;
-            Type = type;
-        }
+    public IInfo Info { get; } = info;
+    public IType Type { get; } = type;
 }

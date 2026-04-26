@@ -1,26 +1,16 @@
-﻿using Common;
-using System;
+﻿using System;
+using Common;
 
 namespace LetExercise.Syntax;
 
-public class Var : ITerm
+/// <summary>
+/// Variable term
+/// </summary>
+/// <param name="index">De bruijn index</param>
+/// <param name="contextLength">Context length</param>
+public class Var(IInfo info, int index, int contextLength) : ITerm
 {
-    public IInfo Info { get; }
-    public int Index { get; }
-    public int ContextLength { get; }
-
-    /// <summary>
-    /// Variable term
-    /// </summary>
-    /// <param name="index">De bruijn index</param>
-    /// <param name="ctxl">Context length</param>
-    public Var(IInfo info, int index, int ctxl)
-    {
-            if (ctxl < index)
-                throw new InvalidOperationException();
-
-            Info = info;
-            Index = index;
-            ContextLength = ctxl;
-        }
+    public IInfo Info { get; } = info;
+    public int Index { get; } = contextLength >= index ? index : throw new InvalidOperationException();
+    public int ContextLength { get; } = contextLength;
 }

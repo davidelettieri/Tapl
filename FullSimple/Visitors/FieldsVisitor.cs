@@ -1,50 +1,43 @@
-﻿using Antlr4.Runtime.Misc;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 
 namespace FullSimple.Visitors;
 
-public class FieldsVisitor : FullSimpleBaseVisitor<Func<(Context, int), IEnumerable<(string, ITerm)>>>
+public sealed class FieldsVisitor(TermVisitor termVisitor)
+    : FullSimpleBaseVisitor<Func<(Context, int), IEnumerable<(string, ITerm)>>>
 {
-    private readonly FieldVisitor _fieldVisitor;
+    private readonly FieldVisitor _fieldVisitor = new(termVisitor);
 
-    public FieldsVisitor(TermVisitor termVisitor)
+    public override Func<(Context, int), IEnumerable<(string, ITerm)>> VisitFields(FullSimpleParser.FieldsContext context)
     {
-            _fieldVisitor = new FieldVisitor(termVisitor);
-        }
+        var neFields = context.nefields();
 
-    public override Func<(Context, int), IEnumerable<(string, ITerm)>> VisitFields([NotNull] FullSimpleParser.FieldsContext context)
+        if (neFields is null)
+            return _ => Enumerable.Empty<(string, ITerm)>();
+
+        return Visit(neFields);
+    }
+
+    public override Func<(Context, int), IEnumerable<(string, ITerm)>> VisitNefields_field(FullSimpleParser.Nefields_fieldContext context)
     {
-            var neFields = context.nefields();
+        var field = _fieldVisitor.Visit(context.field());
 
-            if (neFields is null)
-                return _ => Enumerable.Empty<(string, ITerm)>();
+        return c => Wrap(field(c));
+    }
 
-            return Visit(neFields);
-        }
-
-    public override Func<(Context, int), IEnumerable<(string, ITerm)>> VisitNefields_field([NotNull] FullSimpleParser.Nefields_fieldContext context)
+    public override Func<(Context, int), IEnumerable<(string, ITerm)>> VisitNefields_field_comma_nefields(FullSimpleParser.Nefields_field_comma_nefieldsContext context)
     {
-            var info = context.GetFileInfo();
-            var field = _fieldVisitor.Visit(context.field());
-
-            return c => Wrap(field(c));
-        }
-
-    public override Func<(Context, int), IEnumerable<(string, ITerm)>> VisitNefields_field_comma_nefields([NotNull] FullSimpleParser.Nefields_field_comma_nefieldsContext context)
-    {
-            var info = context.GetFileInfo();
-            var field = _fieldVisitor.Visit(context.field());
-            var nefields = Visit(context.nefields());
-            return t =>
-            {
-                var ft = field(t);
-                var fields = nefields((t.Item1, t.Item2 + 1));
-                return Wrap(ft).Concat(fields);
-            };
-        }
+        var field = _fieldVisitor.Visit(context.field());
+        var nefields = Visit(context.nefields());
+        return t =>
+        {
+            var ft = field(t);
+            var fields = nefields((t.Item1, t.Item2 + 1));
+            return Wrap(ft).Concat(fields);
+        };
+    }
 
     private static IEnumerable<(string, ITerm)> Wrap((string, ITerm) s)
         => Enumerable.Repeat(s, 1);

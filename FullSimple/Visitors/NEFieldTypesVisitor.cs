@@ -1,32 +1,29 @@
-﻿using Antlr4.Runtime.Misc;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 
 namespace FullSimple.Visitors;
 
-public class NEFieldTypesVisitor : FullSimpleBaseVisitor<Func<Context, int, IEnumerable<(string, IType)>>>
+public sealed class NEFieldTypesVisitor(TypeVisitor typeVisitor)
+    : FullSimpleBaseVisitor<Func<Context, int, IEnumerable<(string, IType)>>>
 {
-    private readonly FieldTypeVisitor _fieldTypesVisitor;
+    private readonly FieldTypeVisitor _fieldTypesVisitor = new(typeVisitor);
 
-    public NEFieldTypesVisitor(TypeVisitor typeVisitor)
+    public override Func<Context, int, IEnumerable<(string, IType)>> VisitNefieldtypes_fieldtype(
+        FullSimpleParser.Nefieldtypes_fieldtypeContext context)
     {
-            _fieldTypesVisitor = new FieldTypeVisitor(typeVisitor);
-        }
+        var fieldType = _fieldTypesVisitor.Visit(context.fieldtype());
 
-    public override Func<Context, int, IEnumerable<(string, IType)>> VisitNefieldtypes_fieldtype([NotNull] FullSimpleParser.Nefieldtypes_fieldtypeContext context)
+        return (ctx, i) => Enumerable.Repeat(fieldType(ctx, i), 1);
+    }
+
+    public override Func<Context, int, IEnumerable<(string, IType)>> VisitNefieldtypes_nefieldtype(
+        FullSimpleParser.Nefieldtypes_nefieldtypeContext context)
     {
-            var fieldType = _fieldTypesVisitor.Visit(context.fieldtype());
+        var fieldType = _fieldTypesVisitor.Visit(context.fieldtype());
+        var nefieldTypes = Visit(context.nefieldtypes());
 
-            return (ctx, i) => Enumerable.Repeat(fieldType(ctx, i), 1);
-        }
-
-    public override Func<Context, int, IEnumerable<(string, IType)>> VisitNefieldtypes_nefieldtype([NotNull] FullSimpleParser.Nefieldtypes_nefieldtypeContext context)
-    {
-            var fieldType = _fieldTypesVisitor.Visit(context.fieldtype());
-            var nefieldTypes = Visit(context.nefieldtypes());
-
-            return (ctx, i) => Enumerable.Repeat(fieldType(ctx, i), 1).Concat(nefieldTypes(ctx, i + 1));
-        }
+        return (ctx, i) => Enumerable.Repeat(fieldType(ctx, i), 1).Concat(nefieldTypes(ctx, i + 1));
+    }
 }

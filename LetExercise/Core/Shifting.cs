@@ -1,38 +1,46 @@
-﻿using LetExercise.Syntax;
+﻿using System;
 using Common;
-using System;
+using LetExercise.Syntax;
 
 namespace LetExercise.Core;
 
 public static class Shifting
 {
+    internal static IDeBruijnTermAdapter<ITerm, Var> Adapter { get; } = new LetExerciseDeBruijnTermAdapter();
+
     public static ITerm TmMap(Func<int, Var, ITerm> onVar, int c, ITerm t)
     {
-            ITerm Walk(int c, ITerm t)
+        ITerm Walk(int c, ITerm t)
+        {
+            return t switch
             {
-                return t switch
-                {
-                    Let let => new Let(let.Info, let.Variable, Walk(c, let.LetTerm), Walk(c + 1, let.InTerm)),
-                    Var var => onVar(c, var),
-                    Abs abs => new Abs(abs.Info, Walk(c + 1, abs.Body), abs.BoundedVariable, abs.Type),
-                    App app => new App(app.Info, Walk(c, app.Left), Walk(c, app.Right)),
-                    True e => e,
-                    False f => f,
-                    If ift => new If(ift.Info, Walk(c, ift.Condition), Walk(c, ift.Then), Walk(c, ift.Else)),
-                    _ => throw new InvalidOperationException()
-                };
-            }
-
-            return Walk(c, t);
+                Let let => new Let(let.Info, let.Variable, Walk(c, let.LetTerm), Walk(c + 1, let.InTerm)),
+                Var var => onVar(c, var),
+                Abs abs => new Abs(abs.Info, Walk(c + 1, abs.Body), abs.BoundedVariable, abs.Type),
+                App app => new App(app.Info, Walk(c, app.Left), Walk(c, app.Right)),
+                True e => e,
+                False f => f,
+                If ift => new If(ift.Info, Walk(c, ift.Condition), Walk(c, ift.Then), Walk(c, ift.Else)),
+                _ => throw new InvalidOperationException()
+            };
         }
 
-    public static ITerm TermShiftAbove(int d, int c, ITerm t)
+        return Walk(c, t);
+    }
+
+    public static ITerm TermShift(int d, ITerm t) => DeBruijnTermOperations.TermShift(d, t, Adapter);
+
+    private sealed class LetExerciseDeBruijnTermAdapter : IDeBruijnTermAdapter<ITerm, Var>
     {
-            ITerm f(int c, Var v) =>
-                v.Index >= c ? new Var(v.Info, v.Index + d, v.ContextLength + d) : new Var(v.Info, v.Index, v.ContextLength + d);
+        public ITerm Map(Func<int, Var, ITerm> onVar, int c, ITerm term) => TmMap(onVar, c, term);
 
-            return TmMap(f, c, t);
-        }
+        public int GetIndex(Var variable) => variable.Index;
 
-    public static ITerm TermShift(int d, ITerm t) => TermShiftAbove(d, 0, t);
+        public int GetContextLength(Var variable) => variable.ContextLength;
+
+        public ITerm ToTerm(Var variable) => variable;
+
+        public ITerm CreateShiftedVar(Var variable, int shiftedIndex, int shiftedContextLength)
+            => new Var(variable.Info, shiftedIndex, shiftedContextLength);
+    }
 }

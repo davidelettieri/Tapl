@@ -1,22 +1,22 @@
-﻿using Antlr4.Runtime.Misc;
+﻿using System;
 using Common;
 using FullSimple.Syntax.Bindings;
-using System;
 
 namespace FullSimple.Visitors;
 
-public class TyBinderVisitor : FullSimpleBaseVisitor<Func<Context, IBinding>>
+public sealed class TyBinderVisitor : FullSimpleBaseVisitor<Func<Context, IBinding>>
 {
-    public static readonly TypeVisitor _typeVisitor = new TypeVisitor();
-    public override Func<Context, IBinding> VisitTybinder_type([NotNull] FullSimpleParser.Tybinder_typeContext context)
+    private static readonly TypeVisitor TypeVisitor = new();
+
+    public override Func<Context, IBinding> VisitTybinder_type(FullSimpleParser.Tybinder_typeContext context)
     {
-            if (context.type() != null)
-            {
-                var type = _typeVisitor.Visit(context.type());
+        if (context.type() != null)
+        {
+            var type = TypeVisitor.Visit(context.type());
 
-                return ctx => new TypeAbbBind(type(ctx));
-            }
-
-            return _ => new TypeVarBind();
+            return ctx => new TypeAbbBind(type(ctx));
         }
+
+        return _ => new TypeVarBind();
+    }
 }

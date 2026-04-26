@@ -1,9 +1,9 @@
-﻿using Common;
-using System;
+﻿using System;
+using Common;
 
 namespace FullSimple.Syntax.Terms;
 
-public class Var : ITerm
+public sealed class Var : ITerm
 {
     public IInfo Info { get; }
     public int Index { get; }
@@ -16,16 +16,13 @@ public class Var : ITerm
     /// <param name="ctxl">Context length</param>
     public Var(IInfo info, int index, int ctxl)
     {
-            if (ctxl < index)
-                throw new InvalidOperationException();
+        if (ctxl < index)
+            throw new InvalidOperationException();
 
-            Info = info;
-            Index = index;
-            ContextLength = ctxl;
-        }
+        Info = info;
+        Index = index;
+        ContextLength = ctxl;
+    }
 
-    public override string ToString()
-    {
-            return $"TmVar({Index},{ContextLength})";
-        }
+    public override string ToString() => $"TmVar({Index},{ContextLength})";
 }

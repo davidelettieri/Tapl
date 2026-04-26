@@ -1,0 +1,1 @@
+pred (succ 0);

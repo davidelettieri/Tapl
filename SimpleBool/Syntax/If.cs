@@ -11,9 +11,9 @@ public class If : ITerm
 
     public If(IInfo info, ITerm condition, ITerm then, ITerm @else)
     {
-            Info = info;
-            Condition = condition;
-            Then = then;
-            Else = @else;
-        }
+        Info = info;
+        Condition = condition;
+        Then = then;
+        Else = @else;
+    }
 }

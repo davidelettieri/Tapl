@@ -2,14 +2,8 @@
 
 namespace FullSimple.Syntax.Terms;
 
-public class Pred : ITerm
+public sealed class Pred(IInfo info, ITerm of) : ITerm
 {
-    public IInfo Info { get; }
-    public ITerm Of { get; }
-
-    public Pred(IInfo info, ITerm of)
-    {
-            Info = info;
-            Of = of;
-        }
+    public IInfo Info { get; } = info;
+    public ITerm Of { get; } = of;
 }

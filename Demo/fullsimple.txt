@@ -1,1 +1,67 @@
-{pred 4, true}.1;
+and = lambda b: Bool. lambda c:Bool. if b then c else false;
+not = lambda b: Bool. if b then false else true;
+not true;
+equalDef = lambda equal: Nat -> Nat -> Bool. lambda n: Nat. lambda m: Nat. if iszero n then iszero m else equal (pred n) (pred m);
+equal = fix equalDef;
+OptionalNat = <none:Unit, some:Nat>;
+Table = Nat -> OptionalNat;
+emptyTable = lambda n: Nat. <none=unit> as OptionalNat;
+extendTable = lambda t:Table. lambda m:Nat. lambda v:Nat. lambda n:Nat. if equal n m then <some=v> as OptionalNat else t n;
+
+
+let x = succ 0 
+	in let y = succ x
+		in y;
+
+evenodd = fix (lambda eo: {even: Nat -> Bool, odd: Nat -> Bool}.
+	{even = lambda x: Nat. if iszero x then true else eo.odd (pred x),
+	 odd = lambda x: Nat. if iszero x then false else eo.even (pred x)});
+		
+evenodd.even (succ 0);
+evenodd.even (succ (succ 0));
+
+letrec even:Nat -> Bool = 
+	lambda x: Nat.
+		if iszero x then true
+		else if iszero (pred x) then false
+		else even (pred (pred x))
+in
+	even (succ (succ (succ 0)));
+
+
+PhysicalAddr = {firstlast:String, addr:String};
+{firstlast= "lambdamix", addr="Russia"} as PhysicalAddr;
+VirtualAddr = {name:String, email:String};
+
+Addr = <physical:PhysicalAddr, virtual:VirtualAddr>;
+getName = lambda a:Addr. case a of
+	<physical=x> ==> x.firstlast | <virtual=y> ==> y.name;
+
+"123";
+
+pa = {firstlast= "lambdamix", addr="Russia"} as PhysicalAddr;
+va = {name = "ilya", email = "ilya@ru"} as VirtualAddr;
+addr1 = <physical=pa> as Addr;
+addr2 = <virtual=va> as Addr;
+
+getName addr1;
+getName addr2;
+
+lambda _: Unit. 5;
+
+let x = 5 in 7;
+let _ = 5 in 7;
+
+ff = lambda ieio : {iseven: Nat -> Bool, isodd: Nat -> Bool}.
+    {
+        iseven = lambda x : Nat.
+                    if iszero x then true
+                    else ieio.isodd (pred x),
+        isodd  = lambda x : Nat.
+                    if iszero x then false
+                    else ieio.iseven (pred x)
+    };
+
+r = fix ff;
+
+a = r.iseven 1

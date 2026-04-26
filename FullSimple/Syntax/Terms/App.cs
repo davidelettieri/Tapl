@@ -5,26 +5,13 @@ namespace FullSimple.Syntax.Terms;
 /// <summary>
 /// Application term (xy)
 /// </summary>
-public class App : ITerm
+/// <param name="left">The first term in the application</param>
+/// <param name="right">The second term in the application</param>
+public sealed class App(IInfo info, ITerm left, ITerm right) : ITerm
 {
-    public IInfo Info { get; }
-    public ITerm Left { get; }
-    public ITerm Right { get; }
+    public IInfo Info { get; } = info;
+    public ITerm Left { get; } = left;
+    public ITerm Right { get; } = right;
 
-    /// <summary>
-    /// Application term (xy)
-    /// </summary>
-    /// <param name="left">The first term in the application</param>
-    /// <param name="right">The second term in the application</param>
-    public App(IInfo info, ITerm left, ITerm right)
-    {
-            Info = info;
-            Left = left;
-            Right = right;
-        }
-
-    public override string ToString()
-    {
-            return $"TmApp({Left},{Right})";
-        }
+    public override string ToString() => $"TmApp({Left},{Right})";
 }

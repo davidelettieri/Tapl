@@ -1,0 +1,18 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Arith.Tests/Arith.Tests.csproj" />
+  <Project Path="Arith/Arith.csproj" />
+  <Project Path="Common/Common.csproj" />
+  <Project Path="Demo/Demo.csproj" />
+  <Project Path="FullSimple.Tests/FullSimple.Tests.csproj" />
+  <Project Path="FullSimple/FullSimple.csproj" />
+  <Project Path="Harness.Runner/Harness.Runner.csproj" />
+  <Project Path="LetExercise/LetExercise.csproj" />
+  <Project Path="SimpleBool/SimpleBool.csproj" />
+  <Project Path="Untyped.Tests/Untyped.Tests.csproj" />
+  <Project Path="Untyped/Untyped.csproj" />
+</Solution>

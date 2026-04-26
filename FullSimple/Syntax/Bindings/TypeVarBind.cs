@@ -2,4 +2,4 @@
 
 namespace FullSimple.Syntax.Bindings;
 
-public class TypeVarBind : IBinding;
+public sealed class TypeVarBind : IBinding;

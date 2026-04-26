@@ -1,30 +1,21 @@
-﻿using Antlr4.Runtime.Misc;
-using Common;
-using System;
+﻿using System;
 using System.Collections.Immutable;
+using Common;
 
 namespace FullSimple.Visitors;
 
-public class TopLevelVisitor : FullSimpleBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
+public sealed class TopLevelVisitor : FullSimpleBaseVisitor<Func<Context, (ImmutableStack<ICommand>, Context)>>
 {
-    private static readonly CommandVisitor _commandVisitor = new CommandVisitor();
+    private static readonly CommandVisitor CommandVisitor = new();
 
-    public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel_command([NotNull] FullSimpleParser.Toplevel_commandContext context)
+    public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel(
+        FullSimpleParser.ToplevelContext context)
     {
-            var command = _commandVisitor.Visit(context.command());
-            var commands = Visit(context.toplevel());
-
-            return ctx =>
-            {
-                var (cmd, ctx1) = command(ctx);
-                var (cmds, ctx2) = commands(ctx1);
-                return (cmds.Push(cmd), ctx2);
-            };
-        }
-
-    public override Func<Context, (ImmutableStack<ICommand>, Context)> VisitToplevel_eof([NotNull] FullSimpleParser.Toplevel_eofContext context)
-    {
-            return ctx => (ImmutableStack<ICommand>.Empty, ctx);
-        }
-
+        return TopLevelCommandComposer.Compose(
+            context,
+            c => c.toplevel(),
+            c => c.command(),
+            Visit,
+            c => CommandVisitor.Visit(c));
+    }
 }
