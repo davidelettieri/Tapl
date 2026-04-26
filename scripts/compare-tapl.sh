@@ -13,7 +13,13 @@ SOURCE_TARGET=$(realpath -m "${2:-"${REPO_ROOT}/fixtures/${SUBFOLDER}"}")
 IMAGE_NAME=${TAPL_OCAML_HARNESS_IMAGE:-public.ecr.aws/w9u4a6r8/ocaml:latest}
 DUNE_CACHE_VOLUME=${TAPL_DUNE_CACHE_VOLUME:-tapl-dune-cache}
 VOLUME_SUFFIX=${TAPL_DOCKER_VOLUME_SUFFIX:-:Z}
-USE_HOST_USER=${TAPL_DOCKER_USE_HOST_USER:-auto}
+if [[ -n "${TAPL_DOCKER_USE_HOST_USER:-}" ]]; then
+    USE_HOST_USER=${TAPL_DOCKER_USE_HOST_USER}
+elif [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
+    USE_HOST_USER=false
+else
+    USE_HOST_USER=auto
+fi
 IS_PODMAN=false
 
 readonly SCRIPT_DIR
@@ -207,7 +213,7 @@ run_csharp() {
     local stdout_file=$2
     local stderr_file=$3
 
-    dotnet run --project "${REPO_ROOT}/Harness.Runner/Harness.Runner.csproj" -- "${SUBFOLDER}" "${source_file}" >"${stdout_file}" 2>"${stderr_file}"
+    dotnet run --no-build --project "${REPO_ROOT}/Harness.Runner/Harness.Runner.csproj" -- "${SUBFOLDER}" "${source_file}" >"${stdout_file}" 2>"${stderr_file}"
 }
 
 compare_fixture() {

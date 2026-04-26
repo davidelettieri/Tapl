@@ -88,6 +88,8 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore
+    - name: Build harness dependencies
+      run: dotnet build --no-restore
     - name: Download harness image archive
       uses: actions/download-artifact@v4
       with:
@@ -96,4 +98,6 @@ jobs:
     - name: Load harness image
       run: docker load --input "$TAPL_OCAML_HARNESS_IMAGE_ARCHIVE"
     - name: Run harness for ${{ matrix.language }}
+      env:
+        TAPL_DOCKER_USE_HOST_USER: false
       run: ./scripts/compare-tapl.sh ${{ matrix.language }}
