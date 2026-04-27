@@ -34,113 +34,113 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
 public partial class TaplBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, ITaplVisitor<Result> {
-    /// <summary>
-    /// Visit a parse tree produced by the <c>par</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitPar(TaplParser.ParContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>IfThenElse</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitIfThenElse(TaplParser.IfThenElseContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>Succ</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitSucc(TaplParser.SuccContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>Pred</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitPred(TaplParser.PredContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>IsZero</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitIsZero(TaplParser.IsZeroContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>True</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitTrue(TaplParser.TrueContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>False</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitFalse(TaplParser.FalseContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>Zero</c>
-    /// labeled alternative in <see cref="TaplParser.term"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitZero(TaplParser.ZeroContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by the <c>numericvalue</c>
-    /// labeled alternative in <see cref="TaplParser.v"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitNumericvalue(TaplParser.NumericvalueContext context) => VisitChildren(context);
-    /// <summary>
-    /// Visit a parse tree produced by <see cref="TaplParser.nv"/>.
-    /// <para>
-    /// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-    /// on <paramref name="context"/>.
-    /// </para>
-    /// </summary>
-    /// <param name="context">The parse tree.</param>
-    /// <return>The visitor result.</return>
-    public virtual Result VisitNv(TaplParser.NvContext context) => VisitChildren(context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>par</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitPar([NotNull] TaplParser.ParContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>IfThenElse</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitIfThenElse([NotNull] TaplParser.IfThenElseContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Succ</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitSucc([NotNull] TaplParser.SuccContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Pred</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitPred([NotNull] TaplParser.PredContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>IsZero</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitIsZero([NotNull] TaplParser.IsZeroContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>True</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTrue([NotNull] TaplParser.TrueContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>False</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFalse([NotNull] TaplParser.FalseContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Zero</c>
+	/// labeled alternative in <see cref="TaplParser.term"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitZero([NotNull] TaplParser.ZeroContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>numericvalue</c>
+	/// labeled alternative in <see cref="TaplParser.v"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNumericvalue([NotNull] TaplParser.NumericvalueContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TaplParser.nv"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitNv([NotNull] TaplParser.NvContext context) { return VisitChildren(context); }
 }

@@ -1,1 +1,1 @@
-(\x. x) (\y. y);
+(lambda x. x) (lambda y. y);

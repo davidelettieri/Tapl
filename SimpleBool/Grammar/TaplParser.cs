@@ -46,7 +46,7 @@ public partial class TaplParser : Parser {
 
 	private static readonly string[] _LiteralNames = {
 		null, "';'", "'('", "')'", "'if'", "'then'", "'else'", "'true'", "'false'", 
-		"':'", "'->'", "'Bool'", "'BIND'", null, "'\\'", "'.'", "' '", "'\\r'", 
+		"':'", "'->'", "'Bool'", "'BIND'", null, "'lambda'", "'.'", "' '", "'\\r'", 
 		"'\\n'"
 	};
 	private static readonly string[] _SymbolicNames = {

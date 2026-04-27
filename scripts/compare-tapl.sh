@@ -31,6 +31,10 @@ readonly DUNE_CACHE_VOLUME
 readonly VOLUME_SUFFIX
 readonly USE_HOST_USER
 
+runner_output_path() {
+    printf '%s\n' "${REPO_ROOT}/Harness.Runner/bin/Debug/net10.0/Harness.Runner.dll"
+}
+
 usage_supported() {
     echo "Supported languages: arith, simplebool, untyped, letexercise, fullsimple" >&2
 }
@@ -80,6 +84,32 @@ ensure_ocaml_folder() {
     if [[ ! -d "${ocaml_dir}" ]]; then
         echo "OCaml TAPL folder not found: ${ocaml_dir}" >&2
         exit 1
+    fi
+}
+
+runner_sources_newer_than_output() {
+    local output_path=$1
+
+    find \
+        "${REPO_ROOT}/Common" \
+        "${REPO_ROOT}/Arith" \
+        "${REPO_ROOT}/SimpleBool" \
+        "${REPO_ROOT}/Untyped" \
+        "${REPO_ROOT}/LetExercise" \
+        "${REPO_ROOT}/FullSimple" \
+        "${REPO_ROOT}/Harness.Runner" \
+        -type f \
+        \( -name '*.cs' -o -name '*.csproj' -o -name '*.g4' \) \
+        -newer "${output_path}" \
+        -print -quit | grep -q .
+}
+
+ensure_csharp_runner_built() {
+    local output_path
+    output_path=$(runner_output_path)
+
+    if [[ ! -f "${output_path}" ]] || runner_sources_newer_than_output "${output_path}"; then
+        dotnet build --no-restore "${REPO_ROOT}/Harness.Runner/Harness.Runner.csproj"
     fi
 }
 
@@ -282,6 +312,7 @@ main() {
     ensure_source_target
     ensure_ocaml_folder
     detect_user_mode
+    ensure_csharp_runner_built
 
     local fixture_file
     local fixture_count=0

@@ -1,1 +1,1 @@
-let x = (\t : Bool.t) in (x true);
+if true then false else true;

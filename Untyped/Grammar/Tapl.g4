@@ -10,7 +10,7 @@ term	: '(' term ')'			#par
 
 BIND	: 'BIND';
 VAR		: [a-z];
-LAMBDA	: '\\';
+LAMBDA	: 'lambda';
 DOT		: '.';
 WS      : ' ' -> skip;
 NL      : '\r' -> skip;
