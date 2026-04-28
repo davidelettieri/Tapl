@@ -58,4 +58,6 @@ jobs:
     - name: Pull harness image
       run: docker pull "$TAPL_OCAML_HARNESS_IMAGE"
     - name: Run harness comparisons
+      env:
+        TAPL_DOCKER_USE_HOST_USER: false
       run: ./scripts/compare-tapl.sh all

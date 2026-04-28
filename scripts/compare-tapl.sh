@@ -7,6 +7,13 @@ LANGUAGE_SELECTOR=$(printf '%s' "${1:-all}" | tr '[:upper:]' '[:lower:]')
 SOURCE_INPUT=${2:-}
 IMAGE_NAME=${TAPL_OCAML_HARNESS_IMAGE:-public.ecr.aws/w9u4a6r8/ocaml:latest}
 VOLUME_SUFFIX=${TAPL_DOCKER_VOLUME_SUFFIX:-:Z}
+if [[ -n "${TAPL_DOCKER_USE_HOST_USER:-}" ]]; then
+    USE_HOST_USER=${TAPL_DOCKER_USE_HOST_USER}
+elif [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
+    USE_HOST_USER=false
+else
+    USE_HOST_USER=true
+fi
 SUPPORTED_LANGUAGES=(arith simplebool untyped letexercise fullsimple)
 
 readonly SCRIPT_DIR
@@ -15,6 +22,7 @@ readonly LANGUAGE_SELECTOR
 readonly SOURCE_INPUT
 readonly IMAGE_NAME
 readonly VOLUME_SUFFIX
+readonly USE_HOST_USER
 readonly SUPPORTED_LANGUAGES
 
 usage() {
@@ -175,7 +183,7 @@ docker_run_prefix() {
         -v "${REPO_ROOT}:/workspace${VOLUME_SUFFIX}"
     )
 
-    if command -v id >/dev/null 2>&1; then
+    if [[ "${USE_HOST_USER}" == "true" ]] && command -v id >/dev/null 2>&1; then
         out_ref+=(--user "$(id -u):$(id -g)")
     fi
 }
