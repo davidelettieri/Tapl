@@ -11,8 +11,6 @@ on:
 
 env:
   TAPL_OCAML_HARNESS_IMAGE: public.ecr.aws/w9u4a6r8/ocaml:latest
-  TAPL_OCAML_HARNESS_IMAGE_ARCHIVE: /tmp/tapl-ocaml-harness-image.tar
-  TAPL_OCAML_HARNESS_IMAGE_CACHE_VERSION: v1
 
 jobs:
   build:
@@ -36,43 +34,10 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
-  prepare-harness-image:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Restore harness image archive cache
-      id: harness-image-cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.TAPL_OCAML_HARNESS_IMAGE_ARCHIVE }}
-        key: ${{ runner.os }}-tapl-ocaml-harness-image-${{ env.TAPL_OCAML_HARNESS_IMAGE_CACHE_VERSION }}
-    - name: Pull harness image
-      if: steps.harness-image-cache.outputs.cache-hit != 'true'
-      run: docker pull "$TAPL_OCAML_HARNESS_IMAGE"
-    - name: Save harness image archive
-      if: steps.harness-image-cache.outputs.cache-hit != 'true'
-      run: docker save --output "$TAPL_OCAML_HARNESS_IMAGE_ARCHIVE" "$TAPL_OCAML_HARNESS_IMAGE"
-    - name: Upload harness image archive
-      uses: actions/upload-artifact@v4
-      with:
-        name: tapl-ocaml-harness-image
-        path: ${{ env.TAPL_OCAML_HARNESS_IMAGE_ARCHIVE }}
-        if-no-files-found: error
-
   harness:
     runs-on: ubuntu-latest
     needs:
-    - prepare-harness-image
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-        - arith
-        - simplebool
-        - untyped
-        - letexercise
-        - fullsimple
+    - build
 
     steps:
     - uses: actions/checkout@v6
@@ -90,14 +55,7 @@ jobs:
       run: dotnet restore
     - name: Build harness dependencies
       run: dotnet build --no-restore
-    - name: Download harness image archive
-      uses: actions/download-artifact@v4
-      with:
-        name: tapl-ocaml-harness-image
-        path: /tmp
-    - name: Load harness image
-      run: docker load --input "$TAPL_OCAML_HARNESS_IMAGE_ARCHIVE"
-    - name: Run harness for ${{ matrix.language }}
-      env:
-        TAPL_DOCKER_USE_HOST_USER: false
-      run: ./scripts/compare-tapl.sh ${{ matrix.language }}
+    - name: Pull harness image
+      run: docker pull "$TAPL_OCAML_HARNESS_IMAGE"
+    - name: Run harness comparisons
+      run: ./scripts/compare-tapl.sh all
