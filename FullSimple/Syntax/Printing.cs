@@ -96,15 +96,69 @@ public static class Printing
             case Float f:
                 pp.Write(f.Value.ToString(CultureInfo.InvariantCulture));
                 break;
-            case Record:
-            case Inert:
+            case Record record:
+                pp.Obox0();
+                pp.Write("{");
+                var fields = record.Fields.ToList();
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    var (label, term) = fields[i];
+                    if (label != i.ToString())
+                    {
+                        pp.Write(label);
+                        pp.Write("=");
+                    }
+
+                    PrintTmTerm(pp, false, ctx, term);
+                    if (i < fields.Count - 1)
+                    {
+                        pp.Write(",");
+                        if (outer)
+                        {
+                            pp.PrintSpace();
+                        }
+                        else
+                        {
+                            pp.PrintBreak(0, 0);
+                        }
+                    }
+                }
+
+                pp.Write("}");
+                pp.Cbox();
+                break;
+            case Inert inert:
+                pp.Write("inert[");
+                PrintType(pp, ctx, inert.Type);
+                pp.Write("]");
+                break;
             case Zero:
-            case Succ:
-                PrintTmTerm(pp, outer, ctx, t);
+                pp.Write("0");
+                break;
+            case Succ succ:
+                PrintNat(pp, ctx, succ, 0);
                 break;
             default:
                 pp.Write("(");
                 PrintTmTerm(pp, outer, ctx, t);
+                pp.Write(")");
+                break;
+        }
+    }
+
+    private static void PrintNat(PrettyPrinter pp, Context ctx, ITerm t, int value = 1)
+    {
+        switch (t)
+        {
+            case Zero:
+                pp.Write(value.ToString(CultureInfo.InvariantCulture));
+                break;
+            case Succ succ:
+                PrintNat(pp, ctx, succ.Of, value + 1);
+                break;
+            default:
+                pp.Write("(succ ");
+                PrintTmATerm(pp, false, ctx, t);
                 pp.Write(")");
                 break;
         }
