@@ -1,0 +1,3 @@
+[submodule "TAPL-ocaml"]
+	path = TAPL-ocaml
+	url = https://github.com/davidelettieri/TAPL-ocaml.git

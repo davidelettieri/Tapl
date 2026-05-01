@@ -14,7 +14,7 @@ elif [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
 else
     USE_HOST_USER=true
 fi
-SUPPORTED_LANGUAGES=(arith simplebool untyped letexercise fullsimple)
+SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple)
 
 readonly SCRIPT_DIR
 readonly REPO_ROOT
@@ -127,7 +127,7 @@ collect_fixture_files() {
 
 ensure_ocaml_folder() {
     local language=$1
-    local ocaml_dir="${REPO_ROOT}/TAPL/${language}"
+    local ocaml_dir="${REPO_ROOT}/TAPL-ocaml/${language}"
 
     if [[ ! -d "${ocaml_dir}" ]]; then
         echo "OCaml TAPL folder not found: ${ocaml_dir}" >&2
@@ -143,7 +143,6 @@ runner_sources_newer_than_output() {
         "${REPO_ROOT}/Arith" \
         "${REPO_ROOT}/SimpleBool" \
         "${REPO_ROOT}/Untyped" \
-        "${REPO_ROOT}/LetExercise" \
         "${REPO_ROOT}/FullSimple" \
         "${REPO_ROOT}/Harness.Runner" \
         -type f \
@@ -241,7 +240,7 @@ run_ocaml() {
 
     docker_run_prefix docker_args
     docker_args+=(
-        -w "/workspace/TAPL/${language}"
+        -w "/workspace/TAPL-ocaml/${language}"
         --entrypoint sh
         "${IMAGE_NAME}"
         -lc
