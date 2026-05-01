@@ -26,6 +26,7 @@ public static class Evaluation
         StringTerm => true,
         Unit => true,
         Float => true,
+        Inert => true,
         Abs => true,
         Record r => r.Fields.All(f => IsVal(ctx, f.Item2)),
         ITerm s when IsNumericVal(ctx, s) => true,

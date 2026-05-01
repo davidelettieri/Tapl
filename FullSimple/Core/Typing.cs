@@ -155,6 +155,8 @@ public static class Typing
                 return new TypeString();
             case Unit:
                 return new TypeUnit();
+            case Inert inert:
+                return inert.Type;
             case Ascribe asc:
                 if (TypeEqual(ctx, TypeOf(ctx, asc.Term), asc.Type))
                     return asc.Type;
@@ -226,7 +228,7 @@ public static class Typing
             return Shifting.TypeShift(-1, TypeOf(ctx1, p.term));
         });
 
-        var tyT1 = caseTypes.FirstOrDefault();
+        var tyT1 = caseTypes.First();
         var restTy = caseTypes.Skip(1);
 
         //foreach (var tyI in restTy)

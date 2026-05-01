@@ -25,16 +25,19 @@ public static class Printing
         switch (b)
         {
             case VarBind vb:
+                pp.Write(" : ");
                 PrintType(pp, ctx, vb.Type);
                 break;
             case TermAbbBind { Type: not null } tab:
+                pp.Write(" : ");
                 PrintType(pp, ctx, tab.Type);
                 break;
             case TermAbbBind tab:
+                pp.Write(" : ");
                 PrintType(pp, ctx, TypeOf(ctx, tab.Term));
                 break;
             case TypeAbbBind:
-                pp.Write(":: *");
+                pp.Write(" :: *");
                 break;
         }
 
@@ -270,9 +273,8 @@ public static class Printing
                 pp.Cbox();                
                 break;
             case Pred pred:
-                pp.Write("pred (");
-                PrintTmTerm(pp, false, ctx, pred.Of);
-                pp.Write(")");
+                pp.Write("pred ");
+                PrintTmATerm(pp, false, ctx, pred.Of);
                 break;
             case IsZero isZero:
                 pp.Write("iszero ");
@@ -308,8 +310,8 @@ public static class Printing
                 PrintTmAppTerm(pp, false, ctx, ascribe.Term);
                 pp.PrintSpace();
                 pp.Write("as ");
-                PrintType(ctx, ascribe.Type);
-                pp.Write(")");
+                PrintType(pp, ctx, ascribe.Type);
+                pp.Cbox();
                 break;
             default:
                 PrintTmATerm(pp, outer, ctx, t);
@@ -360,7 +362,7 @@ public static class Printing
                         while (enumerator.MoveNext())
                         {
                             current = enumerator.Current;
-                            pp.Write(",");
+                            pp.Write(", ");
                             pp.Write($"{current.Item1}:");
                             PrintType(pp, ctx, current.Item2);
                         }
@@ -381,11 +383,14 @@ public static class Printing
                 for (int i = 0; i < source.Count; i++)
                 {
                     var si = source[i];
-                    if (si.Item1 != i.ToString())
+                    if (si.Item1 != (i + 1).ToString())
+                    {
                         pp.Write(si.Item1);
+                        pp.Write(":");
+                    }
                     PrintType(pp, ctx, si.Item2);
                     if (i < source.Count - 1)
-                        pp.Write(",");
+                        pp.Write(", ");
                 }
 
                 pp.Write("}");

@@ -255,7 +255,7 @@ public sealed class TermVisitor : FullSimpleBaseVisitor<Func<Context, ITerm>>
     public override Func<Context, ITerm> VisitAterm_floatv(FullSimpleParser.Aterm_floatvContext context)
     {
         var info = context.GetFileInfo();
-        var value = float.Parse(context.FLOATV().GetText(), System.Globalization.CultureInfo.InvariantCulture);
+        var value = double.Parse(context.FLOATV().GetText(), System.Globalization.CultureInfo.InvariantCulture);
         return _ => new Float(info, value);
     }
 
