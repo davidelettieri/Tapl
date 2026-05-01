@@ -158,7 +158,8 @@ public static class Printing
             case Let let:
                 pp.Obox();
                 pp.Write("let ");
-                pp.Cbox();
+                pp.Write(let.Variable);
+                pp.Write(" = ");
                 PrintTmTerm(pp, false, ctx, let.LetTerm);
                 pp.PrintSpace();
                 pp.Write("in");
@@ -211,6 +212,9 @@ public static class Printing
                 pp.Write(" as ");
                 PrintType(pp, ctx, ascribe.Type);
                 pp.Write(")");
+                break;
+            case Tag:
+                PrintTmATerm(pp, outer, ctx, t);
                 break;
             case Var var:
                 pp.Write(ctx.IndexToName(var.Index));
@@ -326,13 +330,13 @@ public static class Printing
                     {
                         var current = enumerator.Current;
                         pp.Write($"{current.Item1}:");
-                        PrintType(pp, ctx, current.Item2);
+                        PrintType(pp, ctx, current.Item2, false);
                         while (enumerator.MoveNext())
                         {
                             current = enumerator.Current;
                             pp.Write(",");
                             pp.Write($"{current.Item1}:");
-                            PrintType(pp, ctx, current.Item2);
+                            PrintType(pp, ctx, current.Item2, false);
                         }
                     }
                 }

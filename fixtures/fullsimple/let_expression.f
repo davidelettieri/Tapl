@@ -1,1 +1,1 @@
-let x = succ 0 in succ x;
+lambda _:Unit. let x = succ 0 in x;

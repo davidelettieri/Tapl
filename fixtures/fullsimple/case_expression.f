@@ -1,1 +1,1 @@
-case <some=0> as <none:Unit, some:Nat> of <none=u> ==> 0 | <some=x> ==> succ x;
+lambda _:Unit. case <a=0> as <a:Nat> of <a=x> ==> x;
