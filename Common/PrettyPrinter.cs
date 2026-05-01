@@ -41,11 +41,17 @@ public sealed class PrettyPrinter
     }
 
     public void NewLine()
-{
-    _pendingBreak = false;
-    _buffer.AppendLine();
-    _column = 0;
-}
+    {
+        _pendingBreak = false;
+        _buffer.AppendLine();
+
+        var indent = _boxes.Count > 0
+            ? _boxes.Peek().StartColumn + _boxes.Peek().Indent
+            : 0;
+
+        _buffer.Append(' ', indent);
+        _column = indent;
+    }
 
     public void PrintSpace()
     {

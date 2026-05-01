@@ -35,7 +35,7 @@ public static class Functions
             case Eval e:
                 var type = Typing.TypeOf(ctx, e.Term);
                 var t = Eval(ctx, e.Term);
-                PrintTerm(ctx, t);
+                PrintATerm(ctx, t);
                 PrintType(ctx, type, addNewline: true);
                 return ctx;
             case Bind b:

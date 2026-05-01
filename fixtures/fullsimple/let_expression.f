@@ -1,0 +1,1 @@
+let x = succ 0 in succ x;

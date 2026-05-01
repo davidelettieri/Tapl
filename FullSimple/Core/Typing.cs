@@ -46,6 +46,7 @@ public static class Typing
         return (t1s, t2s) switch
         {
             (TypeString, TypeString) => true,
+            (TypeFloat, TypeFloat) => true,
             (TypeUnit, TypeUnit) => true,
             (TypeId b1, TypeId b2) => b1.Equals(b2),
             (TypeVar tv, _) when IsTyAbb(ctx, tv.N) => TypeEqual(ctx, GetTyAbb(ctx, tv.N), t2s),

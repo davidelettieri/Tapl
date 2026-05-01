@@ -1,0 +1,1 @@
+fix (lambda x:Bool. true);
