@@ -48,7 +48,7 @@ public static class Printing
         Console.Write(pp.ToString());
     }
 
-    public static void PrintATerm(Context ctx, ITerm t)
+    public static void PrintTmATerm(Context ctx, ITerm t)
     {
         var pp = new PrettyPrinter();
         PrintTmATerm(pp, true, ctx, t);
@@ -84,7 +84,7 @@ public static class Printing
                 pp.Write(">");
                 pp.PrintSpace();
                 pp.Write("as ");
-                PrintType(pp, ctx, tag.Type, false);
+                PrintType(pp, ctx, tag.Type);
                 pp.Cbox();
                 break;
             case Unit:
@@ -173,7 +173,7 @@ public static class Printing
                 pp.Write("lambda ");
                 pp.Write(xp);
                 pp.Write(":");
-                PrintType(pp, ctx, abs.Type, false);
+                PrintType(pp, ctx, abs.Type);
                 pp.Write(".");
                 if (Small(abs.Body) && !outer)
                 {
@@ -192,6 +192,16 @@ public static class Printing
                 PrintTmTerm(pp, false, ctx, fix.Term);
                 pp.Cbox();
                 break;
+            default:
+                PrintTmAppTerm(pp, outer, ctx, t);
+                break;
+        }
+    }
+
+    private static void PrintTmAppTerm(PrettyPrinter pp, bool outer, Context ctx, ITerm t)
+    {
+        switch (t)
+        {
             case TimesFloat timesFloat:
                 pp.Write("timesfloat ");
                 PrintTmTerm(pp, false, ctx, timesFloat.Left);
@@ -199,75 +209,11 @@ public static class Printing
                 PrintTmTerm(pp, false, ctx, timesFloat.Right);
                 break;
             case App app:
-                pp.Write("(");
-                PrintTmTerm(pp, false, ctx, app.Left);
-                pp.Write(")");
-                pp.Write("(");
+                pp.Obox();
+                PrintTmAppTerm(pp, false, ctx, app.Left);
+                pp.PrintSpace();
                 PrintTmTerm(pp, false, ctx, app.Right);
-                pp.Write(")");
-                break;
-            case Ascribe ascribe:
-                pp.Write("(");
-                PrintTmTerm(pp, false, ctx, ascribe.Term);
-                pp.Write(" as ");
-                PrintType(pp, ctx, ascribe.Type);
-                pp.Write(")");
-                break;
-            case Tag:
-                PrintTmATerm(pp, outer, ctx, t);
-                break;
-            case Var var:
-                pp.Write(ctx.IndexToName(var.Index));
-                break;
-            case StringTerm stringTerm:
-                pp.Write(stringTerm.Value);
-                break;
-            case True:
-                pp.Write("true");
-                break;
-            case False:
-                pp.Write("false");
-                break;
-            case Unit:
-                pp.Write("unit");
-                break;
-            case Float f:
-                pp.Write(f.Value.ToString(CultureInfo.InvariantCulture));
-                break;
-            case Record rec:
-                pp.Write("{");
-                for (int i = 0; i < rec.Fields.Count; i++)
-                {
-                    var field = rec.Fields[i];
-                    if (field.Item1 != i.ToString())
-                        pp.Write(field.Item1 + "=");
-                    PrintTmTerm(pp, false, ctx, field.Item2);
-                    if (i < rec.Fields.Count - 1)
-                        pp.Write(",");
-                }
-
-                pp.Write("}");
-                break;
-            case Succ succ:
-                PrintSucc(succ, 1);
-
-                void PrintSucc(Succ sc, int i)
-                {
-                    switch (sc.Of)
-                    {
-                        case Zero:
-                            pp.Write(i.ToString(CultureInfo.InvariantCulture));
-                            break;
-                        case Succ s:
-                            PrintSucc(s, i + 1);
-                            break;
-                        default:
-                            pp.Write("succ ");
-                            PrintTmTerm(pp, false, ctx, sc.Of);
-                            break;
-                    }
-                }
-
+                pp.Cbox();                
                 break;
             case Pred pred:
                 pp.Write("pred (");
@@ -278,31 +224,57 @@ public static class Printing
                 pp.Write("iszero ");
                 PrintTmTerm(pp, false, ctx, isZero.Term);
                 break;
-            case Zero:
-                pp.Write("0");
+            default:
+                PrintTmPathTerm(pp, outer, ctx, t);
                 break;
+        }
+    }
+
+    private static void PrintTmPathTerm(PrettyPrinter pp, bool outer, Context ctx, ITerm t)
+    {
+        switch (t)
+        {
             case Proj proj:
-                PrintTmTerm(pp, false, ctx, proj.Term);
+                PrintTmATerm(pp, false, ctx, proj.Term);
                 pp.Write(".");
                 pp.Write(proj.Label);
                 break;
             default:
-                throw new InvalidOperationException();
+                PrintTmAscribeTerm(pp, outer, ctx, t);
+                break;
         }
     }
 
-    public static void PrintType(Context ctx, IType type, bool startWithColon = true, bool addNewline = false)
+    private static void PrintTmAscribeTerm(PrettyPrinter pp, bool outer, Context ctx, ITerm t)
+    {
+        switch (t)
+        {
+            case Ascribe ascribe:
+                pp.Obox();
+                PrintTmAppTerm(pp, false, ctx, ascribe.Term);
+                pp.PrintSpace();
+                pp.Write("as ");
+                PrintType(ctx, ascribe.Type);
+                pp.Write(")");
+                break;
+            default:
+                PrintTmATerm(pp, outer, ctx, t);
+                break;
+        }
+    }
+
+    public static void PrintType(Context ctx, IType type)
     {
         var pp = new PrettyPrinter();
-        PrintType(pp, ctx, type, startWithColon, addNewline);
+        pp.PrintBreak(1, 2);
+        pp.Write(": ");
+        PrintType(pp, ctx, type);
+        pp.NewLine();
         Console.Write(pp.ToString());
     }
 
-    private static void PrintType(PrettyPrinter pp, Context ctx, IType type, bool startWithColon = true, bool addNewline = false)
+    private static void PrintType(PrettyPrinter pp, Context ctx, IType type)
     {
-        if (startWithColon)
-            pp.Write(" : ");
-
         switch (type)
         {
             case TypeNat:
@@ -318,9 +290,9 @@ public static class Printing
                 pp.Write("Bool");
                 break;
             case TypeArrow t:
-                PrintType(pp, ctx, t.From, false);
+                PrintType(pp, ctx, t.From);
                 pp.Write(" -> ");
-                PrintType(pp, ctx, t.To, false);
+                PrintType(pp, ctx, t.To);
                 break;
             case TypeVariant tv:
                 pp.Write("<");
@@ -330,13 +302,13 @@ public static class Printing
                     {
                         var current = enumerator.Current;
                         pp.Write($"{current.Item1}:");
-                        PrintType(pp, ctx, current.Item2, false);
+                        PrintType(pp, ctx, current.Item2);
                         while (enumerator.MoveNext())
                         {
                             current = enumerator.Current;
                             pp.Write(",");
                             pp.Write($"{current.Item1}:");
-                            PrintType(pp, ctx, current.Item2, false);
+                            PrintType(pp, ctx, current.Item2);
                         }
                     }
                 }
@@ -370,9 +342,6 @@ public static class Printing
             default:
                 throw new InvalidOperationException();
         }
-
-        if (addNewline)
-            pp.NewLine();
     }
 
     public static void PrintBinding(PrettyPrinter pp, Context ctx, IBinding bind)
