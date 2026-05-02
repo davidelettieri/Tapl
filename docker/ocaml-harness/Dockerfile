@@ -1,4 +1,4 @@
-FROM public.ecr.aws/w9u4a6r8/ocaml:latest
+FROM ocaml/opam:alpine-ocaml-4.14-fp
 
 WORKDIR /workspace
 

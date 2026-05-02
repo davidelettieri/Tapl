@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 env:
-  TAPL_OCAML_HARNESS_IMAGE: public.ecr.aws/w9u4a6r8/ocaml:latest
+  TAPL_OCAML_HARNESS_IMAGE: ocaml/opam:alpine-ocaml-4.14-fp
 
 jobs:
   build:
