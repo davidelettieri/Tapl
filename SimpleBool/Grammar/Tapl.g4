@@ -15,7 +15,7 @@ type	: type '->' type					#arrow
 
 BIND	: 'BIND';
 VAR		: [a-z];
-LAMBDA	: '\\';
+LAMBDA	: 'lambda';
 DOT		: '.';
 WS      : ' ' -> skip;
 NL      : '\r' -> skip;

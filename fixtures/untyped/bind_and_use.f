@@ -1,2 +1,1 @@
-BIND x;
-x;
+lambda x. x;

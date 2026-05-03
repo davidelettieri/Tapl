@@ -1,5 +1,5 @@
-using System.Text;
 using Arith.Terms;
+using Common;
 
 namespace Harness.Runner;
 
@@ -30,6 +30,15 @@ internal static class Program
         {
             Console.SetOut(capture);
             RunLanguage(options.Language, source);
+        }
+        catch (TaplTypingException ex) when (ex.Info is Common.FileInfo c)
+        {
+            Console.SetOut(originalOut);
+            originalOut.WriteLine($"{FormatWorkspacePath(options.SourceFilePath)}:{c.Line}.{c.Column}:");
+            originalOut.WriteLine(ex.Message);
+            originalOut.WriteLine();
+            originalOut.WriteLine();
+            return 1;
         }
         catch (Exception ex)
         {
@@ -109,6 +118,18 @@ internal static class Program
         }
 
         throw new ArgumentException($"Unsupported language: {language}");
+    }
+
+    private static string FormatWorkspacePath(string sourceFilePath)
+    {
+        var repoRoot = Directory.GetCurrentDirectory();
+        var relativePath = Path.GetRelativePath(repoRoot, sourceFilePath);
+
+        if (relativePath.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+            || relativePath == "..")
+            return sourceFilePath.Replace(Path.DirectorySeparatorChar, '/');
+
+        return "/workspace/" + relativePath.Replace(Path.DirectorySeparatorChar, '/');
     }
 
     private static void RunArith(string source)

@@ -1,1 +1,2 @@
-if true then false else true;
+lambda _:Unit. if false then true else false;
+(lambda _:Unit. if false then true else false) unit;

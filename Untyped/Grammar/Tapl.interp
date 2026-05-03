@@ -5,7 +5,7 @@ null
 ')'
 'BIND'
 null
-'\\'
+'lambda'
 '.'
 ' '
 '\r'

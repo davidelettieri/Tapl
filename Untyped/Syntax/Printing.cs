@@ -12,9 +12,9 @@ public static class Printing
         {
             case Abs abs:
                 var (newContext, xp) = ctx.PickFreshName(abs.BoundedVariable);
-                return $"(lambda {xp}.{PrintTerm(newContext, abs.Body)})";
+                return $"(lambda {xp}. {PrintTerm(newContext, abs.Body)})";
             case App app:
-                return $"({PrintTerm(ctx, app.Left)}{PrintTerm(ctx, app.Right)})";
+                return $"({PrintTerm(ctx, app.Left)} {PrintTerm(ctx, app.Right)})";
             case Var var:
                 if (ctx.Length == var.ContextLength)
                     return ctx.IndexToName(var.Index);

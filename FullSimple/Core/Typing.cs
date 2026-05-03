@@ -46,6 +46,7 @@ public static class Typing
         return (t1s, t2s) switch
         {
             (TypeString, TypeString) => true,
+            (TypeFloat, TypeFloat) => true,
             (TypeUnit, TypeUnit) => true,
             (TypeId b1, TypeId b2) => b1.Equals(b2),
             (TypeVar tv, _) when IsTyAbb(ctx, tv.N) => TypeEqual(ctx, GetTyAbb(ctx, tv.N), t2s),
@@ -154,6 +155,8 @@ public static class Typing
                 return new TypeString();
             case Unit:
                 return new TypeUnit();
+            case Inert inert:
+                return inert.Type;
             case Ascribe asc:
                 if (TypeEqual(ctx, TypeOf(ctx, asc.Term), asc.Type))
                     return asc.Type;
@@ -211,7 +214,7 @@ public static class Typing
         foreach (var item in c.Cases)
         {
             if (!variants.Contains(item.label))
-                throw new Exception($"Label {item.label} is not in type.");
+                throw new TaplTypingException(c.Info, $"Label {item.label} is not in type.");
         }
 
         var caseTypes = c.Cases.Select(p =>
@@ -219,20 +222,20 @@ public static class Typing
             var tyTi = tv.Variants.FirstOrDefault(v => v.Item1 == p.label);
 
             if (tyTi.Item1 is null)
-                throw new Exception($"Label {p.label} is not found.");
+                throw new TaplTypingException(c.Info, $"Label {p.label} is not found.");
 
             var ctx1 = ctx.AddBinding(p.variable, new VarBind(tyTi.Item2));
             return Shifting.TypeShift(-1, TypeOf(ctx1, p.term));
-        });
+        }).ToList();
 
-        var tyT1 = caseTypes.FirstOrDefault();
+        var tyT1 = caseTypes.First();
         var restTy = caseTypes.Skip(1);
 
-        //foreach (var tyI in restTy)
-        //{
-        //    if (!TypeEqual(ctx, tyI, tyT1))
-        //        throw new Exception("fields do not have the same type in " + string.Join(',', caseTypes));
-        //}
+        foreach (var tyI in restTy)
+        {
+            if (!TypeEqual(ctx, tyI, tyT1))
+                throw new TaplTypingException(c.Info, "fields do not have the same type");
+        }
 
         return tyT1;
     }
