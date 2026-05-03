@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 env:
-  TAPL_OCAML_HARNESS_IMAGE: ocaml/opam:alpine-ocaml-4.14-fp
+  TAPL_OCAML_HARNESS_IMAGE: tapl-ocaml-harness:ci
 
 jobs:
   build:
@@ -55,8 +55,17 @@ jobs:
       run: dotnet restore
     - name: Build harness dependencies
       run: dotnet build --no-restore
-    - name: Pull harness image
-      run: docker pull "$TAPL_OCAML_HARNESS_IMAGE"
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build harness image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./docker/ocaml-harness
+        file: ./docker/ocaml-harness/Dockerfile
+        load: true
+        tags: ${{ env.TAPL_OCAML_HARNESS_IMAGE }}
+        cache-from: type=gha,scope=ocaml-harness
+        cache-to: type=gha,mode=max,scope=ocaml-harness
     - name: Run harness comparisons
       env:
         TAPL_DOCKER_USE_HOST_USER: false
