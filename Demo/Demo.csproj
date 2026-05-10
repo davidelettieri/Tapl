@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="fullref.txt" />
+    <None Remove="fullerror.txt" />
     <None Remove="letexercise.txt" />
     <None Remove="simplebool.txt" />
     <None Remove="untyped.txt" />
@@ -16,6 +17,9 @@
 
   <ItemGroup>
     <Content Include="fullref.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fullerror.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="letexercise.txt">
@@ -30,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FullError\FullError.csproj" />
     <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\LetExercise\LetExercise.csproj" />
