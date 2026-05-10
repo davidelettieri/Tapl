@@ -1,0 +1,1 @@
+case <a=0> as <a:Nat, b:Nat> of <a=x> ==> true | <b=y> ==> 0;

@@ -8,12 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fullref.txt" />
     <None Remove="letexercise.txt" />
     <None Remove="simplebool.txt" />
     <None Remove="untyped.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="fullref.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="letexercise.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -26,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\LetExercise\LetExercise.csproj" />
     <ProjectReference Include="..\SimpleBool\SimpleBool.csproj" />
