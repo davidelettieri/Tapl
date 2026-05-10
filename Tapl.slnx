@@ -8,6 +8,8 @@
   <Project Path="Arith/Arith.csproj" />
   <Project Path="Common/Common.csproj" />
   <Project Path="Demo/Demo.csproj" />
+  <Project Path="FullError.Tests/FullError.Tests.csproj" />
+  <Project Path="FullError/FullError.csproj" />
   <Project Path="FullRef.Tests/FullRef.Tests.csproj" />
   <Project Path="FullRef/FullRef.csproj" />
   <Project Path="FullSimple.Tests/FullSimple.Tests.csproj" />

@@ -14,7 +14,7 @@ elif [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
 else
     USE_HOST_USER=true
 fi
-SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple fullref)
+SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple fullref fullerror)
 
 readonly SCRIPT_DIR
 readonly REPO_ROOT

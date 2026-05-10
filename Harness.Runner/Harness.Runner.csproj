@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Arith\Arith.csproj" />
+    <ProjectReference Include="..\FullError\FullError.csproj" />
     <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\LetExercise\LetExercise.csproj" />

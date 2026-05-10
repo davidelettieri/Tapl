@@ -1,0 +1,21 @@
+/* FullError language sample */
+
+/* Lambda abstractions */
+lambda x:Bool. x;
+lambda x:Bot. x;
+lambda x:Top. x;
+
+/* If-then-else */
+if true then false else true;
+
+/* Error propagation */
+error;
+if error then true else false;
+error true;
+(lambda x:Bool. x) error;
+
+/* Top/Bot subtyping */
+(lambda x:Top. x) (lambda x:Top. x);
+
+/* Try-with */
+try error with true;
