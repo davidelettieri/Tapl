@@ -1,2 +1,2 @@
 lambda _:Unit. lambda x:Bot. x;
-(lambda _:Unit. lambda x:Bot. x) unit;
+lambda x:Bot. x;
