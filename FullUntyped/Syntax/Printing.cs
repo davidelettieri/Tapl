@@ -85,7 +85,7 @@ public static class Printing
                 pp.Write(ctx.IndexToName(var.Index));
                 break;
             case Float f:
-                pp.Write(f.Value.ToString(CultureInfo.InvariantCulture));
+                pp.Write(FormatFloat(f.Value));
                 break;
             case Record record:
                 pp.Obox0();
@@ -247,15 +247,15 @@ public static class Printing
         {
             case TimesFloat timesFloat:
                 pp.Write("timesfloat ");
-                PrintTmTerm(pp, false, ctx, timesFloat.Left);
+                PrintTmATerm(pp, false, ctx, timesFloat.Left);
                 pp.PrintSpace();
-                PrintTmTerm(pp, false, ctx, timesFloat.Right);
+                PrintTmATerm(pp, false, ctx, timesFloat.Right);
                 break;
             case App app:
                 pp.Obox();
                 PrintTmAppTerm(pp, false, ctx, app.Left);
                 pp.PrintSpace();
-                PrintTmTerm(pp, false, ctx, app.Right);
+                PrintTmATerm(pp, false, ctx, app.Right);
                 pp.Cbox();                
                 break;
             case Pred pred:
@@ -410,5 +410,11 @@ public static class Printing
                 PrintType(pp, ctx, tab.Type);
                 break;
         }
+    }
+
+    private static string FormatFloat(double value)
+    {
+        var text = value.ToString(CultureInfo.InvariantCulture);
+        return text.Contains('.') ? text : $"{text}.";
     }
 }

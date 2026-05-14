@@ -26,6 +26,24 @@ public class ProcessTests
         Assert.Equal("x", lines[1]);
     }
 
+    [Fact(DisplayName = "Process prints application argument abstraction in parentheses")]
+    public void ProcessPrintsApplicationArgumentAbstractionInParentheses()
+    {
+        var output = CaptureOutput(() => Functions.Process("lambda _. (lambda x. x) (lambda y. y);"));
+        var lines = output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+        Assert.Equal("(lambda _. (lambda x.x) (lambda y.y))", lines[0]);
+    }
+
+    [Fact(DisplayName = "Process prints floats with trailing dot")]
+    public void ProcessPrintsFloatsWithTrailingDot()
+    {
+        var output = CaptureOutput(() => Functions.Process("timesfloat 2.0 3.0;"));
+        var lines = output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+        Assert.Equal("6.", lines[0]);
+    }
+
     private static string CaptureOutput(Action action)
     {
         var originalOut = Console.Out;
