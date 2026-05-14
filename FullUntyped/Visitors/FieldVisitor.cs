@@ -15,7 +15,7 @@ public sealed class FieldVisitor(TermVisitor termVisitor) : FullUntypedBaseVisit
 
     public override Func<(Context, int), (string, ITerm)> VisitField_term(FullUntypedParser.Field_termContext context)
     {
-        var term = termVisitor.Visit(context);
+        var term = termVisitor.Visit(context.term());
 
         return arg => (arg.Item2.ToString(), term(arg.Item1));
     }
