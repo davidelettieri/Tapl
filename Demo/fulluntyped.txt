@@ -1,0 +1,6 @@
+x /;
+x;
+lambda x. x;
+let y = true in y;
+timesfloat 2.0 4.0;
+{flag=true, n=succ 0}.n;
