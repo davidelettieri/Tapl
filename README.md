@@ -23,6 +23,7 @@ An initial cross-implementation harness is available for the TAPL languages that
 - `untyped`
 - `letexercise`
 - `fullsimple`
+- `fulluntyped`
 
 The harness runs the OCaml TAPL implementation inside Docker, runs the C# implementation through the `Harness.Runner` console app, and compares stdout, stderr, and exit code. When the outputs differ, it reports the first differing line and prints a unified diff.
 

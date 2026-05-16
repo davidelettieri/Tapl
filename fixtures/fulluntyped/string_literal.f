@@ -1,0 +1,2 @@
+lambda _. "hello";
+"hello";

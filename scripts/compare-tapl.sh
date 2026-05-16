@@ -14,7 +14,7 @@ elif [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
 else
     USE_HOST_USER=true
 fi
-SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple fullref fullerror)
+SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple fulluntyped fullref fullerror)
 
 readonly SCRIPT_DIR
 readonly REPO_ROOT
@@ -145,6 +145,7 @@ runner_sources_newer_than_output() {
         "${REPO_ROOT}/Untyped" \
         "${REPO_ROOT}/FullRef" \
         "${REPO_ROOT}/FullSimple" \
+        "${REPO_ROOT}/FullUntyped" \
         "${REPO_ROOT}/Harness.Runner" \
         -type f \
         \( -name '*.cs' -o -name '*.csproj' -o -name '*.g4' \) \

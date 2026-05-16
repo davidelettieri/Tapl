@@ -1,0 +1,22 @@
+﻿using System;
+using Common;
+
+namespace FullUntyped.Visitors;
+
+public sealed class FieldVisitor(TermVisitor termVisitor) : FullUntypedBaseVisitor<Func<(Context, int), (string, ITerm)>>
+{
+    public override Func<(Context, int), (string, ITerm)> VisitField_lcid(FullUntypedParser.Field_lcidContext context)
+    {
+        var id = context.LCID().GetText();
+        var term = termVisitor.Visit(context.term());
+
+        return t => (id, term(t.Item1));
+    }
+
+    public override Func<(Context, int), (string, ITerm)> VisitField_term(FullUntypedParser.Field_termContext context)
+    {
+        var term = termVisitor.Visit(context.term());
+
+        return arg => (arg.Item2.ToString(), term(arg.Item1));
+    }
+}

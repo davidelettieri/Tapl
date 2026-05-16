@@ -1,2 +1,2 @@
 lambda _:Bool. (lambda x:Top. x) (lambda x:Top. x);
-(lambda _:Bool. (lambda x:Top. x) (lambda x:Top. x)) true;
+(lambda x:Top. x) (lambda x:Top. x);

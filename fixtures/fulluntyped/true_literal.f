@@ -1,0 +1,2 @@
+lambda _. true;
+true;
