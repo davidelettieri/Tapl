@@ -15,7 +15,8 @@ static class Program
         { 4, new Sample("fullsimple", FullSimple.Functions.Process) },
         { 5, new Sample("fulluntyped", FullUntyped.Functions.Process) },
         { 6, new Sample("fullref", FullRef.Functions.Process) },
-        { 7, new Sample("fullerror", FullError.Functions.Process) }
+        { 7, new Sample("fullerror", FullError.Functions.Process) },
+        { 8, new Sample("fullupdate", FullUpdate.Functions.Process) }
     };
 
     static void Main(string[] args)

@@ -16,6 +16,8 @@
   <Project Path="FullSimple/FullSimple.csproj" />
   <Project Path="FullUntyped.Tests/FullUntyped.Tests.csproj" />
   <Project Path="FullUntyped/FullUntyped.csproj" />
+  <Project Path="FullUpdate.Tests/FullUpdate.Tests.csproj" />
+  <Project Path="FullUpdate/FullUpdate.csproj" />
   <Project Path="Harness.Runner/Harness.Runner.csproj" />
   <Project Path="LetExercise/LetExercise.csproj" />
   <Project Path="SimpleBool/SimpleBool.csproj" />

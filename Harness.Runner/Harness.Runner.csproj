@@ -14,6 +14,7 @@
     <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\FullUntyped\FullUntyped.csproj" />
+    <ProjectReference Include="..\FullUpdate\FullUpdate.csproj" />
     <ProjectReference Include="..\LetExercise\LetExercise.csproj" />
     <ProjectReference Include="..\SimpleBool\SimpleBool.csproj" />
     <ProjectReference Include="..\Untyped\Untyped.csproj" />
