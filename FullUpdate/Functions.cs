@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Immutable;
+using Antlr4.Runtime;
 using Common;
 using FullUpdate.Core;
 using FullUpdate.Syntax;
 using FullUpdate.Syntax.Bindings;
+using FullUpdate.Visitors;
 using static FullUpdate.Core.Evaluation;
 using static FullUpdate.Syntax.Printing;
 
@@ -16,10 +18,14 @@ public static class Functions
         if (string.IsNullOrWhiteSpace(s))
             throw new ArgumentException($"{nameof(s)} cannot be null or empty");
 
-        var lexer = new Parser.Lexer(s);
-        var tokens = lexer.Tokenize();
-        var parser = new Parser.Parser(tokens);
-        return parser.ParseToplevel();
+        var inputStream = new AntlrInputStream(s);
+        var lexer = new FullUpdateLexer(inputStream);
+        var commonTokenStream = new CommonTokenStream(lexer);
+        var parser = new FullUpdateParser(commonTokenStream);
+        var context = parser.toplevel();
+
+        var visitor = new TopLevelVisitor();
+        return visitor.Visit(context);
     }
 
     public static Context ProcessCommand(Context ctx, ICommand c)
@@ -55,9 +61,6 @@ public static class Functions
                     Console.WriteLine();
                     Console.Write(sb.Var);
                     Console.Write(" : ");
-                    var pp = new PrettyPrinter();
-                    // printty ctx1 tyBody  -> prints body type in ctx1
-                    // We use the printing helper via reflection of the Printing module
                     PrintBodyType(ctx1, some.Body);
                     Console.WriteLine();
                     return ctx2;
@@ -71,7 +74,6 @@ public static class Functions
 
     private static void PrintBodyType(Context ctx, IType t)
     {
-        // Print type using the internal type printer
         var pp = new PrettyPrinter();
         FullUpdate.Syntax.Printing.PrintBodyType(pp, ctx, t);
         Console.Write(pp.ToString());
