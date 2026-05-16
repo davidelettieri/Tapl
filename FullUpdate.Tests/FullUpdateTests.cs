@@ -185,4 +185,67 @@ public class ProcessTests
         Assert.Contains("{", output);
         Assert.Contains("x", output);
     }
+
+    [Fact(DisplayName = "Nat succ 0 prints as 1")]
+    public void NatSuccPrintsOne()
+    {
+        var output = Capture(() => Functions.Process("succ 0;"));
+        Assert.Contains("1 : Nat", output);
+    }
+
+    [Fact(DisplayName = "Nat succ (succ 0) prints as 2")]
+    public void NatSuccSuccPrintsTwo()
+    {
+        var output = Capture(() => Functions.Process("succ (succ 0);"));
+        Assert.Contains("2 : Nat", output);
+    }
+
+    [Fact(DisplayName = "Record update evaluates new value")]
+    public void RecordUpdate()
+    {
+        var output = Capture(() => Functions.Process("{x=true, #y=0} <- y = succ 0;"));
+        Assert.Contains("{x=true, #y=1}", output);
+    }
+
+    [Fact(DisplayName = "Higher-kinded type variable prints with :: annotation")]
+    public void HigherKindedTypeVar()
+    {
+        var output = Capture(() => Functions.Process("lambda X::*=>*. lambda x:(X Bool). x;"));
+        Assert.Contains("X::*=>*", output);
+        Assert.Contains("All X::*=>*", output);
+    }
+
+    [Fact(DisplayName = "Valid unpack works")]
+    public void ValidUnpack()
+    {
+        var output = Capture(() => Functions.Process("let {X,x} = {*Bool, true} as {Some X, X} in true;"));
+        Assert.Contains("true : Bool", output);
+    }
+
+    [Fact(DisplayName = "Scope extrusion throws typing exception")]
+    public void ScopeExtrusion()
+    {
+        Assert.ThrowsAny<Exception>(() =>
+            Capture(() => Functions.Process("let {X,x} = {*Bool, true} as {Some X, X} in x;")));
+    }
+
+    [Fact(DisplayName = "Invariant-invariant subtype requires equal types")]
+    public void InvariantInvariantSubtype()
+    {
+        // {#x:Bool} should NOT be a subtype of {#x:Top} (invariant requires exact equality)
+        var ctx = new Context();
+        var r1 = new TypeRecord(new List<(string, Variance, IType)> { ("x", Variance.Invariant, new TypeBool()) });
+        var r2 = new TypeRecord(new List<(string, Variance, IType)> { ("x", Variance.Invariant, new TypeTop()) });
+        Assert.False(Typing.Subtype(ctx, r1, r2));
+    }
+
+    [Fact(DisplayName = "Invariant-covariant subtype allows covariant relaxation")]
+    public void InvariantCovariantSubtype()
+    {
+        // {#x:Bool} IS a subtype of {x:Top} (invariant satisfies covariant read)
+        var ctx = new Context();
+        var r1 = new TypeRecord(new List<(string, Variance, IType)> { ("x", Variance.Invariant, new TypeBool()) });
+        var r2 = new TypeRecord(new List<(string, Variance, IType)> { ("x", Variance.Covariant, new TypeTop()) });
+        Assert.True(Typing.Subtype(ctx, r1, r2));
+    }
 }

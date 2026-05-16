@@ -92,10 +92,33 @@ public static class Printing
     }
 
     // ---- Bound printing ----
-    // proty: prints "<:T" if T != Top
+
+    /// <summary>
+    /// If <paramref name="t"/> is MakeTop(K) for some non-* kind K, returns that K.
+    /// MakeTop(KnStar) = TypeTop; MakeTop(KnArr(k1,k2)) = TypeAbs("_",k1,MakeTop(k2)).
+    /// </summary>
+    private static IKind? TryGetMakeTopKind(IType t) => t switch
+    {
+        TypeTop => new KnStar(),
+        TypeAbs { Body: var body } abs when TryGetMakeTopKind(body) is KnStar =>
+            new KnArr(abs.Kind, new KnStar()),
+        TypeAbs { Body: var body } abs when TryGetMakeTopKind(body) is KnArr karr =>
+            new KnArr(abs.Kind, karr),
+        _ => null
+    };
+
+    // proty: prints "<:T" if T != Top, or "::K" if T is MakeTop(K) for non-* K
     private static void ProType(PrettyPrinter pp, Context ctx, IType t)
     {
-        if (t is not TypeTop)
+        if (t is TypeTop) return;
+        var k = TryGetMakeTopKind(t);
+        if (k is KnArr)
+        {
+            // higher-kinded variable: print ::K
+            pp.Write("::");
+            PrintKind(pp, false, k);
+        }
+        else
         {
             pp.Write("<:");
             PrintType(pp, false, ctx, t);
@@ -227,7 +250,7 @@ public static class Printing
             if (i < fields.Count - 1)
             {
                 pp.Write(",");
-                if (outer) pp.PrintSpace(); else pp.PrintBreak(0, 0);
+                pp.PrintSpace();
             }
         }
         pp.Write("}");
@@ -242,7 +265,21 @@ public static class Printing
         {
             case NameBinding: break;
             case VarBind vb: pp.Write(": "); PrintType(pp, true, ctx, vb.Type); break;
-            case TypeVarBind tvb: pp.Write("<: "); PrintType(pp, false, ctx, tvb.Bound); break;
+            case TypeVarBind tvb:
+                var tvbKind = TryGetMakeTopKind(tvb.Bound);
+                if (tvb.Bound is TypeTop)
+                    break; // default, no annotation needed
+                else if (tvbKind is KnArr)
+                {
+                    pp.Write(":: ");
+                    PrintKind(pp, true, tvbKind);
+                }
+                else
+                {
+                    pp.Write("<: ");
+                    PrintType(pp, false, ctx, tvb.Bound);
+                }
+                break;
             case TypeAbbBind tab:
                 pp.Write(":: ");
                 if (tab.Kind is not null) PrintKind(pp, true, tab.Kind);
@@ -320,13 +357,13 @@ public static class Printing
 
             case Update upd:
                 pp.Obox();
-                PrintTmAppTerm(pp, false, ctx, upd.Record);
-                if (outer) pp.PrintSpace(); else pp.PrintBreak(0, 0);
+                PrintTmAppTerm(pp, outer, ctx, upd.Record);
+                pp.PrintSpace();
                 pp.Write("<-");
-                if (outer) pp.Write(" ");
+                pp.Write(" ");
                 pp.Write(upd.Label);
-                if (outer) pp.Write(" = "); else pp.Write("=");
-                PrintTmTerm(pp, false, ctx, upd.NewValue);
+                pp.Write(" = ");
+                PrintTmTerm(pp, outer, ctx, upd.NewValue);
                 pp.Cbox();
                 break;
 
@@ -461,7 +498,7 @@ public static class Printing
             case False: pp.Write("false"); break;
             case Zero: pp.Write("0"); break;
             case Succ succ:
-                PrintNat(pp, ctx, succ, 1);
+                PrintNat(pp, ctx, succ.Of, 1);
                 break;
             case Unit: pp.Write("unit"); break;
             case Float f:
@@ -491,12 +528,8 @@ public static class Printing
             case Zero: pp.Write(value.ToString()); break;
             case Succ succ: PrintNat(pp, ctx, succ.Of, value + 1); break;
             default:
-                // not a numeric value, print as (succ t1)
                 pp.Write("(succ ");
-                // reconstruct original Succ from value and t
-                ITerm inner = t;
-                for (int i = 0; i < value - 1; i++) inner = new Succ(new UnknownInfo(), inner);
-                PrintTmATerm(pp, false, ctx, inner);
+                PrintTmATerm(pp, false, ctx, t);
                 pp.Write(")");
                 break;
         }
@@ -520,7 +553,7 @@ public static class Printing
             if (i < fields.Count - 1)
             {
                 pp.Write(",");
-                if (outer) pp.PrintSpace(); else pp.PrintBreak(0, 0);
+                pp.PrintSpace();
             }
         }
         pp.Write("}");

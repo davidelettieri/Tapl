@@ -207,8 +207,16 @@ public static class Typing
                 {
                     var m = r1.Fields.FirstOrDefault(x => x.Label == ft2.Label);
                     if (m.Label is null) return false;
-                    return (m.Var == Variance.Invariant || ft2.Var == Variance.Covariant)
-                        && Subtype(ctx, m.Type, ft2.Type);
+                    return (m.Var, ft2.Var) switch
+                    {
+                        // invariant field in supertype: must be exactly the same type (both directions)
+                        (Variance.Invariant, Variance.Invariant) =>
+                            Subtype(ctx, m.Type, ft2.Type) && Subtype(ctx, ft2.Type, m.Type),
+                        // covariant field: T1 <: T2 (invariant in source satisfies covariant requirement)
+                        (Variance.Invariant, Variance.Covariant) => Subtype(ctx, m.Type, ft2.Type),
+                        (Variance.Covariant, Variance.Covariant) => Subtype(ctx, m.Type, ft2.Type),
+                        _ => false
+                    };
                 }),
             (TypeSome some1, TypeSome some2) =>
                 Subtype(ctx, some1.Bound, some2.Bound) && Subtype(ctx, some2.Bound, some1.Bound) &&
@@ -393,7 +401,11 @@ public static class Typing
                     var ctx2 = ctx.AddBinding(unpack.TypeVar, new TypeVarBind(some2.Bound));
                     var ctx3 = ctx2.AddBinding(unpack.V, new VarBind(some2.Body));
                     var tyUnpack2 = TypeOf(ctx3, unpack.Body);
-                    return TypeShift(-2, tyUnpack2);
+                    var tyResult = TypeShift(-2, tyUnpack2);
+                    // Check for scope extrusion: if X or x indices appear free in the result type, the existential type escapes
+                    if (HasNegativeVar(tyResult))
+                        throw new TaplTypingException(unpack.Info, "Scope extrusion: existential type variable escapes");
+                    return tyResult;
                 }
                 throw new TaplTypingException(unpack.Info, "existential type expected");
 
@@ -481,6 +493,20 @@ public static class Typing
                 throw new InvalidOperationException($"TypeOf: unhandled {t.GetType().Name}");
         }
     }
+
+    // ---- HasNegativeVar ----
+    // Returns true if there's a TypeVar with a negative index (caused by TypeShift of an escaped variable)
+    private static bool HasNegativeVar(IType t) => t switch
+    {
+        TypeVar tv => tv.X < 0,
+        TypeArrow arr => HasNegativeVar(arr.From) || HasNegativeVar(arr.To),
+        TypeAll all => HasNegativeVar(all.Bound) || HasNegativeVar(all.Body),
+        TypeSome some => HasNegativeVar(some.Bound) || HasNegativeVar(some.Body),
+        TypeAbs abs => HasNegativeVar(abs.Body),
+        TypeApp app => HasNegativeVar(app.T1) || HasNegativeVar(app.T2),
+        TypeRecord rec => rec.Fields.Any(f => HasNegativeVar(f.Type)),
+        _ => false
+    };
 
     // ---- CheckBinding ----
     public static IBinding CheckBinding(IInfo fi, Context ctx, IBinding bind)
