@@ -11,3 +11,4 @@ bash "${SCRIPT_DIR}/../FullUntyped/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../LetExercise/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../SimpleBool/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../Untyped/Grammar/gen.sh"
+# FullUpdate uses a hand-rolled recursive-descent parser; no ANTLR generation needed.
