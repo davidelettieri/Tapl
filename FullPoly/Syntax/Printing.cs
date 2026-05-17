@@ -119,7 +119,7 @@ public static class Printing
                 for (int i = 0; i < fields.Count; i++)
                 {
                     var (label, term) = fields[i];
-                    if (label != i.ToString())
+                    if (label != (i + 1).ToString())
                     {
                         pp.Write(label);
                         pp.Write("=");
