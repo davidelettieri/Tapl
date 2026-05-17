@@ -34,8 +34,8 @@ public static class Printing
         PrintType(typePp, true, ctx, type);
         var typeStr = typePp.ToString();
 
-        // " : " = 3 chars; wrap if combined line reaches or exceeds margin 67
-        if (termStr.Length + 3 + typeStr.Length < 67)
+        // " : " = 3 chars; wrap if combined line reaches or exceeds OCaml margin 67
+        if (termStr.Length + 3 + typeStr.Length < 67)  // strict: OCaml wraps at exactly 67
         {
             Console.Write(termStr);
             Console.Write(" : ");
