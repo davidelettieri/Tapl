@@ -306,8 +306,8 @@ public sealed class TermVisitor : FullPolyBaseVisitor<Func<Context, ITerm>>
     {
         var info = context.GetFileInfo();
         var value = int.Parse(context.INTV().GetText(), System.Globalization.CultureInfo.InvariantCulture);
-        return _ => f(value);
+        return _ => BuildNatTerm(value);
 
-        ITerm f(int n) => n == 0 ? new Zero(info) : new Succ(info, f(n - 1));
+        ITerm BuildNatTerm(int n) => n == 0 ? new Zero(info) : new Succ(info, BuildNatTerm(n - 1));
     }
 }
