@@ -23,6 +23,35 @@ public static class Printing
         Console.Write(pp.ToString());
     }
 
+    public static void PrintTmATermWithType(Context ctx, ITerm t, IType type)
+    {
+        // Pre-render term and type separately to decide wrapping at margin 67
+        var termPp = new PrettyPrinter(67);
+        PrintTmATerm(termPp, true, ctx, t);
+        var termStr = termPp.ToString();
+
+        var typePp = new PrettyPrinter(67);
+        PrintType(typePp, true, ctx, type);
+        var typeStr = typePp.ToString();
+
+        // " : " = 3 chars; wrap if combined line reaches or exceeds margin 67
+        if (termStr.Length + 3 + typeStr.Length < 67)
+        {
+            Console.Write(termStr);
+            Console.Write(" : ");
+            Console.Write(typeStr);
+            Console.WriteLine();
+        }
+        else
+        {
+            Console.Write(termStr);
+            Console.WriteLine();
+            Console.Write("  : ");
+            Console.Write(typeStr);
+            Console.WriteLine();
+        }
+    }
+
     public static void PrintType(Context ctx, IType type)
     {
         var pp = new PrettyPrinter();
@@ -93,36 +122,13 @@ public static class Printing
 
     // ---- Bound printing ----
 
-    /// <summary>
-    /// If <paramref name="t"/> is MakeTop(K) for some non-* kind K, returns that K.
-    /// MakeTop(KnStar) = TypeTop; MakeTop(KnArr(k1,k2)) = TypeAbs("_",k1,MakeTop(k2)).
-    /// </summary>
-    private static IKind? TryGetMakeTopKind(IType t) => t switch
-    {
-        TypeTop => new KnStar(),
-        TypeAbs { Body: var body } abs when TryGetMakeTopKind(body) is KnStar =>
-            new KnArr(abs.Kind, new KnStar()),
-        TypeAbs { Body: var body } abs when TryGetMakeTopKind(body) is KnArr karr =>
-            new KnArr(abs.Kind, karr),
-        _ => null
-    };
 
-    // proty: prints "<:T" if T != Top, or "::K" if T is MakeTop(K) for non-* K
+    // proty: prints "<:T" if T != Top
     private static void ProType(PrettyPrinter pp, Context ctx, IType t)
     {
         if (t is TypeTop) return;
-        var k = TryGetMakeTopKind(t);
-        if (k is KnArr)
-        {
-            // higher-kinded variable: print ::K
-            pp.Write("::");
-            PrintKind(pp, false, k);
-        }
-        else
-        {
-            pp.Write("<:");
-            PrintType(pp, false, ctx, t);
-        }
+        pp.Write("<:");
+        PrintType(pp, false, ctx, t);
     }
 
     // ---- Type printing ----
@@ -266,19 +272,10 @@ public static class Printing
             case NameBinding: break;
             case VarBind vb: pp.Write(": "); PrintType(pp, true, ctx, vb.Type); break;
             case TypeVarBind tvb:
-                var tvbKind = TryGetMakeTopKind(tvb.Bound);
                 if (tvb.Bound is TypeTop)
                     break; // default, no annotation needed
-                else if (tvbKind is KnArr)
-                {
-                    pp.Write(":: ");
-                    PrintKind(pp, true, tvbKind);
-                }
-                else
-                {
-                    pp.Write("<: ");
-                    PrintType(pp, false, ctx, tvb.Bound);
-                }
+                pp.Write("<: ");
+                PrintType(pp, false, ctx, tvb.Bound);
                 break;
             case TypeAbbBind tab:
                 pp.Write(":: ");
@@ -357,7 +354,7 @@ public static class Printing
 
             case Update upd:
                 pp.Obox();
-                PrintTmAppTerm(pp, outer, ctx, upd.Record);
+                PrintTmAppTerm(pp, false, ctx, upd.Record);
                 pp.PrintSpace();
                 pp.Write("<-");
                 pp.Write(" ");
@@ -553,7 +550,8 @@ public static class Printing
             if (i < fields.Count - 1)
             {
                 pp.Write(",");
-                pp.PrintSpace();
+                if (outer) pp.PrintSpace();
+                else pp.PrintBreak(0, 0);
             }
         }
         pp.Write("}");

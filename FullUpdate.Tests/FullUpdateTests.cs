@@ -207,12 +207,12 @@ public class ProcessTests
         Assert.Contains("{x=true, #y=1}", output);
     }
 
-    [Fact(DisplayName = "Higher-kinded type variable prints with :: annotation")]
+    [Fact(DisplayName = "Higher-kinded type variable prints with <: lambda bound")]
     public void HigherKindedTypeVar()
     {
         var output = Capture(() => Functions.Process("lambda X::*=>*. lambda x:(X Bool). x;"));
-        Assert.Contains("X::*=>*", output);
-        Assert.Contains("All X::*=>*", output);
+        Assert.Contains("X<:lambda _.Top", output);
+        Assert.Contains("All X<:lambda _.Top", output);
     }
 
     [Fact(DisplayName = "Valid unpack works")]

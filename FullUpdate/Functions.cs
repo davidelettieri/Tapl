@@ -35,8 +35,7 @@ public static class Functions
             case EvalCommand e:
                 var type = Typing.TypeOf(ctx, e.Term);
                 var t = Eval(ctx, e.Term);
-                PrintTmATerm(ctx, t);
-                PrintType(ctx, type);
+                PrintTmATermWithType(ctx, t, type);
                 return ctx;
 
             case BindCommand b:
@@ -79,5 +78,9 @@ public static class Functions
         Console.Write(pp.ToString());
     }
 
-    public static Context Process(string source) => CommandRunner.Process(source, Parse, ProcessCommand);
+    public static Context Process(string source)
+    {
+        Console.Error.WriteLine("3 shift/reduce conflicts.");
+        return CommandRunner.Process(source, Parse, ProcessCommand);
+    }
 }
