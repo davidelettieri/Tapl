@@ -82,7 +82,7 @@ internal static class Program
     private static void PrintUsage(TextWriter writer)
     {
         writer.WriteLine("Usage: dotnet run --project Harness.Runner -- <language> <source-file>");
-        writer.WriteLine("Supported languages: arith, simplebool, untyped, letexercise, fullsimple, fulluntyped, fullref, fullerror, fullupdate");
+        writer.WriteLine("Supported languages: arith, simplebool, untyped, letexercise, fullsimple, fullpoly, fulluntyped, fullref, fullerror, fullupdate");
     }
 
     private static void RunLanguage(string language, string source)
@@ -114,6 +114,12 @@ internal static class Program
         if (LanguageComparer.Equals(language, "fullsimple"))
         {
             FullSimple.Functions.Process(source);
+            return;
+        }
+
+        if (LanguageComparer.Equals(language, "fullpoly"))
+        {
+            FullPoly.Functions.Process(source);
             return;
         }
 

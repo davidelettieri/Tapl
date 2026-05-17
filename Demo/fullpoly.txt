@@ -1,0 +1,5 @@
+lambda X. lambda x:X. x;
+(lambda X. lambda x:X. x) [Bool];
+
+{*Nat, {c=0, f=lambda x:Nat. succ x}} as {Some X, {c:X, f:X->Nat}};
+let {X,ops} = {*Nat, {c=0, f=lambda x:Nat. succ x}} as {Some X, {c:X, f:X->Nat}} in ops.f ops.c;
