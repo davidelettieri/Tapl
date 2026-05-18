@@ -12,6 +12,8 @@
   <Project Path="FullError/FullError.csproj" />
   <Project Path="FullRef.Tests/FullRef.Tests.csproj" />
   <Project Path="FullRef/FullRef.csproj" />
+  <Project Path="FullPoly.Tests/FullPoly.Tests.csproj" />
+  <Project Path="FullPoly/FullPoly.csproj" />
   <Project Path="FullSimple.Tests/FullSimple.Tests.csproj" />
   <Project Path="FullSimple/FullSimple.csproj" />
   <Project Path="FullUntyped.Tests/FullUntyped.Tests.csproj" />

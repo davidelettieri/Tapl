@@ -11,6 +11,7 @@
     <None Remove="fullref.txt" />
     <None Remove="fulluntyped.txt" />
     <None Remove="fullerror.txt" />
+    <None Remove="fullpoly.txt" />
     <None Remove="fullupdate.txt" />
     <None Remove="letexercise.txt" />
     <None Remove="simplebool.txt" />
@@ -25,6 +26,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="fullerror.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fullpoly.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="fullupdate.txt">
@@ -43,6 +47,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FullError\FullError.csproj" />
+    <ProjectReference Include="..\FullPoly\FullPoly.csproj" />
     <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\FullUntyped\FullUntyped.csproj" />
