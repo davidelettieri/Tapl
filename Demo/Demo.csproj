@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fullrecon.txt" />
     <None Remove="fullref.txt" />
     <None Remove="fulluntyped.txt" />
     <None Remove="fullerror.txt" />
@@ -19,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="fullrecon.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fullref.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -48,6 +52,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FullError\FullError.csproj" />
     <ProjectReference Include="..\FullPoly\FullPoly.csproj" />
+    <ProjectReference Include="..\FullRecon\FullRecon.csproj" />
     <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\FullUntyped\FullUntyped.csproj" />

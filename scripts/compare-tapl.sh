@@ -14,7 +14,7 @@ elif [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
 else
     USE_HOST_USER=true
 fi
-SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple fullpoly fulluntyped fullref fullerror fullupdate)
+SUPPORTED_LANGUAGES=(arith simplebool untyped fullsimple fullpoly fulluntyped fullref fullerror fullupdate fullrecon)
 
 readonly SCRIPT_DIR
 readonly REPO_ROOT
@@ -173,6 +173,38 @@ sanitize_runtime_stderr() {
     local stderr_file=$1
 
     sed -i '/^Emulate Docker CLI using podman\./d' "${stderr_file}"
+    # Remove OCaml compiler warning blocks (non-exhaustive pattern match etc.)
+    sed -i '/^File ".*\.ml".*warning/Id' "${stderr_file}"
+    # Use Python to strip OCaml warning blocks (multi-line patterns)
+    python3 - "${stderr_file}" <<'PYEOF'
+import sys, re
+path = sys.argv[1]
+with open(path) as f:
+    text = f.read()
+# Remove OCaml compiler warning blocks:
+#   File "...", line N, characters M-P:
+#   N |   <code>
+#        ^^^^^^^^
+#   Warning N [type]: message.
+#   Here is an example of a case that is not matched:
+#   <example>
+text = re.sub(
+    r'^File "[^"]*", line \d+.*\n.*\n.*\n(?:Warning \d+ \[.*\].*\n)?(?:.*\n)*?(?=\n|(?=File )|$)',
+    '',
+    text,
+    flags=re.MULTILINE
+)
+# More aggressive: remove any line starting with "Warning N ["
+text = re.sub(r'^Warning \d+ \[.*\].*\n', '', text, flags=re.MULTILINE)
+text = re.sub(r'^File "[^"]*",.*\n', '', text, flags=re.MULTILINE)
+text = re.sub(r'^\d+ \|.*\n', '', text, flags=re.MULTILINE)
+text = re.sub(r'^ *\^+.*\n', '', text, flags=re.MULTILINE)
+text = re.sub(r'^Here is an example of a case.*\n', '', text, flags=re.MULTILINE)
+# Remove lines that are just type expressions (leftover from warning)
+text = re.sub(r'^\(\(.*\), _\).*\n', '', text, flags=re.MULTILINE)
+with open(path, 'w') as f:
+    f.write(text)
+PYEOF
 }
 
 docker_run_prefix() {

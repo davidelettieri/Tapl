@@ -1,0 +1,11 @@
+/* fullrecon sample */
+
+lambda x:A. x;
+
+lambda x:Bool. x;
+
+lambda x:Nat. succ x;
+
+(lambda x. x 0);
+
+let f = lambda x. x in (f f) (f 0);

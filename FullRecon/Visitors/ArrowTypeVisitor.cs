@@ -1,0 +1,20 @@
+using System;
+using Common;
+using FullRecon.Syntax;
+
+namespace FullRecon.Visitors;
+
+public sealed class ArrowTypeVisitor(TypeVisitor typeVisitor) : FullReconBaseVisitor<Func<Context, IType>>
+{
+    private readonly ATypeVisitor _aTypeVisitor = new(typeVisitor);
+
+    public override Func<Context, IType> VisitArrowtype_arrow(FullReconParser.Arrowtype_arrowContext context)
+    {
+        var atype = _aTypeVisitor.Visit(context.atype());
+        var arrType = Visit(context.arrowtype());
+        return ctx => new TypeArrow(atype(ctx), arrType(ctx));
+    }
+
+    public override Func<Context, IType> VisitArrowtype_atype(FullReconParser.Arrowtype_atypeContext context)
+        => _aTypeVisitor.Visit(context.atype());
+}
