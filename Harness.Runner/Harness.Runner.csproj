@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Arith\Arith.csproj" />
     <ProjectReference Include="..\FullError\FullError.csproj" />
     <ProjectReference Include="..\FullPoly\FullPoly.csproj" />
+    <ProjectReference Include="..\FullRecon\FullRecon.csproj" />
     <ProjectReference Include="..\FullRef\FullRef.csproj" />
     <ProjectReference Include="..\FullSimple\FullSimple.csproj" />
     <ProjectReference Include="..\FullUntyped\FullUntyped.csproj" />

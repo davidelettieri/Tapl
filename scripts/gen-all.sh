@@ -5,6 +5,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 
 bash "${SCRIPT_DIR}/../Arith/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../FullError/Grammar/gen.sh"
+bash "${SCRIPT_DIR}/../FullRecon/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../FullRef/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../FullSimple/Grammar/gen.sh"
 bash "${SCRIPT_DIR}/../FullPoly/Grammar/gen.sh"

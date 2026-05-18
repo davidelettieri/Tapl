@@ -9,6 +9,8 @@
   <Project Path="Common/Common.csproj" />
   <Project Path="Demo/Demo.csproj" />
   <Project Path="FullError.Tests/FullError.Tests.csproj" />
+  <Project Path="FullRecon.Tests/FullRecon.Tests.csproj" />
+  <Project Path="FullRecon/FullRecon.csproj" />
   <Project Path="FullError/FullError.csproj" />
   <Project Path="FullRef.Tests/FullRef.Tests.csproj" />
   <Project Path="FullRef/FullRef.csproj" />
