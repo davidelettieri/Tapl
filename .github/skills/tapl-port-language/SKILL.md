@@ -88,12 +88,12 @@ Create `fixtures/<language>/` and add a representative fixture suite.
 Fixture expectations:
 - follow the `fixtures/fullsimple/` pattern for value-producing and well-typed term coverage
 - for each supported non-error term form, include both an unevaluated printing case and an evaluated result case in the same fixture when possible
-- prefer the exact two-command shape used by `fullsimple`: first `lambda _:Unit. <term>;` and then `(lambda _:Unit. <term>) unit;`
+- prefer the exact two-command shape: first `lambda _:Unit. <term>;` and then `<term>;`
 - use the first line to verify printing and typing of the unevaluated term, and the second line to verify evaluation and printing of the result
 - apply this pattern broadly enough that every term constructor and important derived form is exercised at least once through the harness
 - cover successful evaluation paths
 - cover type errors or runtime errors when the language has them
-- cover syntax that stresses binding depth, substitution, and printing
+- cover syntax that stresses binding depth, substitution, and printing. Cover all terms defined by the language 
 - keep fixtures small and diagnostic
 - prefer multiple focused fixtures over a single large script
 
